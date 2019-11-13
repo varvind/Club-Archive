@@ -13,8 +13,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
         <title>ClubArchive</title>
-        <link rel="icon" href="updatedlogo.png">
+        <!-- <link rel="icon" href="updatedlogo.png"> -->
         <style>
             * {
                 box-sizing: border-box;
@@ -33,7 +35,7 @@
             }
             
             .form-control, .form-control-lg {
-                width :50%; height : 50%; margin-left : 25%; margin-top: 10%
+                width :50%; height : 50%; margin-left : 25%; margin-top: 0%
             }
             /* Extra small devices (phones, 600px and down) */
             @media only screen and (max-width: 600px) {
@@ -79,8 +81,30 @@
 
             }
             
+            body {
+                font-family: 'Didact Gothic', sans-serif;
+            }
+            .main {
+                background-color:black;
+                height : 300px;
+                margin-top: 0%;
+            }
+            .background {
+                background-color: black;
+                height : 200px;
+                margin-top: 0%;
+            } 
+            .decorationPic {
+                margin-top:2%;
+                margin-left:49%;
+                width: 50px;
+                height: 50px;
+            }
+            .featured {
+                margin-top : 2%
+            }
             
-        
+            
         </style>
         
 
@@ -90,7 +114,7 @@
         <nav class="navbar navbar-expand-sm bg-light navbar-light">
             <ul class="navbar-nav ">
                 <li class="nav-item active ">
-                    <a class="nav-link" href="index.html"><p class = "display-4" style = "margin-left : 2%; margin-top: 1%; color: #41bbac; font-size: 170%;">ClubArchive</p></a>
+                    <a class="nav-link" href="index.html"><p class = "display-4" style = "margin-left : 2%; margin-top: 1%; color: #41bbac; font-size: 170%; font-family: 'Didact Gothic', sans-serif;">ClubArchive</p></a>
                 </li>
                 
             </ul>
@@ -103,17 +127,144 @@
                 </li>
             </ul>
         </nav>
-        <div style = "width : 100%">
-            <input type="text" placeholder="Search for Clubs" class="form-control form-control-lg" >
-            <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary leading" >Academic</button>
-            <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary nonleading" style="margin-left:1%" >Greek Life</button>
-            <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary nonleading" style="margin-left:1% ">Sports</button>
-            <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary nonleading" style="margin-left:1%">Special Interest</button>
-        </div>
-
-        <div>
+        <div class = "background" >
 
         </div>
+        <div class = "main">
+            <div style = "width : 100%" >
+                <input type="text" placeholder="Search for Clubs" class="form-control form-control-lg" >
+                <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary leading" >Academic</button>
+                <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary nonleading" style="margin-left:1%" >Greek Life</button>
+                <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary nonleading" style="margin-left:1% ">Sports</button>
+                <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary nonleading" style="margin-left:1%">Special Interest</button>
+            </div>
+        </div>
+        <img src =  "graduationCAP.png" class = "decorationPic">
+        <div class = "featured">
+            <div class="card" style="width: 18rem; float:left; margin-left: 15.5%">
+                <img class="card-img-top" src="morainelakebackground.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem; margin-left: 3%; float: left;">
+                <img class="card-img-top" src="morainelakebackground.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem; margin-left: 3%; float: left;">
+                <img class="card-img-top" src="morainelakebackground.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem; margin-left: 3%; float: left;">
+                <img class="card-img-top" src="morainelakebackground.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+        </div>
+
+        <img src ="greek.png" class = "decorationPic">
+        <div class = "featured">
+            <div class="card" style="width: 18rem; float:left; margin-left: 15.5%">
+                <img class="card-img-top" src="frat.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem; margin-left: 3%; float: left;">
+                <img class="card-img-top" src="frat.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem; margin-left: 3%; float: left;">
+                <img class="card-img-top" src="frat.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem; margin-left: 3%; float: left;">
+                <img class="card-img-top" src="frat.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+        </div>
+        <img src ="sports1.png" class = "decorationPic">
+        <div class = "featured">
+            <div class="card" style="width: 18rem; float:left; margin-left: 15.5%">
+                <img class="card-img-top" src="TAMUSPORTS.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem; margin-left: 3%; float: left;">
+                <img class="card-img-top" src="TAMUSPORTS.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem; margin-left: 3%; float: left;">
+                <img class="card-img-top" src="TAMUSPORTS.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem; margin-left: 3%; float: left;">
+                <img class="card-img-top" src="TAMUSPORTS.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+        </div>
+        <img src ="finalSI.png" class = "decorationPic">
+        <div class = "featured">
+            <div class="card" style="width: 18rem; float:left; margin-left: 15.5%">
+                <img class="card-img-top" src="food.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem; margin-left: 3%; float: left;">
+                <img class="card-img-top" src="food.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem; margin-left: 3%; float: left;">
+                <img class="card-img-top" src="food.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem; margin-left: 3%; float: left;">
+                <img class="card-img-top" src="food.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+        </div>
+
         
     </body>
 </html>
