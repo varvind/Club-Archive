@@ -29,14 +29,22 @@
                 text-decoration : none;
             }
             .btn-outline-secondary:hover {
-                background-color: #41bbac
+                background-color: lightgray
             }
             .btn, .btn-outline-secondary {
-                     margin-left: 22%; margin-right:0%; margin-top: 1.5%; width : 13%; height: 5%; font-size: 90%;
+                     margin-left: 22%; margin-right:0%; margin-top: 1.5%; width : 13%; height: 5%; font-size: 90%; background-color: white;
             }
             
             .form-control, .form-control-lg {
                 width :50%; height : 50%; margin-left : 25%; margin-top: 0%
+            }
+            .btn-outline-dark {
+                width:140%;
+                height: 100%;
+                color:black;
+            }
+            .btn-outline-dark:hover {
+                background-color: lightgray
             }
             /* Extra small devices (phones, 600px and down) */
             @media only screen and (max-width: 600px) {
@@ -86,15 +94,10 @@
                 font-family: 'Didact Gothic', sans-serif;
             }
             .main {
-                background-color:black;
-                height : 300px;
-                margin-top: 0%;
+                background-color:#38a8f3 ;
+                height : 500px;
             }
-            .background {
-                background-color: black;
-                height : 200px;
-                margin-top: 0%;
-            } 
+
             .decorationPic {
                 margin-top:1%;
                 margin-left:48.5%;
@@ -117,27 +120,41 @@
     </head>
     <body>
         
-        <nav class="navbar navbar-expand-sm bg-light navbar-light">
-            <ul class="navbar-nav ">
+        <!-- <nav class="navbar navbar-expand-sm  navbar-light" style = "background-color: #38a8f3 ;">
+            <ul class="navbar-nav " >
                 <li class="nav-item active ">
-                    <a class="nav-link" href="index.html"><p class = "display-4" style = "margin-left : 2%; margin-top: 1%; color: #41bbac; font-size: 170%; font-family: 'Didact Gothic', sans-serif;">ClubArchive</p></a>
+                    <a class="nav-link" href="index.html"><p class = "display-4" style = "margin-left : 2%; margin-top: 1%; color: white; font-size: 170%; font-family: 'Didact Gothic', sans-serif;">ClubArchive</p></a>
                 </li>
                 
             </ul>
             <ul class ="navbar-nav ml-auto">
                 <li class="nav-item ml-auto">
-                    <a class="nav-link" href="SignUp.html" style = "color: #41bbac; font-size: 80%" >Sign Up</a>
+                    <a class="nav-link" href="SignUp.html" style = "color: white; font-size: 80%" >Sign Up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href= "login.html" style = "color: #41bbac; font-size: 80%" >Login</a>
+                    <a class="nav-link" href= "login.html" style = "color: white; font-size: 80%" >Login</a>
                 </li>
             </ul>
-        </nav>
-        <div class = "background" >
+        </nav> -->
 
-        </div>
-        <div class = "main">
-            <div style = "width : 100%" >
+        <div class = "main" >
+            <div class= "row" style = "float:right;margin-top:1%;margin-right: 5%">
+                <div class = "col" >
+                    <button type="button" class="btn btn-outline-dark"  style = "font-size:24" onclick= "window.location.href = 'login.html';">Log in</button>
+                </div>
+                <div class = "col">
+                    <button type="button" class="btn btn-outline-dark" style = "font-size:24" onclick= "window.location.href = 'SignUp.html';">Sign Up</button>
+                </div>
+                  
+              
+            
+                
+                
+            </div>
+
+              <a href = "index.html" style = "margin-top : 1%; margin-left:41%;" ><img src="Images/clubArchive.png" style = "width: 300px; height: 300px; "></a>
+         
+            <div style = "width : 100% ; margin-top:1%;" >
                 <input type="text" placeholder="Search for Clubs" class="form-control form-control-lg" >
                 <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary leading" >Academic </button>
                 <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary nonleading" style="margin-left:1%" >Greek Life</button>
@@ -147,45 +164,45 @@
         </div>
         <!--Org Type Search-->
         <div class = "container">
-          <div class = row style = "margin-top:1%">
+          <div class = row style = "margin-top:3%">
               <h2 class = "col-sm" style = "text-align:center"> Find the Best Clubs at your University</h2>
               
           </div>
           <hr style = "width: 99%; margin-left:0%">
-          <div class = "row" style = "margin-top:1%">
+          <div class = "row" style = "margin-top:1%;">
             <div class = "col" >
-                <div class="card" style="width: 15rem; margin-left: 0%">
-                    <img class="card-img-top" src="images/morainelakebackground.jpg" alt="Card image cap">
+                <div class="card" style="width: 15rem; margin-left: 0% ; height: 240px">
+                    <img class="card-img-top" src="images/school.jpg" alt="Card image cap" style = "height: 170px;">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <h5 class="card-title">Academic</h5>
+                      
                     </div>
                   </div>
             </div>
             <div class = "col" >
-                <div class="card" style="width: 15rem; margin-left: 0%">
-                    <img class="card-img-top" src="images/morainelakebackground.jpg" alt="Card image cap">
+                <div class="card" style="width: 15rem; margin-left: 0%; height: 240px">
+                    <img class="card-img-top" src="images/sorority.jpg" alt="Card image cap" style = "height: 170px;">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <h5 class="card-title">Greek Life</h5>
+                      
                     </div>
                   </div>
             </div>  
             <div class = "col" >
-                <div class="card" style="width: 15rem; margin-left: 0%">
-                    <img class="card-img-top" src="images/morainelakebackground.jpg" alt="Card image cap">
+                <div class="card" style="width: 15rem; margin-left: 0% ;height: 240px">
+                    <img class="card-img-top" src="images/club-sports.jpg" alt="Card image cap" style = "height: 170px;">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <h5 class="card-title">Sports</h5>
+                      
                     </div>
                   </div>
             </div> 
             <div class = "col" >
-                <div class="card" style="width: 15rem; margin-left: 0%">
-                    <img class="card-img-top" src="images/morainelakebackground.jpg" alt="Card image cap">
+                <div class="card" style="width: 15rem; margin-left: 0%; height: 240px">
+                    <img class="card-img-top" src="images/specialInterest.JPG" alt="Card image cap" style = "height: 170px;">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <h5 class="card-title">Special Interest</h5>
+                     
                     </div>
                   </div>
             </div> 
@@ -248,7 +265,7 @@
 
             <div class = "row">
               <div class = "col">
-                <h4 style = "text-align: center;">Top Academic Orgs</h4>
+                <h4 style = "text-align: center;">Top Academic</h4>
                 <hr style = "width: 40%">
                 <table style = "text-align: center;">
                     <li style = " margin-left: 30%">
@@ -263,7 +280,7 @@
                 </table>
               </div>
               <div class = "col">
-                  <h4 style = "text-align: center;">Top Greek Orgs</h4>
+                  <h4 style = "text-align: center;">Top Greek</h4>
                   <hr style = "width: 40%">
                   <table style = "text-align: center;">
                      <li style = " margin-left: 30%">
@@ -278,7 +295,7 @@
                   </table>
               </div>
               <div class = "col">
-                  <h4 style = "text-align: center;">Top Sports Orgs</h4>
+                  <h4 style = "text-align: center;">Top Sports</h4>
                   <hr style = "width: 40%">
                   <table style = "text-align: center;">
                      <li style = " margin-left: 30%">
@@ -293,7 +310,7 @@
                   </table>
               </div>
               <div class = "col">
-                  <h4 style = "text-align: center;">Top Special Interst Orgs</h4>
+                  <h4 style = "text-align: center;">Top Special Interest</h4>
                   <hr style = "width: 40%">
                   <table style = "text-align: center;">
                      <li style = " margin-left: 30%">
