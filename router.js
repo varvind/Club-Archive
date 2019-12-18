@@ -17,9 +17,14 @@ var nameSchema = new mongoose.Schema({
 });
 var User = mongoose.model("User", nameSchema);
 
+
+app.use(express.static(__dirname));
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/SignUp.html");
+    
 });
+
+
 
 app.post("/addname", (req, res) => {
     var myData = new User(req.body);
