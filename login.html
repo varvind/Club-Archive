@@ -1,0 +1,108 @@
+<!--Login page-->
+<!DOCTYPE html>
+
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <title>ClubArchive</title>
+        <style>
+            .btn, .btn-outline-secondary {
+                margin-left: 33%; margin-top: 2%; width : 30%; height: 5%; font-size: 90vw 90vh;
+            }
+            .SmallPassword {
+                color: blue;
+                margin-left:56.5%; margin-top: 1%;
+            }
+            .SmallPassword:visited {
+                color:blue;
+            }
+            .SmallSignUp {
+                 color:blue;
+            }
+            .SmallSignUp {
+                color:blue;
+            }
+            .text1 {
+                
+            }
+            .text2 {
+                margin-left:51.5%; margin-top:1%
+            }
+            .text3 {
+                margin-left:53%; margin-top:1%
+            }
+            .btn-outline-secondary:hover {
+                background-color: lightgray
+            }
+            .form-control, .form-control-lg {
+                width :30%; height : 50%; margin-left : 33%;
+            }
+            @media only screen and (max-width: 600px) {
+                
+                .earth {
+                    display:none;
+                }
+                .form-control, .form-control-lg {
+                    width :50%; height : 35px; margin-left : 24%; margin-top: 10%
+                }
+                .form-control::placeholder {
+                    font-size: 70%;
+                }
+                .btn, .btn-outline-secondary {
+                    margin-left: 33%; margin-top: 3%; width : 30%; height: 5%; font-size: 90vw 90vh;
+                }
+                .SmallPassword {
+                    margin-left: 33%
+                }
+                .text2 {
+                    margin-left:22%; margin-top:1%
+                }
+                .text3 {
+                    margin-left:24%; margin-top:1%
+                }
+            }  
+        </style>
+        
+
+    </head>
+
+
+    <body>
+
+        <nav class="navbar navbar-expand-sm navbar-light" style = "background-color:#38a8f3 ;">
+           
+                    <a href = "index.html" style = " margin-left: 45%;"><img src = "Images/finalLogo2.png" style="width :100px; height:100px;" ></a>
+                
+            
+        </nav>
+
+        <div style = "margin-top : 6%">
+            <form><!--TODO: ADD ACTION-->
+                <input placeholder="Username" type="text" class="form-control form-control-lg" >
+                <input placeholder="Password" type="text" class="form-control form-control-lg" style = "margin-top:2%">
+                <p class = "text1"><a href = "ChangePassword.html" class = "SmallPassword" >Forgot Password?</a></p>
+                <button  type="button" class="btn btn-outline-secondary">Log In</button>
+                <p class="text2">Don't have an account? <a href = "SignUp.html" class = "SmallSignUp">Sign Up</a></p>
+                
+            </form>
+        </div>
+
+
+
+    </body>
+
+
+
+
+
+
+</html>
+
+
