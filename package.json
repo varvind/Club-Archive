@@ -1,24 +1,24 @@
 {
-  "name": "club-archive",
+  "name": "testerforclubarchivefinalsite",
   "version": "1.0.0",
-  "description": "Bringing innovative tools for students looking to get involved in University organizations",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/varvind/Club-Archive.git"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/varvind/Club-Archive/issues"
-  },
-  "homepage": "https://github.com/varvind/Club-Archive#readme",
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "mongoose": "^5.7.11"
+    "express-fileupload": "^1.1.6",
+    "express-session": "^1.17.0",
+    "mongoose": "^5.8.6",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
