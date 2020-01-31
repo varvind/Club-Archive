@@ -16,6 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
         <link rel="icon" href="../public/img/finalLogo2.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>ClubArchive</title>
         <!-- <link rel="icon" href="updatedlogo.png"> -->
         <style>
@@ -136,7 +137,7 @@
                 <% if(loggedIn) { %>
                     <div class="dropdown">
                         
-                        <img src = "../public/img/profile pic.jpg" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:1%" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src = "<%=user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:1%" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="/userprofile">View Profile</a>
@@ -154,13 +155,10 @@
                         <a href = '/' ><img src="/public/img/clubArchive.png" style = "width: 300px; height: 300px;display: block; margin: 0 auto; "></a>
 
          
-            <div style = "width : 100% ; margin-top:-2%;" >
-                <input type="text" placeholder="Search for Clubs" class="form-control form-control-lg" >
-                <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary leading" >Academic </button>
-                <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary nonleading" style="margin-left:1%" >Greek Life</button>
-                <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary nonleading" style="margin-left:1% ">Sports</button>
-                <button type="button" onclick= "window.location.href = 'searchLanding.html';" class="btn btn-outline-secondary nonleading" style="margin-left:1%">Special Interest</button>
-            </div>
+                        <form class="example" action="/action_page.php" style="margin:auto">
+                            <input type="text" placeholder="Search.." name="search2" class ="form-control form-control-lg" style = "float:left; border-radius: 0%;">
+                            <button type="submit" style = "height: 43px;margin-left:0.2px; width:44px;background-color: white;border: none;background-image: url('/public/img/searchIcon.jpg');background-position: center; background-size: 98%;"><i style = "background-image: url('/public/img/Search-Button.jpg');"></i></button>
+                        </form>
         </div>
         <!--Org Type Search-->
         <div class = "container">
@@ -364,14 +362,22 @@
             <div class="container">
         
             <!-- Call to action -->
-            <ul class="list-unstyled list-inline text-center py-2">
-                <li class="list-inline-item">
-                <h5 class="mb-1">Looking to add your organization?</h5>
-                </li>
-                <li class="list-inline-item">
-                    <button type="button" onclick= "window.location.href = '/clubsignup';" class="btn btn-outline-secondary" style="margin-left:1%; width: 110px; height: 38px;">Claim Today!</button>
-                </li>
-            </ul>
+                <ul class="list-unstyled list-inline text-center py-2">
+                    <li class="list-inline-item">
+                        <h5 class="mb-1">Looking to add your organization?</h5>
+                    </li>
+                    <li class="list-inline-item">
+                        <button type="button" onclick= "window.location.href = '/clubsignup';" class="btn btn-outline-secondary" style="margin-left:1%; width: 110px; height: 38px;">Claim Today!</button>
+                    </li>
+                </ul>
+                <ul class="list-unstyled list-inline text-center py-2" style = "margin-top:2%">
+                    <li class="list-inline-item">
+                        <h6 class="mb-1">Already on the Archive?</h6>
+                    </li>
+                    <li class="list-inline-item">
+                        <a style = "text-decoration: underline; color:#38a8f3" href = "/clublogin">Login Here!</a>
+                    </li>
+                </ul>
             <!-- Call to action -->
         
             </div>
