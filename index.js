@@ -22,8 +22,8 @@ const clubSignUpController = require('./controllers/clubSignUp')
 const clubStoreController = require('./controllers/storeClub')
 const clublogincontroller = require('./controllers/clubloginpage')
 const loginClubController = require('./controllers/loginClub')
-
-
+const searchLandingController = require('./controllers/searchLanding')
+const searchController = require('./controllers/search')
 //db connect
 mongoose.connect('mongodb://localhost/club_archive', {useNewUrlParser:true})
 
@@ -51,10 +51,15 @@ app.listen(3000,
 //global variable that can be utilized in all files
 //senses the cookies
 global.loggedIn = null
+global.clubloggedin = null
 app.use("*", (req, res, next) => {
     loggedIn = req.session.userId;
+    clubloggedin = req.session.clubId;
     next()
 })
+console.log(clubloggedin)
+
+
 
 //routing
 app.get('/', homeController)
@@ -69,6 +74,8 @@ app.get('/clubsignup', clubSignUpController)
 app.post('/addclub',redirectIfAuthenticatedMiddleware, clubStoreController)
 app.get('/clublogin', redirectIfAuthenticatedMiddlewareClubs,  clublogincontroller)
 app.post('/loginClub',redirectIfAuthenticatedMiddlewareClubs, loginClubController)
+app.get('/searchlanding', searchLandingController)
+app.get('/search', searchController)
 // app.get('/searchlanding' , (req, res) => {
 //     res.render('searchLanding')
 // })
