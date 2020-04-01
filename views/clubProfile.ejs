@@ -18,9 +18,16 @@
             height: 200px;
             width: 200px;
         }
+        .contactBox {
+            width: 300px;
+            border: 8px solid lightgrey;
+            padding: 10px;
+            margin: 20px; 
+        }
     </style>
 </head>
 <body>
+
     <div >
         <div class = "row">
                 <a href = "/" style = "margin-top:-.3%; margin-left: 10%;"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px;"></a>
@@ -43,10 +50,40 @@
         
         
     </div>
-    <div style = "height: 300px; background-image: url('../public/img/morainelakebackground.jpg'); background-position:center; background-size: cover;">
+    <div style = "height: 450px;">
+        <div id="demo" class="carousel slide" data-ride="carousel">
 
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+              <li data-target="#demo" data-slide-to="0" class="active"></li>
+              <li data-target="#demo" data-slide-to="1"></li>
+              <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+          
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div style = "height: 450px; background-image: url('../public/img/morainelakebackground.jpg'); background-position:center; background-size: cover;"></div>
+              </div>
+              <div class="carousel-item">
+                <div style = "height: 450px; background-image: url('../public/img/morainelakebackground.jpg'); background-position:center; background-size: cover;"></div>
+              </div>
+              <div class="carousel-item">
+                <div style = "height: 450px; background-image: url('../public/img/boating.jpg'); background-position:center; background-size:cover;"></div>
+              </div>
+            </div>
+          
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+          
+          </div>
     </div>
-    <!-- <div style = "margin-top: 2%;">
+    <div style = "margin-top: 2%;">
         <div class = "row">
             <div class = "col-sm-3">
                 
@@ -59,6 +96,13 @@
                     Excepteur sint occaecat cupidatat non proident, sunt in <br>culpa qui officia deserunt mollit anim id est laborum.</p>
 
                 
+            </div>
+            <div class = "col-sm-3">
+                <div class = "contactBox">
+                    <h5>Get Involved!</h5>
+                    <p>Phone Number : 512-914-7106</p>
+                    <p>Email: varvind@tamu.edu</p>
+                </div>
             </div>
         </div>
     </div>
@@ -90,8 +134,35 @@
                 </ul>
             </div>
         </div>
-    </div> -->
-   
+    </div>
+    <div>
+        <div class ="row">
+            <div class = "col-sm-3">
+
+            </div>
+            <div class = "col">
+                <h6>Org President: Arvind Venkatesan</h7> <br>
+                <h6>Member Count: 3</h7>
+                <br>
+                <h6>Recruiting Season: Fall</h7>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <footer class="page-footer font-small unique-color-dark pt-4" style = "background-color:lightgrey">
+
+        <!-- Footer Elements -->
+        <!-- Footer Elements -->
+    
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="/">ClubArchive.com</a>
+        </div>
+        <!-- Copyright -->
+    
+    </footer>
     
 </body>
     

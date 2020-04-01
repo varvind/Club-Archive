@@ -7,7 +7,8 @@ const bcrypt = require('bcrypt')
 const clubSchema = new Scheme ({
     name : {
         type : String,
-        required :true
+        required :true,
+        unique:true
     },
     memberCount : {
         type : String,
@@ -25,9 +26,14 @@ const clubSchema = new Scheme ({
         type: String,
         required:true
     },
+    description : {
+        type :String,
+        required: true
+    },
     username : {
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     password : {
         type: String,

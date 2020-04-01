@@ -7,6 +7,7 @@ module.exports = (req, res) => {
             ...req.body,
             image: '/public/img/' + image.name
         })
+        //req.session.userId = user._id
         res.redirect('/')
     })
 }

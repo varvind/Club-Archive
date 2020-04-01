@@ -15,6 +15,10 @@
                 }
                 a:hover {
                     text-decoration : none;
+                    color: black;
+                }
+                a{
+                    color:black
                 }
                 .btn-outline-secondary:hover {
                     background-color: #41bbac
@@ -42,33 +46,85 @@
     <body>
         <div >
             <div class = "row">
-                    <a href = "index.html" style = "margin-left: 10%;"><img src = "Images/blueLogo.png" style = "width: 100px; height: 100px; "></a>
+                    <a href = "/" style = "margin-left: 10%;"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px; "></a>
                     <div class = "col">
-                            <input placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" >
+                        <form class="example" action="/search" style="margin:auto" method="GET">
+                            <input placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" name = "search2" >
+                        </form>
+                            
                     </div>
                     <div class = "col" >
-                            <button type="button" class="btn btn-outline-dark" style = "font-size:18; float: right; margin-top:3% ; margin-right: 3% ; color:white; background-color: #38a8f3" onclick= "window.location.href = 'SignUp.html';">Sign Up</button>
-                            <button type="button" class="btn btn-outline-dark signUp"  style = "font-size:18; float : right; margin-top: 3%; margin-right: 3%;" onclick= "window.location.href = 'login.html';">Log in</button>
+                        <% if (!loggedIn) {%>
+                            <button type="button" class="btn btn-outline-dark" style = "font-size:18; float: right; margin-top:3% ; margin-right: 3% ; color:white; background-color: #38a8f3" onclick= "window.location.href = '/signup';">Sign Up</button>
+                            <button type="button" class="btn btn-outline-dark signUp"  style = "font-size:18; float : right; margin-top: 3%; margin-right: 3%;" onclick= "window.location.href = '/login';">Log in</button>
+                        <% } %> 
+                        <% if(loggedIn) { %>
+                            <div class="dropdown">
+                        
+                                <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:1%" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="/userprofile">View Profile</a>
+                                    <a class="dropdown-item" href="/userlogout">Logout</a>
+                                </div>
+                            </div>
+
+                        <% } %>
                     </div>
 
             </div>
         </div>
         <hr style = "margin-top: 0%">
         
+
+        
         <!-- Search Cards-->
         <div class = "container">
-            <div class = "row">
-                <div class = "col">
-                    
-                </div>
-            </div>
+            <% if (query !== null && query !== '')  { %> 
+                <h4>"<%= query %>"  at Texas A&M University</h4>
+            <% } else {%>
+                <h4>Clubs at Texas A&M University</h4>
+            <% } %> 
             
-        </div>
-        <div>
-            <% clubs.forEach(club => { %> 
-                <div><%= club.name %> </div>
+            <% clubs.forEach(club => { %>
+            <a href = "/post/<%=club._id%>">
+                <div class = "row" style = "margin-top:3%">
+                    <div class = "col">
+                        <div class="card" style="width: 30rem; margin-left: 0%">
+                        
+                            <div class="card-body">
+                              <h5 class="card-title"><%= club.name %></h5>
+                              <p class="card-text"><%= club.description %> </p>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </a>
+            
             <% }); %> 
         </div>
+        <script>
+            $(document).ready(function() {
+ // executes when HTML-Document is loaded and DOM is ready
+                console.log("document is ready");
+                
+
+                $( ".card" ).hover(
+                function() {
+                    $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
+                }, function() {
+                    $(this).removeClass('shadow-lg');
+                }
+                );
+            
+            // document ready  
+            });
+        </script>
+
+
+
+        
+    
 
 
 

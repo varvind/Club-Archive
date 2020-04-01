@@ -131,7 +131,7 @@
                     </li>
                         
                     <li style = " list-style: none; float: right; margin-right : 1%; margin-top:1.3%">
-                            <button type="button" class="btn btn-outline-dark" style = "font-size:24;width: 80px" onclick= "window.location.href = 'signup';">Sign Up</button>
+                            <button type="button" class="btn btn-outline-dark" style = "font-size:24;width: 80px" onclick= "window.location.href = '/signup';">Sign Up</button>
                     </li>
                 <% } %>
                 <% if(loggedIn) { %>
@@ -169,19 +169,21 @@
           <hr style = "width: 99%; margin-left:0%">
           <div class = "row" style = "margin-top:1%;">
             <div class = "col" >
-                <a>
+                <a href="/academicSearch">
                     <div class="card" style="width: 15rem; margin-left: 0% ; height: 240px">
                         <img class="card-img-top" src="/public/img/school.jpg" alt="Card image cap" style = "height: 170px;">
                         <div class="card-body">
-                          <h5 class="card-title" style = "text-align: center;">Academic</h5>
-                          
+                            <h5 class="card-title" style = "text-align: center;">Academic</h5>
+                            
                         </div>
                     </div>
                 </a>
+                        
+                    
                 
             </div>
             <div class = "col" >
-                <a>
+                <a href = "/greekSearch">
                     <div class="card" style="width: 15rem; margin-left: 0%; height: 240px">
                         <img class="card-img-top" src="/public/img/sorority.jpg" alt="Card image cap" style = "height: 170px;">
                         <div class="card-body">
@@ -193,7 +195,7 @@
                 
             </div>  
             <div class = "col" >
-                <a>
+                <a href = "/sportSearch">
                     <div class="card" style="width: 15rem; margin-left: 0% ;height: 240px">
                         <img class="card-img-top" src="/public/img/club-sports.jpg" alt="Card image cap" style = "height: 170px;">
                         <div class="card-body">
@@ -205,7 +207,7 @@
                 
             </div> 
             <div class = "col" >
-                <a>
+                <a href = "/specialSearch">
                     <div class="card" style="width: 15rem; margin-left: 0%; height: 240px">
                         <img class="card-img-top" src="/public/img/specialInterest.JPG" alt="Card image cap" style = "height: 170px;">
                         <div class="card-body">
@@ -229,13 +231,15 @@
           <hr style = "width: 99%; margin-left:0%">
           <div class = "row" style = "margin-top:1%">
             <div class = "col" >
-                <div class="card" style="width: 15rem; margin-left: 0%">
-                    <img class="card-img-top" src="/public/img/morainelakebackground.jpg" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href = "/post/5e368fc123e48884505e7abf">
+                    <div class="card" style="width: 15rem; margin-left: 0%">
+                        <img class="card-img-top" src="/public/img/blueLogo.png" alt="Card image cap" style = "height: 190px;">
+                        <div class="card-body">
+                        <h5 class="card-title">Club Archive</h5>
+                        <p class="card-text" style = "font-size: small;">This is clubarchive, the best way to link people to clubs. Everything in the world this day is online, and why shouldn't club searching be either? Find clubs today!</p>
+                        </div>
                     </div>
-                  </div>
+                </a>
             </div>
             <div class = "col" >
                 <div class="card" style="width: 15rem; margin-left: 0%">
@@ -386,7 +390,7 @@
                         <h5 class="mb-1">Looking to add your organization?</h5>
                     </li>
                     <li class="list-inline-item">
-                        <button type="button" onclick= "window.location.href = '/clublogininstructions';" class="btn btn-outline-secondary" style="margin-left:1%; width: 110px; height: 50px;">Learn More Here!</button>
+                        <button type="button" onclick= "window.location.href = '/clubprofile';" class="btn btn-outline-secondary" style="margin-left:1%; width: 110px; height: 50px;">Learn More Here!</button>
                     </li>
                 </ul>
             <% } %> 
