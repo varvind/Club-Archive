@@ -4,7 +4,7 @@ const app =  new express()
 const mongoose = require('mongoose')
 const ejs = require('ejs')
 const bodyParser = require('body-parser')
-
+const validator = require('express-validator')
 //routes
 const userSignUpController = require('./controllers/newUser')
 const homeController = require('./controllers/home')
@@ -56,9 +56,11 @@ app.listen(3000,
 //senses the cookies
 global.loggedIn = null
 global.clubloggedin = null
+global.searches = []
 app.use("*", (req, res, next) => {
     loggedIn = req.session.userId;
     clubloggedin = req.session.clubId;
+    searches = req.session.searches || [];
     next()
 })
 console.log(clubloggedin)

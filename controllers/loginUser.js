@@ -1,11 +1,11 @@
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
-
+const{check, validationResult} = require('express-validator')
 module.exports = (req, res) => {
     const {userName, password} = req.body;
-    console.log(userName)
+    //console.log(userName)
     User.findOne({userName:userName}, (error, user) => {
-        console.log(user)
+        //console.log(user)
         if(user) {
             bcrypt.compare(password, user.password, (error, same) => {
                 if(same) {
@@ -14,12 +14,21 @@ module.exports = (req, res) => {
                     
                 }
                 else {
-                    res.redirect('/login')
+                    error = "Invalid Login"
+                    res.render('login', {
+                        error: "Invalid Login"
+                    })
+                    console.log(error)
                 }
             })
         }
         else {
-            res.redirect('/login')
+            error = "Invalid Login"
+            res.render('login', {
+                error : "Invalid Login"
+            })
+
+            
         }
     })
 }

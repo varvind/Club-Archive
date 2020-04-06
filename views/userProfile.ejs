@@ -125,28 +125,22 @@
                 <h5 style = "text-align: center;">Activity</h5>
                 <hr style = "width:10%">
                 <h5 >Recent Searches</h5>
+                <% if (clubs != null) {%> 
+                <% clubs.forEach(club => { %> 
+                
                 <div>
                     <hr>
-                    <a><h4 style = "font-weight:bold">Aggie Coding Club</h4></a>
+                    <a href = "/post/<%=club._id%>"><h4 style = "font-weight:bold"><%=club.name %></h4></a>
                     <h6>Texas A&M University</h6>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <%=club.description %>
                     </p>
                 </div>
-                <div>
-                    <hr>
-                    <a><h4 style = "font-weight:bold">TamuHack</h4></a> 
-                    <h6>Texas A&M University</h6>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
+                <% }); %> 
+            <% } else {%>
+                
+               <h4>None! Search The Archive!</h4> 
+            <% } %> 
                     
                      
                     
