@@ -1,9 +1,9 @@
 const Club = require('../models/Club')
-
+const User = require('../models/User')
 module.exports = async (req, res) => {
 
     const club = await Club.findById(req.params.id)
-
+    const user = await User.findById(req.session.userId)
     
     
     
@@ -20,6 +20,7 @@ module.exports = async (req, res) => {
     //console.log(searches)
     req.session.searches=searches
     res.render('clubProfile' ,{
-        club
+        club,
+        user
     })
 }
