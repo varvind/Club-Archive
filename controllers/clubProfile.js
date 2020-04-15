@@ -3,7 +3,7 @@ const User = require('../models/User')
 module.exports = async (req, res) => {
 
     const club = await Club.findById(req.params.id)
-    const user = await User.findById(req.session.userId)
+    //const user = await User.findById(req.session.userId)
     
     
     
@@ -23,4 +23,5 @@ module.exports = async (req, res) => {
         club,
         user
     })
+
 }

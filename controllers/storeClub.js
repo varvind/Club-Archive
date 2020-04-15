@@ -1,4 +1,5 @@
 const Club = require('../models/Club')
+
 const path = require('path')
 const multer = require('multer')
 
@@ -10,8 +11,6 @@ module.exports = (req, res) => {
         email: req.body.email,
         phonenumber: req.body.phonenumber,
         description: req.body.description,
-        username: req.body.username,
-        password: req.body.password,
         category: req.body.category,
         meeting_times: req.body.meeting_times,
     })

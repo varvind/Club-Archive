@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-​
-​
-​
+
+
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-​
+
     <div >
         <div class = "row">
                 <a href = "/" style = "margin-top:-.3%; margin-left: 10%;"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px;"></a>
@@ -52,7 +52,7 @@
     </div>
     <div style = "height: 450px;">
         <div id="demo" class="carousel slide" data-ride="carousel">
-​
+
             <!-- Indicators -->
             <ul class="carousel-indicators">
                 <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -66,13 +66,13 @@
               <div class="carousel-item active">
                 <div style = "height: 450px; background-image: url('<%= '../' + club.clubImages[0]%>'); background-position:center; background-size: cover;"></div>
               </div>
-​
+
               <% for(i=1; i<club.clubImages.length; i++) { %> 
                 <div class="carousel-item">
                     <div style = "height: 450px; background-image: url('<%= '../' + club.clubImages[i]%>'); background-position:center; background-size: cover;"></div>
                 </div>
               <% } %> 
-​
+
             </div>
           
             <!-- Left and right controls -->
@@ -94,7 +94,7 @@
                 <h2 style = "color:#00a8f3"> <%= club.name %> </h2>
                 <h5 >Texas A&M University</h5>
                 <p> <h7>About Us : </h7> <%= club.description %> </p>
-​
+
                 
             </div>
             <div class = "col-sm-3">
@@ -112,7 +112,7 @@
                 
             </div>
         </div>
-​
+
     </div>
     <div>
         <div class = "row">
@@ -145,7 +145,7 @@
     <div>
         <div class ="row">
             <div class = "col-sm-3">
-​
+
             </div>
             <div class = "col">
                 <h6>Org President: <%= club.president_organizer %> </h7> <br>
@@ -159,7 +159,7 @@
     <br>
     <br>
     <footer class="page-footer font-small unique-color-dark pt-4" style = "background-color:lightgrey">
-​
+
         <!-- Footer Elements -->
         <!-- Footer Elements -->
     
@@ -172,3 +172,4 @@
     </footer>
     
 </body>
+    

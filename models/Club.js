@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const Scheme = mongoose.Schema
 const bcrypt = require('bcrypt')
 
+
 const clubSchema = new Scheme ({
     name : {
         type : String,
@@ -29,15 +30,6 @@ const clubSchema = new Scheme ({
         type :String,
         required: true
     },
-    username : {
-        type:String,
-        required:true,
-        unique:true
-    },
-    password : {
-        type: String,
-        required: true
-    },
     category : {
         type: String,
         required: true
@@ -47,6 +39,8 @@ const clubSchema = new Scheme ({
         default: 'Monday : 12AM - 12PM \nTuesday : 12AM - 12PM \nWednesday : 12AM - 12PM \nThursday : 12AM - 12PM \nFriday : 12AM - 12PM'
     },
     clubImages:[String]
+
+
 })
 clubSchema.pre('save', function(next) {
     const club = this
@@ -55,5 +49,6 @@ clubSchema.pre('save', function(next) {
         next()
     })
 })
+
 const Club = mongoose.model('Club', clubSchema)
 module.exports = Club

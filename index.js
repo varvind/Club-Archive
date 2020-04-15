@@ -4,7 +4,7 @@ const app =  new express()
 const mongoose = require('mongoose')
 const ejs = require('ejs')
 const bodyParser = require('body-parser')
-const validator = require('express-validator')
+const validator = require('express-validator') //new
 //routes
 const userSignUpController = require('./controllers/newUser')
 const homeController = require('./controllers/home')
@@ -36,19 +36,11 @@ mongoose.connect('mongodb://localhost/club_archive', {useNewUrlParser:true})
 //app features and functions that are being implemented
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
-app.use(fileUpload())
+//app.use(fileUpload())
 app.use(expressSession({
     secret: 'keyboard cat'
 }))
 app.use(express.static(__dirname));
-
-//to use ejs for the app
-app.set('view engine', 'ejs')
-
-//port 3000 for output
-app.listen(3000, 
-    console.log("listening on port 3000")
-)
 
 //multer
 const multer = require('multer')
@@ -65,16 +57,24 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage:storage })
 
+//to use ejs for the app
+app.set('view engine', 'ejs')
+
+//port 3000 for output
+app.listen(3000, 
+    console.log("listening on port 3000")
+)
+
 //check if the user is logged in
 //global variable that can be utilized in all files
 //senses the cookies
 global.loggedIn = null
 global.clubloggedin = null
-global.searches = []
+global.searches = [] //new
 app.use("*", (req, res, next) => {
     loggedIn = req.session.userId;
     clubloggedin = req.session.clubId;
-    searches = req.session.searches || [];
+    searches = req.session.searches || []; //new
     next()
 })
 console.log(clubloggedin)
@@ -91,7 +91,7 @@ app.get('/userprofile', userProfileController)
 app.get('/userlogout',logoutController)
 //app.get('/clubprofile',clubProfileController )
 app.get('/clubsignup', clubSignUpController)
-app.post('/addclub',redirectIfAuthenticatedMiddleware, clubStoreController)
+app.post('/addclub', upload.array('clubImages', 10), clubStoreController)
 app.get('/clublogin', redirectIfAuthenticatedMiddlewareClubs,  clublogincontroller)
 app.post('/loginClub',redirectIfAuthenticatedMiddlewareClubs, loginClubController)
 app.get('/searchlanding', searchLandingController)
