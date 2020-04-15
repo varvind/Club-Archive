@@ -46,43 +46,46 @@
 ​
     <!--Figure out the requirements for this before programming-->
     <body>
-            <nav class="navbar navbar-expand-sm navbar-light" style = "background-color:#38a8f3 ;">
+            <nav class="navbar navbar-expand-sm navbar-light" style = "background-color:#38a8f3 ;margin-top:-30px">
            
-                    <a href = "/" style = " margin-left: 45%;"><img src = "../public/img/finalLogo2.png" style="width :100px; height:100px;" ></a>
-                
+                <a href = "/" style = " margin-left: 45%;"><img src = "../public/img/finalLogo2.png" style="width :100px; height:100px;" ></a>
             
+        
             </nav>
-            <form method="POST" action ="/addclub" enctype="multipart/form-data">
-                <input placeholder="Organization Name" type="text" class="form-control form-control-lg" style = "margin-top : 5%" name = "name">
-                
-                <input placeholder="Current Or Estimated Membership Count" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "memberCount">
-​
-                <input placeholder="Organizer, Admin or President of Organization" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "president_organizer">
-                <input placeholder="Organization Email" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "email">
-                <input placeholder="Organization Phone Number" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "phonenumber">
-                <textarea class="form-control" aria-label="Club Description" style = "margin-top: 2%;" placeholder="Tell us a little about your club! The more information the better!" name = "description"></textarea>
-                <input placeholder="Username" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "username">
-                <input placeholder="Password" type="password" class="form-control form-control-lg" style = "margin-top: 2%" name ="password" >
-                <label class="form-control form-control-lg" style = "margin-top: 2%" for="clubImages">Images:</label>
-                <input class="form-control" type="file" id="clubImages" name="clubImages" accept="image/*" multiple> 
-                <textarea class="form-control" aria-label="Meeting Times" style = "margin-top: 2%;" placeholder=
-"Monday : 12AM - 12PM
-Tuesday : 12AM - 12PM
-Wednesday : 12AM - 12PM
-Thursday : 12AM - 12PM
-Friday : 12AM - 12PM" 
-                name = "meeting_times" rows="5"></textarea>
-                <div class="form-group">
-                    <label for="exampleSelect1"></label>
-                    <select class="form-control" id="exampleSelect1" name = "category">
-                      <option>Academic Organization</option>
-                      <option>Greek Organization</option>
-                      <option>Sports</option>
-                      <option>Interest Groups</option>
-                    </select>
-                  </div>
-                <button  type="submit" class="btn btn-outline-secondary" style = "margin-top: 1%;">Sign Up</button>
-​
-            </form>
+            <div style = "margin-top : 5%">
+                <form method="POST" action ="/addclub" enctype="multipart/form-data">
+                    <input placeholder="Organization Name" type="text" class="form-control form-control-lg" style = "margin-top : 5%"  name = "name">
+                    
+                    <input placeholder="Current Or Estimated Membership Count" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "memberCount">
+    ​
+                    <input placeholder="Organizer, Admin or President of Organization" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "president_organizer">
+                    <input placeholder="Organization Email" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "email">
+                    <input placeholder="Organization Phone Number" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "phonenumber">
+                    <textarea class="form-control" aria-label="Club Description" style = "margin-top: 2%;" placeholder="Tell us a little about your club! The more information the better!" name = "description"></textarea>
+                    <input placeholder="Username" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "username">
+                    <input placeholder="Password" type="password" class="form-control form-control-lg" style = "margin-top: 2%" name ="password" >
+                    <label class="form-control form-control-lg" style = "margin-top: 2%" for="clubImages">Images:</label>
+                    <input class="form-control" type="file" id="clubImages" name="clubImages" accept="image/*" multiple> 
+                    <textarea class="form-control" aria-label="Meeting Times" style = "margin-top: 2%;" placeholder=
+    "Monday : 12AM - 12PM
+    Tuesday : 12AM - 12PM
+    Wednesday : 12AM - 12PM
+    Thursday : 12AM - 12PM
+    Friday : 12AM - 12PM" 
+                    name = "meeting_times" rows="5"></textarea>
+                    <div class="form-group">
+                        <label for="exampleSelect1"></label>
+                        <select class="form-control" id="exampleSelect1" name = "category">
+                          <option>Academic Organization</option>
+                          <option>Greek Organization</option>
+                          <option>Sports</option>
+                          <option>Interest Groups</option>
+                        </select>
+                      </div>
+                    <button  type="submit" class="btn btn-outline-secondary" style = "margin-top: 1%;">Sign Up</button>
+    ​
+                </form>
+            </div>
+            
     </body>
 </html>
