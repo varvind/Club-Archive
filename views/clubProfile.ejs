@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-
-
-
+​
+​
+​
 <head>
     <meta charset="utf-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -27,58 +27,52 @@
     </style>
 </head>
 <body>
-
+​
     <div >
         <div class = "row">
-                <a href = "/" style = "margin-left: 10%;"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px; "></a>
+                <a href = "/" style = "margin-top:-.3%; margin-left: 10%;"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px;"></a>
                 <div class = "col">
-                    <form class="example" action="/search" style="margin:auto" method="GET">
-                        <input style ="margin-top:24px" placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" name = "search2" >
-                    </form>
-                        
+                        <input placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" style = "margin-top:3.3%; width: 80%;" >
                 </div>
                 <div class = "col" >
-                    <% if (!loggedIn) {%>
-                        <button type="button" class="btn btn-outline-dark" style = "font-size:18; float: right; margin-top:3% ; margin-right: 3% ; color:white; background-color: #38a8f3" onclick= "window.location.href = '/signup';">Sign Up</button>
-                        <button type="button" class="btn btn-outline-dark signUp"  style = "font-size:18; float : right; margin-top: 3%; margin-right: 3%;" onclick= "window.location.href = '/login';">Log in</button>
-                    <% } %> 
-                    <% if(loggedIn) { %>
-                        <div class="dropdown">
-                    
-                            <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/userprofile">View Profile</a>
-                                <a class="dropdown-item" href="/userlogout">Logout</a>
-                            </div>
+                    <div class="dropdown">
+                        
+                        <img src = "../public/img/profile pic.jpg" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 12%;margin-top:2.4%" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                            <a class="dropdown-item" href="/userlogout"  >Logout</a>
                         </div>
-
-                    <% } %>
+                    </div>
                 </div>
-
+                
+                
         </div>
+        
+        
     </div>
-    <div style = "height: 450px; width:100%">
+    <div style = "height: 450px;">
         <div id="demo" class="carousel slide" data-ride="carousel">
-
+​
             <!-- Indicators -->
             <ul class="carousel-indicators">
-              <li data-target="#demo" data-slide-to="0" class="active"></li>
-              <li data-target="#demo" data-slide-to="1"></li>
-              <li data-target="#demo" data-slide-to="2"></li>
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <% for(j=1; j< club.clubImages.length; j++){ %>
+                    <li data-target="#demo" data-slide-to="<%= j %> "></li>
+                <% } %> 
             </ul>
           
             <!-- The slideshow -->
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <div style = "height: 450px; background-image: url('../public/img/morainelakebackground.jpg'); background-position:center; background-size: cover;"></div>
+                <div style = "height: 450px; background-image: url('<%= '../' + club.clubImages[0]%>'); background-position:center; background-size: cover;"></div>
               </div>
-              <div class="carousel-item">
-                <div style = "height: 450px; background-image: url('../public/img/morainelakebackground.jpg'); background-position:center; background-size: cover;"></div>
-              </div>
-              <div class="carousel-item">
-                <div style = "height: 450px; background-image: url('../public/img/boating.jpg'); background-position:center; background-size:cover;"></div>
-              </div>
+​
+              <% for(i=1; i<club.clubImages.length; i++) { %> 
+                <div class="carousel-item">
+                    <div style = "height: 450px; background-image: url('<%= '../' + club.clubImages[i]%>'); background-position:center; background-size: cover;"></div>
+                </div>
+              <% } %> 
+​
             </div>
           
             <!-- Left and right controls -->
@@ -93,23 +87,21 @@
     </div>
     <div style = "margin-top: 2%;">
         <div class = "row">
-            <div class = "col-sm-2">
-
-            </div>
-            <div class = "col">
-                <h2 style = "color:#00a8f3">ClubArchive</h2>
-                <h5 >Texas A&M University</h5>
-                <p> <h7>About Us : </h7> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam, 
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor <br>in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                    Excepteur sint occaecat cupidatat non proident, sunt in <br>culpa qui officia deserunt mollit anim id est laborum.</p>
-
+            <div class = "col-sm-3">
                 
             </div>
             <div class = "col">
+                <h2 style = "color:#00a8f3"> <%= club.name %> </h2>
+                <h5 >Texas A&M University</h5>
+                <p> <h7>About Us : </h7> <%= club.description %> </p>
+​
+                
+            </div>
+            <div class = "col-sm-3">
                 <div class = "contactBox">
                     <h5>Get Involved!</h5>
-                    <p>Phone Number : 512-914-7106</p>
-                    <p>Email: varvind@tamu.edu</p>
+                    <p>Phone Number : <%= club.phonenumber %> </p>
+                    <p>Email: <%= club.email %> </p>
                 </div>
             </div>
         </div>
@@ -120,36 +112,44 @@
                 
             </div>
         </div>
-
+​
     </div>
     <div>
         <div class = "row">
-            <div class = "col-sm-2">
-
+            
+            <div class = "col-sm-3">
+                
             </div>
-            <div class = "col-sm-4">
+            <div class = "col-sm-3">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3433.457769020444!2d-96.34542498502738!3d30.62105398167621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864683bded743f95%3A0x9dd44bc87274fcce!2sAspire%20College%20Station!5e0!3m2!1sen!2sus!4v1579404523036!5m2!1sen!2sus" width="300" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
             </div>
             <div class = "col">
                 <h6 style = "text-decoration: underline;">Meeting Times</h6>
-                <ul style = "list-style-type: none; padding:0">
-                    <li>Monday : 9AM - 11PM</li>
-                    <li>Tuesday : 9AM - 11PM</li>
-                    <li>Wednesday : 9AM - 11PM</li>
-                    <li>Thursday : 9AM - 11PM</li>
-                    <li>Friday : 9AM - 11PM</li>
-                </ul>
+                <p>
+                    <% let times = club.meeting_times %> 
+                    <% for(var i =0; i < club.meeting_times.length;  i++ ){%>
+                        <% let end = times.search("\r") %> 
+                        <% if(end == -1){ %>
+                            <%= times %>
+                            <% break; %>  
+                        <% ;} %> 
+                        <%= times.substring(0,end) %> 
+                        <br>
+                        <% times = times.substring(end+1) %> 
+                        <% i = end+1 %> 
+                    <%}%>
+                </p>
             </div>
         </div>
     </div>
     <div>
         <div class ="row">
-            <div class = "col-sm-2">
-
+            <div class = "col-sm-3">
+​
             </div>
             <div class = "col">
-                <h6>Org President: Arvind Venkatesan</h7> <br>
-                <h6>Member Count: 3</h7>
+                <h6>Org President: <%= club.president_organizer %> </h7> <br>
+                <h6>Member Count: <%= club.memberCount %> </h7>
                 <br>
                 <h6>Recruiting Season: Fall</h7>
             </div>
@@ -158,18 +158,17 @@
     <br>
     <br>
     <br>
-    <!-- <footer class="page-footer font-small unique-color-dark pt-4" style = "background-color:lightgrey"> -->
-
+    <footer class="page-footer font-small unique-color-dark pt-4" style = "background-color:lightgrey">
+​
         <!-- Footer Elements -->
         <!-- Footer Elements -->
     
         <!-- Copyright -->
-        <!-- <div class="footer-copyright text-center py-3">© 2020 Copyright: -->
-        <!-- <a href="/">ClubArchive.com</a> -->
-        <!-- </div> --> 
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="/">ClubArchive.com</a>
+        </div>
         <!-- Copyright -->
     
-    </footer> 
+    </footer>
     
 </body>
-    

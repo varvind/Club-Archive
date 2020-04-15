@@ -18,7 +18,10 @@
             }
             .SmallPassword {
                 color: blue;
-                margin-left:56.5%; margin-top: 1%;
+            
+                margin-top: 1%;
+                margin-left:18%;
+                font-size:90%
             }
             .SmallPassword:visited {
                 color:blue;
@@ -31,7 +34,8 @@
             }
             
             .text2 {
-                margin-left:51.5%; margin-top:1%
+                margin-left:700px; 
+                margin-top:1%
             }
             .text3 {
                 margin-left:53%; margin-top:1%
@@ -42,30 +46,7 @@
             .form-control, .form-control-lg {
                 width :30%; height : 50%; margin-left : 33%;
             }
-            @media only screen and (max-width: 600px) {
-                
-                .earth {
-                    display:none;
-                }
-                .form-control, .form-control-lg {
-                    width :50%; height : 35px; margin-left : 24%; margin-top: 10%
-                }
-                .form-control::placeholder {
-                    font-size: 70%;
-                }
-                .btn, .btn-outline-secondary {
-                    margin-left: 33%; margin-top: 3%; width : 30%; height: 5%; font-size: 90vw 90vh;
-                }
-                .SmallPassword {
-                    margin-left: 33%
-                }
-                .text2 {
-                    margin-left:22%; margin-top:1%
-                }
-                .text3 {
-                    margin-left:24%; margin-top:1%
-                }
-            }
+        
             .closebtn {
                 color: white;
                 font-weight: bold;
@@ -76,6 +57,13 @@
                 transition: 0.3s;
             }
             .alert.info {background-color: #2196F3;width:30%}  
+            @media only screen and (max-width: 600px) {
+                .SmallPassword {
+                    color: blue;
+                    margin-left:500px; 
+                    margin-top: 1%;
+                }
+            }
         </style>
         
 
@@ -86,7 +74,7 @@
 
         <nav class="navbar navbar-expand-sm navbar-light" style = "background-color:#38a8f3 ;">
            
-                    <a href = "/" style = " margin-left: 45%;"><img src = "/public/img/finalLogo2.png" style="width :100px; height:100px;" ></a>
+                <a href = "/" style = " margin-left: 45%;"><img src = "/public/img/finalLogo2.png" style="width :100px; height:100px;" ></a>
                 
             
         </nav>
@@ -102,9 +90,12 @@
             <form action = "/userlogin" method = "POST"><!--TODO: ADD ACTION-->
                 <input placeholder="Username" type="text" name = "userName"  id = "username" class="form-control form-control-lg" >
                 <input placeholder="Password" type="password" name = "password" id = "password" class="form-control form-control-lg" style = "margin-top:2%">
-                <p class = "text1"><a href = "/forgotpassword" class = "SmallPassword" >Forgot Password?</a></p>
+                <center> <p class = "text1"><a href = "/forgotpassword" class = "SmallPassword" >Forgot Password?</a></p></center>
+                
+                
                 <button  type="submit" name = "submit" class="btn btn-outline-secondary">Log In</button>
-                <p class="text2">Don't have an account? <a href = "/signup" class = "SmallSignUp">Sign Up</a></p>
+               
+                <!-- <p class="text2">Don't have an account? <a href = "/signup" class = "SmallSignUp">Sign Up</a></p> -->
                 
             </form>
         </div>

@@ -77,7 +77,17 @@
                 .SmallSignUp {
                     margin-left: 54%
                 }
-            }   
+            }
+            .alert.info {background-color: #2196F3;width:30%}
+            .closebtn {
+                color: white;
+                font-weight: bold;
+                float: right;
+                font-size: 22px;
+                line-height: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }     
         </style>
 
     </head>
@@ -91,25 +101,52 @@
                 
             
         </nav>
+        <div style = "margin-top: 3%;">
+            
+            <div >
+                <% if (error != null) {%>
+                    <div class=" alert alert info" style = "margin-left:33%">
+                        <span class="closebtn">&times;</span>  
+                        <strong>Error : </strong> Make sure you enter all fields!
+                    </div>
+                <% } %>
+                    <form action = "/adduser" method ="POST" enctype = "multipart/form-data">
 
-        <div >
-                <form action = "/adduser" method ="POST" enctype = "multipart/form-data">
+                        <input placeholder="First Name" type="text" class="form-control form-control-lg" name = "firstName" style = "margin-top: 5%" >
+                        <input placeholder="Last Name" type="text" class="form-control form-control-lg" name = "lastName" style = "margin-top: 2%">
+                        <input placeholder="Email" type="text" class="form-control form-control-lg" name = "email" style = "margin-top: 2%">
+                        <input placeholder="Username" type="text" class="form-control form-control-lg" name = "userName" style = " margin-top: 2%">
+                        <input placeholder="Password" type="password" class="form-control form-control-lg" name="password" style = " margin-top: 2%">
+                        <input placeholder="Major" type="text" class="form-control form-control-lg" name="major" style = " margin-top: 2%">
+                        <input placeholder="Graduation Year" type="text" class="form-control form-control-lg" name="gradYear" style = " margin-top: 2%">
+                        
+                        <div class = "form-group form-inline">
+                            
+                            <input type = "file" class = "form-control" id = "image" name = "image" value = "image" style = "margin-top:2%;width:400px" alt ="">
+                            <label for="image" style = "margin-top:2%">Add a profile image!</label>
+                        </div>    
+                        <button  type="submit" name = "submit" class="btn btn-outline-secondary" >Sign Up</button>
+                        
+                    </form>
 
-                    <input placeholder="First Name" type="text" class="form-control form-control-lg" name = "firstName" style = "margin-top: 5%" >
-                    <input placeholder="Last Name" type="text" class="form-control form-control-lg" name = "lastName" style = "margin-top: 2%">
-                    <input placeholder="Email" type="text" class="form-control form-control-lg" name = "email" style = "margin-top: 2%">
-                    <input placeholder="Username" type="text" class="form-control form-control-lg" name = "userName" style = " margin-top: 2%">
-                    <input placeholder="Password" type="password" class="form-control form-control-lg" name="password" style = " margin-top: 2%">
-                    <input placeholder="Major" type="text" class="form-control form-control-lg" name="major" style = " margin-top: 2%">
-                    <input placeholder="Graduation Year" type="text" class="form-control form-control-lg" name="gradYear" style = " margin-top: 2%">
-                    <input type = "file" class = "form-control" id = "image" name = "image" style = "margin-top:2%">
-                    <button  type="submit" name = "submit" class="btn btn-outline-secondary" >Sign Up</button>
-                    
-                </form>
+                    <br>
+                    <br>
+            </div>
         </div>
              
 
-        
+        <script>
+            var close = document.getElementsByClassName("closebtn");
+            var i;
+            
+            for (i = 0; i < close.length; i++) {
+              close[i].onclick = function(){
+                var div = this.parentElement;
+                div.style.opacity = "0";
+                setTimeout(function(){ div.style.display = "none"; }, 600);
+              }
+            }
+        </script>
         
 
 

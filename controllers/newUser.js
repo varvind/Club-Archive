@@ -2,5 +2,7 @@
 
 module.exports =  async (req, res) => {
     
-    res.render('userSignUp')
+    res.render('userSignUp', {
+        error: null
+    })
 }

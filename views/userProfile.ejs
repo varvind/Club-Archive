@@ -59,19 +59,22 @@
     </style>
 </head>
 <body>
-    <div >
+    <div class ="container">
         <div class = "row">
-                <a href = "/" style = "margin-left: 10%;"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px; "></a>
+                <div class ="col-sm-2">
+                    <a href = "/"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px; "></a>
+                </div>
+                
                 <div class = "col">
                     <form class="example" action="/search" style="margin:auto" method="GET">
-                        <input placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" name = "search2" style = "margin-top:24px" >
+                        <input style ="margin-top:24px" placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" name = "search2" >
                     </form>
                         
                 </div>
                 <div class = "col" >
                     <% if (!loggedIn) {%>
-                        <button type="button" class="btn btn-outline-dark" style = "font-size:18; float: right; margin-top:3% ; margin-right: 3% ; color:white; background-color: #38a8f3" onclick= "window.location.href = '/signup';">Sign Up</button>
-                        <button type="button" class="btn btn-outline-dark signUp"  style = "font-size:18; float : right; margin-top: 3%; margin-right: 3%;" onclick= "window.location.href = '/login';">Log in</button>
+                        <button type="button" class="btn btn-outline-dark" style = "font-size:18; float: right; margin-top:24px ; margin-right: 3% ; color:white; background-color: #38a8f3" onclick= "window.location.href = '/signup';">Sign Up</button>
+                        <button type="button" class="btn btn-outline-dark signUp"  style = "font-size:18; float : right; margin-top: 24px; margin-right: 3%;" onclick= "window.location.href = '/login';">Log in</button>
                     <% } %> 
                     <% if(loggedIn) { %>
                         <div class="dropdown">

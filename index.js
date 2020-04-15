@@ -50,7 +50,20 @@ app.listen(3000,
     console.log("listening on port 3000")
 )
 
+//multer
+const multer = require('multer')
+const path = require('path')
 
+var storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, 'public/club_images');
+    },
+    filename: function(req, file, cb){ 
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+})
+
+var upload = multer({ storage:storage })
 
 //check if the user is logged in
 //global variable that can be utilized in all files
