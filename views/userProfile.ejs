@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -24,9 +24,9 @@
         .btn-outline-secondary:hover {
             background-color: #41bbac
         }
-        .form-control, .form-control-lg {
+        /* .form-control, .form-control-lg {
                 width :340px; height : 50%; margin-left : 10%; margin-top: 25px
-        }
+        } */
         .btn-outline-dark {
             width:80px;
             height: 45%;
@@ -64,7 +64,7 @@
                 <a href = "/" style = "margin-left: 10%;"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px; "></a>
                 <div class = "col">
                     <form class="example" action="/search" style="margin:auto" method="GET">
-                        <input placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" name = "search2" >
+                        <input placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" name = "search2" style = "margin-top:24px" >
                     </form>
                         
                 </div>
@@ -76,7 +76,7 @@
                     <% if(loggedIn) { %>
                         <div class="dropdown">
                     
-                            <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:1%" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="/userprofile">View Profile</a>
@@ -112,19 +112,11 @@
                 <hr style = "width: 40%;">
                 
                 <h6 style = "text-align: center;">University : Texas A&M University</h6>
-                <h6 style = "text-align: center;">Clubs : 2</h6>
-                <h6 style = "text-align: center;">Graduation Year : 2022</h6>
-                <h6 style = "text-align: center;">Major : Computer Science</h6>
-                <h6 style = "text-align: center;">Interests: Coding, Hacking, Sports, Lifting, Boxing</h6>
+                <h6 style = "text-align: center;">Graduation Year : <%=user.gradYear %></h6>
+                <h6 style = "text-align: center;">Major : <%= user.major %></h6>
                 
                 <br>
 
-                <h5 style = "text-align: center;">Favorites</h5>
-                <hr style = "width: 40%;">
-                <ul>
-                    <li>Aggie Coding Club</li>
-                    <li>TamuHack</li>
-                </ul>
                 
             </div>
             <div class = "vl">

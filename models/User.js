@@ -13,6 +13,10 @@ const UserSchema = new Schema ({
         type :String,
         required: true
     },
+    email : {
+        type :String,
+        required:true
+    },
     userName: {
         type: String,
         required: true,
@@ -21,6 +25,14 @@ const UserSchema = new Schema ({
     password : {
         type: String,
         required: true,
+    },
+    major :{
+        type : String,
+        required: true
+    },
+    gradYear : {
+        type :String,
+        required: true
     },
     image : String
 })

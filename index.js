@@ -28,6 +28,7 @@ const academicSearchController = require('./controllers/searchAcademic')
 const sportsSearchController = require('./controllers/searchSports')
 const greekSearchController = require('./controllers/searchGreek')
 const specialSearchController = require('./controllers/searchSpecial')
+const forgotPasswordController = require('./controllers/forgotPassword')
 //db connect
 mongoose.connect('mongodb://localhost/club_archive', {useNewUrlParser:true})
 
@@ -87,6 +88,7 @@ app.get('/sportSearch',sportsSearchController)
 app.get('/greekSearch',greekSearchController)
 app.get('/specialSearch',specialSearchController)
 app.get('/post/:id',clubProfileController)
+app.get('/forgotpassword',forgotPasswordController)
 // app.get('/searchlanding' , (req, res) => {
 //     res.render('searchLanding')
 // })

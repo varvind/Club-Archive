@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -33,7 +33,7 @@
                 <a href = "/" style = "margin-left: 10%;"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px; "></a>
                 <div class = "col">
                     <form class="example" action="/search" style="margin:auto" method="GET">
-                        <input style ="margin-top:4%" placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" name = "search2" >
+                        <input style ="margin-top:24px" placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" name = "search2" >
                     </form>
                         
                 </div>
@@ -45,7 +45,7 @@
                     <% if(loggedIn) { %>
                         <div class="dropdown">
                     
-                            <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:1%" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="/userprofile">View Profile</a>
@@ -58,7 +58,7 @@
 
         </div>
     </div>
-    <div style = "height: 450px;">
+    <div style = "height: 450px; width:100%">
         <div id="demo" class="carousel slide" data-ride="carousel">
 
             <!-- Indicators -->
@@ -93,8 +93,8 @@
     </div>
     <div style = "margin-top: 2%;">
         <div class = "row">
-            <div class = "col-sm-3">
-                
+            <div class = "col-sm-2">
+
             </div>
             <div class = "col">
                 <h2 style = "color:#00a8f3">ClubArchive</h2>
@@ -105,7 +105,7 @@
 
                 
             </div>
-            <div class = "col-sm-3">
+            <div class = "col">
                 <div class = "contactBox">
                     <h5>Get Involved!</h5>
                     <p>Phone Number : 512-914-7106</p>
@@ -124,11 +124,10 @@
     </div>
     <div>
         <div class = "row">
-            
-            <div class = "col-sm-3">
-                
+            <div class = "col-sm-2">
+
             </div>
-            <div class = "col-sm-3">
+            <div class = "col-sm-4">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3433.457769020444!2d-96.34542498502738!3d30.62105398167621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864683bded743f95%3A0x9dd44bc87274fcce!2sAspire%20College%20Station!5e0!3m2!1sen!2sus!4v1579404523036!5m2!1sen!2sus" width="300" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
             </div>
             <div class = "col">
@@ -145,7 +144,7 @@
     </div>
     <div>
         <div class ="row">
-            <div class = "col-sm-3">
+            <div class = "col-sm-2">
 
             </div>
             <div class = "col">
@@ -159,18 +158,18 @@
     <br>
     <br>
     <br>
-    <footer class="page-footer font-small unique-color-dark pt-4" style = "background-color:lightgrey">
+    <!-- <footer class="page-footer font-small unique-color-dark pt-4" style = "background-color:lightgrey">
 
         <!-- Footer Elements -->
         <!-- Footer Elements -->
     
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="/">ClubArchive.com</a>
-        </div>
+        <!-- <div class="footer-copyright text-center py-3">© 2020 Copyright: -->
+        <!-- <a href="/">ClubArchive.com</a> -->
+        <!-- </div> --> 
         <!-- Copyright -->
     
-    </footer>
+    </footer> 
     
 </body>
     
