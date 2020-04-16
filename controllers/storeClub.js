@@ -1,23 +1,43 @@
 const Club = require('../models/Club')
-
+const User = require('../models/User')
 const path = require('path')
-const multer = require('multer')
-
 module.exports = (req, res) => {
-    const newClub = new Club({
-        name: req.body.name,
-        memberCount: req.body.memberCount,
-        president_organizer: req.body.president_organizer,
-        email: req.body.email,
-        phonenumber: req.body.phonenumber,
-        description: req.body.description,
-        category: req.body.category,
-        meeting_times: req.body.meeting_times,
-    })
-    for(i=0; i<req.files.length; i++){
-        newClub.clubImages.push(req.files[i].path)
+    if(!req.files){
+        res.render('clubSignUp',  {
+            error:"error"
+        })
     }
-    newClub.save()
+    else {
+        let image = req.files.image;
     
-    res.redirect('/')
+        image.mv(path.resolve(__dirname,'..','public/img',image.name), async (error) => {
+            if(error){
+                console.log("Error making image")
+            }
+            await Club.create({
+                ...req.body,
+                image: '/public/img/' + image.name
+            }, async function(error, newlymade) {
+                if(error){
+                    console.log(error)
+                    res.render('clubSignUp', {
+                        error
+                    })
+                }
+                else {
+                    // User.findById(req.session.userId, (error, user) => {
+                    //     user.clubs.push(newlymade._id)
+                    //     user.save()
+                    // })
+                    //user.clubs.push(newlymade._id) 
+                    console.log(newlymade._id)
+                    res.redirect('/')
+                }
+            })
+            //req.session.userId = user._id
+            
+        })
+    }
+    
+    
 }

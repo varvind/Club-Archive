@@ -396,7 +396,7 @@
             <div class="container">
         
             <!-- Call to action -->
-            <% if (!loggedIn) {%> 
+            <% if (loggedIn) {%> 
                 <ul class="list-unstyled list-inline text-center py-2">
                     <li class="list-inline-item">
                         <h5 class="mb-1" style = "color:white">Looking to add your organization?</h5>
@@ -414,7 +414,7 @@
                     </li>
                 </ul>
             <% } %>
-            <% if (loggedIn) { %>
+            <% if (!loggedIn) { %>
                 <ul class="list-unstyled list-inline text-center py-2">
                     <li class="list-inline-item">
                         <h5 class="mb-1" style = "color:white">Looking to add your organization?</h5>

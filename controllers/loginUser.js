@@ -23,7 +23,7 @@ module.exports = (req, res) => {
             })
         }
         else {
-            error = "Invalid Login"
+            console.log(error)
             res.render('login', {
                 error : "Invalid Login"
             })

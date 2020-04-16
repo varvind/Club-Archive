@@ -63,10 +63,7 @@
                 <input placeholder="Organization Email" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "email">
                 <input placeholder="Organization Phone Number" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "phonenumber">
                 <textarea class="form-control" aria-label="Club Description" style = "margin-top: 2%;" placeholder="Tell us a little about your club! The more information the better!" name = "description"></textarea>
-                <input placeholder="Username" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "username">
-                <input placeholder="Password" type="password" class="form-control form-control-lg" style = "margin-top: 2%" name ="password" >
-                <label class="form-control form-control-lg" style = "margin-top: 2%" for="clubImages">Images:</label>
-                <input class="form-control" type="file" id="clubImages" name="clubImages" accept="image/*" multiple> 
+                
                 <textarea class="form-control" aria-label="Meeting Times" style = "margin-top: 2%;" placeholder=
 "Monday : 12AM - 12PM
 Tuesday : 12AM - 12PM
@@ -83,6 +80,8 @@ Friday : 12AM - 12PM"
                       <option>Interest Groups</option>
                     </select>
                   </div>
+                  <input type = "file" class = "form-control" id = "image" name = "image" value = "image" style = "margin-top:2%;width:400px" alt ="">
+                  <!-- <label for="image" style = "margin-top:2%">Add a cover photo for your club's profile!</label> -->
                 <button  type="submit" class="btn btn-outline-secondary" style = "margin-top: 1%;">Sign Up</button>
 
             </form>

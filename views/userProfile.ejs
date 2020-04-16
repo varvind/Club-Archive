@@ -119,6 +119,15 @@
                 <h6 style = "text-align: center;">Major : <%= user.major %></h6>
                 
                 <br>
+                <h5 style = "text-align: center;"><%= user.firstName %>'s Clubs</h5>
+                <hr style = "width: 40%;">
+                <% if(userclubs != null) { %> 
+                <% userclubs.forEach(uClub =>{ %> 
+                <h6 style = "text-align: center;"><%=uClub.name%></h6>
+                <% }); %> 
+                <% }else{ %>
+                    <h6 style = "text-align: center;">You don't own any clubs!</h6>
+                <% } %>
 
                 
             </div>

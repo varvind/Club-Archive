@@ -36,26 +36,26 @@ mongoose.connect('mongodb://localhost/club_archive', {useNewUrlParser:true})
 //app features and functions that are being implemented
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
-//app.use(fileUpload())
+app.use(fileUpload())
 app.use(expressSession({
     secret: 'keyboard cat'
 }))
 app.use(express.static(__dirname));
 
-//multer
-const multer = require('multer')
-const path = require('path')
+// //multer
+// const multer = require('multer')
+// const path = require('path')
 
-var storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        cb(null, 'public/club_images');
-    },
-    filename: function(req, file, cb){ 
-        cb(null, Date.now() + '-' + file.originalname)
-    }
-})
+// var storage = multer.diskStorage({
+//     destination: function(req, file, cb){
+//         cb(null, 'public/club_images');
+//     },
+//     filename: function(req, file, cb){ 
+//         cb(null, Date.now() + '-' + file.originalname)
+//     }
+// })
 
-var upload = multer({ storage:storage })
+// var upload = multer({ storage:storage })
 
 //to use ejs for the app
 app.set('view engine', 'ejs')
@@ -91,7 +91,7 @@ app.get('/userprofile', userProfileController)
 app.get('/userlogout',logoutController)
 //app.get('/clubprofile',clubProfileController )
 app.get('/clubsignup', clubSignUpController)
-app.post('/addclub', upload.array('clubImages', 10), clubStoreController)
+app.post('/addclub', clubStoreController)
 app.get('/clublogin', redirectIfAuthenticatedMiddlewareClubs,  clublogincontroller)
 app.post('/loginClub',redirectIfAuthenticatedMiddlewareClubs, loginClubController)
 app.get('/searchlanding', searchLandingController)

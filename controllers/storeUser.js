@@ -24,6 +24,7 @@ module.exports = (req, res) => {
                     })
                 }
                 else {
+                    req.session.userId = newlymade._id
                     res.redirect('/')
                 }
             })
