@@ -34,17 +34,17 @@ const UserSchema = new Schema ({
         type :String,
         required: true
     },
-    clubs :[String],
+    clubs :[Object],
     image : String
 })
 
-UserSchema.pre('save', function(next) {
-    const user = this
-    bcrypt.hash(user.password, 10, (error, hash) => {
-        user.password = hash
-        next()
-    })
-})
+// UserSchema.pre('save', function(next) {
+//     const user = this
+//     bcrypt.hash(user.password, 10, (error, hash) => {
+//         user.password = hash
+//         next()
+//     })
+// })
 
 const User = mongoose.model('User', UserSchema)
 module.exports = User

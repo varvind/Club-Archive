@@ -3,7 +3,7 @@ const User = require('../models/User')
 const{check, validationResult} = require('express-validator')
 module.exports = (req, res) => {
     const {userName, password} = req.body;
-    //console.log(userName)
+    
     User.findOne({userName:userName}, (error, user) => {
         //console.log(user)
         if(user) {
