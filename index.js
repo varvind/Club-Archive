@@ -1,3 +1,10 @@
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
+
+
+
+
 //imports
 const express = require('express')
 const app =  new express()
@@ -30,7 +37,8 @@ const greekSearchController = require('./controllers/searchGreek')
 const specialSearchController = require('./controllers/searchSpecial')
 const forgotPasswordController = require('./controllers/forgotPassword')
 //db connect
-mongoose.connect('mongodb://localhost/club_archive', {useNewUrlParser:true})
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.DATABASE_URL)
 
 
 //app features and functions that are being implemented
@@ -61,9 +69,7 @@ app.use(express.static(__dirname));
 app.set('view engine', 'ejs')
 
 //port 3000 for output
-app.listen(3000, 
-    console.log("listening on port 3000")
-)
+app.listen(process.env.PORT || 3000)
 
 //check if the user is logged in
 //global variable that can be utilized in all files
