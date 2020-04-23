@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     if(query !== null && query !== '') {
         try {
             var clubs = await Club.find({description: {$regex: query, $options: "$i"}});
-            res.render('searchlanding', {
+            res.render('searchLanding', {
                 clubs,
                 query,
                 user
@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
     } else {
         try {
             const clubs = await Club.find({});
-            res.render('searchlanding', {
+            res.render('searchLanding', {
                 clubs,
                 query,
                 user
