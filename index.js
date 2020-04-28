@@ -37,6 +37,7 @@ const greekSearchController = require('./controllers/searchGreek')
 const specialSearchController = require('./controllers/searchSpecial')
 const forgotPasswordController = require('./controllers/forgotPassword')
 const aboutPageController = require('./controllers/about')
+const howToController = require('./controllers/howTo')
 //db connect
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL)
@@ -110,6 +111,7 @@ app.get('/specialSearch',specialSearchController)
 app.get('/post/:id',clubProfileController)
 app.get('/forgotpassword',forgotPasswordController)
 app.get('/aboutus', aboutPageController)
+app.get('/howtoregister',howToController)
 // app.get('/searchlanding' , (req, res) => {
 //     res.render('searchLanding')
 // })
