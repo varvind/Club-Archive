@@ -59,7 +59,7 @@
                         <% if(loggedIn) { %>
                             <div class="dropdown">
                         
-                                <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="/userprofile">View Profile</a>
@@ -89,7 +89,7 @@
         <div class = "row">
             <div class = "col">
                 <div class="card" style="width: 18rem;" data-aos="zoom-in">
-                    <img class="card-img-top" src="../public/img/square_headshot.jpg" alt="Card image cap" style = "height:200px">
+                    <img class="card-img-top" src="../public/img/square_headshot.jpg" alt="Card image cap" style = "height:240px;object-fit: cover;object-position:top;">
                     <div class="card-body">
                       <h4 class="card-text" style = "text-align: center;">Quentin Romanowski</h3>
                     </div>
@@ -97,7 +97,7 @@
             </div>
             <div class = "col">
                 <div class="card" style="width: 18rem;" data-aos="zoom-in">
-                    <img class="card-img-top" src="../public/img/profilepic2.jpg" alt="Card image cap" style = "height:200px" >
+                    <img class="card-img-top" src="../public/img/IMG-5048.jpg" alt="Card image cap" style = "height:240px;object-fit: cover;object-position:top;" >
                     <div class="card-body">
                       <h4 class="card-text" style = "text-align: center;">Arvind Venkatesan</h3>
                     </div>

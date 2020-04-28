@@ -170,7 +170,7 @@
                 <% if(loggedIn) { %>
                     <div class="dropdown">
                         
-                        <img src = "<%=user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:1%" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src = "<%=user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:1%;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="/userprofile">View Profile</a>
@@ -403,24 +403,24 @@
             <% if (loggedIn) {%> 
                 <ul class="list-unstyled list-inline text-center py-2">
                     <li class="list-inline-item">
-                        <h5 class="mb-1" style = "color:white">Looking to add your organization?</h5>
+                        <h5 class="mb-1" style = "color:white">Claim your organization!</h5>
                     </li>
                     <li class="list-inline-item">
                         <button type="button" onclick= "window.location.href = '/clubsignup';" class="btn btn-outline-secondary" style="margin-left:1%; width: 110px; height: 38px;">Claim Today!</button>
                     </li>
                 </ul>
             <% } %>
-            <% if (!loggedIn) { %>
-                <ul class="list-unstyled list-inline text-center py-2">
-                    <li class="list-inline-item">
-                        <h5 class="mb-1" style = "color:white">Looking to add your organization?</h5>
-                    </li>
-                    <li class="list-inline-item">
-                        <button type="button" onclick= "window.location.href = '/howtoregister';" class="btn btn-outline-secondary" style="margin-left:1%; width: 110px; height: 55px;">Learn More Here!</button>
-                    </li>
-                </ul>
+        
+            <ul class="list-unstyled list-inline text-center py-2">
+                <li class="list-inline-item">
+                    <h5 class="mb-1" style = "color:white">Looking to add your organization?</h5>
+                </li>
+                <li class="list-inline-item">
+                    <button type="button" onclick= "window.location.href = '/howtoregister';" class="btn btn-outline-secondary" style="margin-left:1%; width: 110px; height: 55px;">Learn More Here!</button>
+                </li>
+            </ul>
                 
-            <% } %> 
+            
             <ul class="list-unstyled list-inline text-center py-2">
                 <li class="list-inline-item">
                     <h5 class="mb-1" ><a style ="color: white;" href = "/aboutus">About Us</a></h5>

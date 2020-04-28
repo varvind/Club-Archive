@@ -60,7 +60,7 @@
                         <% if(loggedIn) { %>
                             <div class="dropdown">
                         
-                                <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="/userprofile">View Profile</a>
@@ -102,14 +102,14 @@
     <center><div class ="container" style = "margin-top:100px;margin-bottom:100px">
         <div class = "row">
             <div class = "col">
-                <div data-aos="fade-right" style = "margin-left: 10%;" >
+                <div data-aos="zoom-in" style = "margin-left: 10%;" >
                     <h2 style ="font-size: 200%;">After you are signed in, scroll to the bottom of the page and claim your club! Ya thats right, anyone can do it!</h4>
                     
                 </div>
             </div>
             <div class = "col">
-                <div data-aos="fade-left">
-                    <img src ="../public/img/blueLogo.png" style = "width:300px; margin-left:10%">
+                <div data-aos="zoom-in">
+                    <img src ="../public/img/blueLogo.png" style = "width:300px; margin-left:10%;margin-top:-15%">
                 </div>
             </div>
         </div>
@@ -130,4 +130,5 @@
             
         </div>
     </div></center> 
+    
 </body>
