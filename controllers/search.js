@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     //console.log(query)
     if(query !== null && query !== '') {
         try {
-            var clubs = await Club.find({description: {$regex: query, $options: "$i"}});
+            var clubs = await Club.find({"$or" : [{description: {$regex: query, $options: "$i"}}, {name: {$regex: query, $options: "$i"}}]});
             res.render('searchLanding', {
                 clubs,
                 query,
