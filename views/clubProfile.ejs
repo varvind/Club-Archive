@@ -49,10 +49,11 @@
                         <% if(loggedIn) { %>
                             <div class="dropdown">
                         
-                                <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="/userprofile">View Profile</a>
+                                    <a class="dropdown-item" href="/usersettings">User Settings</a>
                                     <a class="dropdown-item" href="/userlogout">Logout</a>
                                 </div>
                             </div>
