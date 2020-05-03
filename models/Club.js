@@ -38,6 +38,7 @@ const clubSchema = new Scheme ({
         type: String,
         default: 'Monday : 12AM - 12PM \nTuesday : 12AM - 12PM \nWednesday : 12AM - 12PM \nThursday : 12AM - 12PM \nFriday : 12AM - 12PM'
     },
+    
     image:String
 
 

@@ -7,10 +7,8 @@ module.exports = (req, res)=> {
     var last = req.body.lastName;
     var email = req.body.email;
     var userName = req.body.userName;
-    var password = "";
     var major = req.body.major;
     var grad = req.body.gradYear;
-    var image = "";
     if(!req.files){
         User.findById(userid, (error, user)=>{
             if(first != ""){
@@ -31,10 +29,10 @@ module.exports = (req, res)=> {
             if(grad != ""){
                 user.gradYear = grad;
             }
+            
+
             user.save();
         });
-
-        res.redirect('/userprofile')
     }
     else{
         let image = req.files.image;
@@ -66,7 +64,6 @@ module.exports = (req, res)=> {
                     user.save();
                 });
 
-                res.redirect('/userprofile')
             }
         })
     }
