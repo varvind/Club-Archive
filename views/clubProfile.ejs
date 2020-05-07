@@ -78,7 +78,7 @@
                     
                 </div>
                 <div class = "col">
-                    <h2 style = "color:#00a8f3"> <%= club.name %> </h2>
+                <h2 style = "color:#00a8f3"> <%= club.name %> <% if(canEdit){ %><a href = "/clubSettings/<%=club._id%>" ><img src = "../public/img/settings icon.png" style = "width: 22px;"><% } %></a></h2>  
                     <h5 >Texas A&M University</h5>
                     <p> <h7>About Us : </h7> <%= club.description %> </p>
     
