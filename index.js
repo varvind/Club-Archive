@@ -43,6 +43,7 @@ const updateUserController = require('./controllers/updateUser')
 const passwordChangeController = require('./controllers/changePassword')
 const updatePasswordController = require('./controllers/updatePassword')
 const clubSettingsController = require('./controllers/clubSettings')
+const updateClubController = require('./controllers/updateClub')
 //db connect
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL)
@@ -122,6 +123,7 @@ app.post('/updateuser',updateUserController)
 app.get('/profile_password', passwordChangeController)
 app.post('/updatepassword', updatePasswordController)
 app.get('/clubsettings/:id', clubSettingsController)
+app.post('/updateclub', updateClubController)
 // app.get('/searchlanding' , (req, res) => {
 //     res.render('searchLanding')
 // })
