@@ -7,11 +7,12 @@ module.exports = async (req, res) =>{
     var canEdit = false;
     if(user != null){
         for(var i = 0; i < user.clubs.length; i++){
-            if(user.clubs[i].name == club.name){
+            if(String(user.clubs[i]._id) == String(club._id)){
                 canEdit = true
             }
         }
     }
+    
     if(canEdit){
         res.render('clubSettings', {
             user,

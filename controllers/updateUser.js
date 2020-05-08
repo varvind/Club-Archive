@@ -33,12 +33,14 @@ module.exports = (req, res)=> {
 
             user.save();
         });
+        res.redirect('/usersettings')
     }
     else{
         let image = req.files.image;
         image.mv(path.resolve(__dirname,'..','public/img',image.name), async (error)=> {
             if(error){
                 console.log("error while updating user")
+                res.redirect('/usersettings')
             }
             else{
                 User.findById(userid, (error, user)=>{
@@ -63,7 +65,7 @@ module.exports = (req, res)=> {
                     user.image ='/public/img/' + image.name;
                     user.save();
                 });
-
+                res.redirect('/usersettings')
             }
         })
     }

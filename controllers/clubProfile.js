@@ -8,7 +8,8 @@ module.exports = async (req, res) => {
     var canEdit = false;
     if(user != null){
         for(var i = 0; i < user.clubs.length; i++){
-            if(user.clubs[i].name == club.name){
+            console.log(club._id)
+            if(String(user.clubs[i]._id) == String(club._id)){
                 canEdit = true
             }
         }
@@ -16,7 +17,7 @@ module.exports = async (req, res) => {
     console.log(canEdit)
    var found = false;
    for(var i =0; i < searches.length; i++) {
-        if(searches[i].name == club.name) {
+        if(String(searches[i]._id) == String(club._id)) {
             found = true;
             break;
         }
