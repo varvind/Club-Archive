@@ -3,7 +3,6 @@ const path = require('path')
 const User = require('../models/User')
 
 module.exports = async (req, res) => {
-    const user = User.findById(req.session.userId)
     var name = req.body.name
     var members = req.body.memberCount
     var president = req.body.president_organizer
@@ -39,13 +38,7 @@ module.exports = async (req, res) => {
                 club.category = category
             }
             club.save()
-            User.findById(req.session.userId, (error, user)=> {
-                for(var i =0; i < user.clubs.length; i++){
-                    if(String(user.clubs[i]._id) == String(club._id)){
-                        user.clubs[i] = club;
-                    }
-                }
-            })
+            
         })
         res.redirect('/post/' + req.params.id)
     }
@@ -84,14 +77,17 @@ module.exports = async (req, res) => {
                     }
                     club.image = '/public/img/' + image.name;
                     club.save();
-                    User.findById(req.session.userId, (error, user)=> {
-                        for(var i =0; i < user.clubs.length; i++){
-                            if(String(user.clubs[i]._id) == String(club._id)){
-                                user.clubs[i] = club;
-                            }
-                        }
-                    })
                 })
+                const club = Club.findById(req.params._id)
+                // User.findById(req.session.userId, (error, user)=> {
+                //     for(var i =0; i < user.clubs.length; i++){
+                //         if(String(user.clubs[i]._id) == String(club._id)){
+                //             user.clubs[i] = club;
+                //             user.save();
+                //             break;
+                //         }
+                //     }
+                // })
                 res.redirect('/post/' + req.params.id)
 
             }

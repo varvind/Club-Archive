@@ -30,7 +30,6 @@ module.exports = (req, res) => {
                         user.save()
                     })
                     //user.clubs.push(newlymade._id) 
-                    console.log(newlymade._id)
                     res.redirect('/')
                 }
             })
