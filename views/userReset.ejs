@@ -84,21 +84,17 @@
             <% if (error != null) {%>
                <div class=" alert alert info" style = "margin-left:33%">
                     <span class="closebtn">&times;</span>  
-                    <strong>Error : </strong> <%= error %>
+                    <strong>Error : </strong> <br> <%= error %> 
                 </div>
+            <% } else{%>
+            <form action = "/newUserPassword" method = "POST" autocomplete="off"><!--TODO: ADD ACTION-->
+                <input name="resetId" style="display:none;"  value=<%= resetId %> >
+                <input placeholder="New Password" type="password" name = "newPassword"  id = "username" class="form-control form-control-lg" autocomplete="new-password">
+                <input placeholder="Verify New Password" type="password" name = "verifyPassword" id = "password" class="form-control form-control-lg" style = "margin-top:2%" autocomplete="new-password">                
+                
+                <button  type="submit" name = "submit" class="btn btn-outline-secondary">Log In</button>                
+            </form>
             <% } %>
-            <form action = "/userlogin" method = "POST"><!--TODO: ADD ACTION-->
-                <input placeholder="Username" type="text" name = "userName"  id = "username" class="form-control form-control-lg" >
-                <input placeholder="Password" type="password" name = "password" id = "password" class="form-control form-control-lg" style = "margin-top:2%">                
-                
-                <button  type="submit" name = "submit" class="btn btn-outline-secondary">Log In</button>
-               
-                <!-- <p class="text2">Don't have an account? <a href = "/signup" class = "SmallSignUp">Sign Up</a></p> -->
-                
-            </form>
-            <form action ="/forgotpassword" method="GET">
-                <button  type="submit" name = "submit" class="btn btn-outline-secondary">Forgot Password?</button>
-            </form>
         </div>
         <script>
             var close = document.getElementsByClassName("closebtn");
