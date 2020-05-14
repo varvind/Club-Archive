@@ -46,6 +46,9 @@ const clubSchema = new Scheme ({
         type:Boolean,
         default: false
     },
+    tags : {
+        type : [String]
+    },
     image:String
 
 

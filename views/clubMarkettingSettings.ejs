@@ -103,39 +103,21 @@
                           </div>
                     </div>
                     <div class = "col-sm-8">
-                        <form action = "/updateclub/<%=club._id%>" method ="POST" enctype = "multipart/form-data">
-                            <input placeholder="Organization Name" type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "name">
-                
-                            <input placeholder="Current Or Estimated Membership Count" type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "memberCount">
-            
-                            <input placeholder="Organizer, Admin or President of Organization" type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "president_organizer">
-                            <input placeholder="Organization Email" type="text" class="form-control form-control-lg" style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "email">
-                            <input placeholder="Organization Phone Number" type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%"name = "phonenumber">
-                            <textarea class="form-control" aria-label="Club Description"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" placeholder="Tell us a little about your club! The more information the better!" name = "description"></textarea>
+                        <form action = "/updatetags/<%=club._id%>" method ="POST" enctype = "multipart/form-data">
+                            <h5 style = "margin-left:30%">Enter some keywords to help people find you!</h5>
+                            <input placeholder="Tags" type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 30%; margin-right : 1%" name = "tags">
+                            <!--This is going to be used iteratively once tag back end is written-->
+                            <!-- <div style = "margin-left: 30%;">
+                                    <div class="alert alert-success" style = "background-color: #ccc; margin-top:1%; width:auto; height:40px; min-width: 90px;display: inline-block; ">
+                                        <p style ="font-size: 13px; float:left">Tag</p><img src = "../public/img/xpng.png" style = "width:10px; margin-left:20px;margin-top:-9px">
+                                    </div>
+                                    <div class="alert alert-success" style = "background-color: #ccc; margin-top:1%; width:auto; height:40px; min-width: 90px;display: inline-block; margin-left:1%">
+                                        <p style ="font-size: 13px; float:left">Tag</p><img src = "../public/img/xpng.png" style = "width:10px; margin-left:20px;margin-top:-9px">
+                                    </div>
+                                
+                            </div> -->
                             
-                            <textarea class="form-control" aria-label="Meeting Times"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" placeholder=
-            "Monday : 12AM - 12PM
-            Tuesday : 12AM - 12PM
-            Wednesday : 12AM - 12PM
-            Thursday : 12AM - 12PM
-            Friday : 12AM - 12PM" 
-                            name = "meeting_times" rows="5"></textarea>
-                            <div class="form-group">
-                                <label for="exampleSelect1"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%"></label>
-                                <select class="form-control" id="exampleSelect1" name = "category" style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%"> 
-                                  <option>Academic Organization</option>
-                                  <option>Greek Organization</option>
-                                  <option>Sports</option>
-                                  <option>Interest Groups</option>
-                                </select>
-                            </div>
-                            <div class = "form-group form-inline" style = "margin-left:33%">
-                                <input type = "file" class = "form-control" id = "image" name = "image" value = "image"  style = "margin-top:2%;width:90%;height:50px" alt ="">
-                                <label for="image" style = "margin-top:2%;margin-left:2%">Add or change your cover photo for your club's profile!</label>
-                            </div>
-                            
-                            <button  type="submit" name = "submit" class="btn btn-outline-secondary"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" >Update</button>
-                            
+                            <button  type="submit" name = "submit" class="btn btn-outline-secondary"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 30%; margin-right : 1%" >Add Tags</button>
                         </form>
                     </div>
                 </div>

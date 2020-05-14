@@ -47,6 +47,7 @@ const forgotPasswordController = require('./controllers/forgotPassword')
 const resetUserPasswordController = require('./controllers/resetUserPassword')
 const resetUserPasswordController2 = require('./controllers/userReset')
 const newUserPasswordController = require('./controllers/newUserPassword')
+const clubMarkettingSettingsController = require('./controllers/clubMarkettingSettings')
 //db connect
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL)
@@ -131,6 +132,7 @@ app.get('/forgotpassword',forgotPasswordController)
 app.post('/forgotpassword', resetUserPasswordController)
 app.get('/userReset', resetUserPasswordController2)
 app.post('/newUserPassword', newUserPasswordController)
+app.get('/clubMarkettingSettings/:id', clubMarkettingSettingsController)
 // app.get('/searchlanding' , (req, res) => {
 //     res.render('searchLanding')
 // })
