@@ -1,5 +1,6 @@
 const ResetPassword = require('../models/ResetPassword')
 const User = require('../models/User')
+const bcrypt = require('bcrypt')
 
 
 module.exports = (req, res) => {
@@ -17,9 +18,16 @@ module.exports = (req, res) => {
                     if(error || !user){
                         res.render('login', {error: "Error Finding User"})
                     }else{
-                        user.password = verifiedPassword
-                        user.save()
-                        console.log("Updated User Password")
+                        bcrypt.hash(verifiedPassword, 10, (error, hash) => { 
+                            if(error || !hash){
+                                console.log("Error Hashing new Password")
+                            }else{
+                                user.password = hash
+                                user.save()
+                                console.log("Updated User Password")
+                            }
+                        })
+                        
                     }
                 })
                 resetPassword.remove();

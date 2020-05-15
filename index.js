@@ -49,7 +49,7 @@ const resetUserPasswordController2 = require('./controllers/userReset')
 const newUserPasswordController = require('./controllers/newUserPassword')
 //db connect
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DATABASE_URL)
+mongoose.connect('mongodb://localhost/club_archive', {useNewUrlParser:true})
 
 
 //app features and functions that are being implemented
