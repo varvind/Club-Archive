@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
     const user = await User.findById(req.session.userId);
     const club = await Club.findById(req.params.id)
     var temp = []
-    for(var i = 0; i < club.tags.size(); i++){
+    for(var i = 0; i < club.tags.length; i++){
         if(req.params.tagName != club.tags[i]){
             temp.push(club.tags[i])
         }

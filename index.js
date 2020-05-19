@@ -136,7 +136,7 @@ app.get('/userReset', resetUserPasswordController2)
 app.post('/newUserPassword', newUserPasswordController)
 app.get('/clubMarkettingSettings/:id', clubMarkettingSettingsController)
 app.post('/updatetags/:id', updateClubTagsController)
-app.post('/deletetag/:id/:tagName', deleteclubTagController)
+app.get('/deletetag/:id/:tagName', deleteclubTagController)
 // app.get('/searchlanding' , (req, res) => {
 //     res.render('searchLanding')
 // })
