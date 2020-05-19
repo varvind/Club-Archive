@@ -50,6 +50,7 @@ const newUserPasswordController = require('./controllers/newUserPassword')
 const clubMarkettingSettingsController = require('./controllers/clubMarkettingSettings')
 const updateClubTagsController = require('./controllers/updateClubTags')
 const deleteclubTagController = require('./controllers/deleteTag')
+const adminregistrationController = require('./controllers/adminregistration')
 //db connect
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL)
@@ -137,6 +138,7 @@ app.post('/newUserPassword', newUserPasswordController)
 app.get('/clubMarkettingSettings/:id', clubMarkettingSettingsController)
 app.post('/updatetags/:id', updateClubTagsController)
 app.get('/deletetag/:id/:tagName', deleteclubTagController)
+app.get('/adminregistration/:id', adminregistrationController)
 // app.get('/searchlanding' , (req, res) => {
 //     res.render('searchLanding')
 // })

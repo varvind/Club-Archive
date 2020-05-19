@@ -49,6 +49,9 @@ const clubSchema = new Scheme ({
     tags : {
         type : [String]
     },
+    adminstrators: {
+        type : [Object]
+    },
     image:String
 
 
