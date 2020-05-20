@@ -26,7 +26,7 @@ module.exports = (req, res) => {
                 }
                 else {
                     User.findById(req.session.userId, (error, user) => {
-                        user.clubs.push(newlymade)
+                        user.clubs.push(newlymade._id)
                         user.save()
                     })
                     //user.clubs.push(newlymade._id) 
