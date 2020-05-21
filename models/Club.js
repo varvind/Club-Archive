@@ -50,7 +50,10 @@ const clubSchema = new Scheme ({
         type : [String]
     },
     adminstrators: {
-        type : [Object]
+        type : [String]
+    },
+    admin_applications: {
+        type: [String]
     },
     image:String
 

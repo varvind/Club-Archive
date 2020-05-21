@@ -1,11 +1,11 @@
 const User = require('../models/User')
 const Club = require('../models/Club')
 
-module.exports = (req, res) => {
-    const user = User.findById(req.session.userId)
-    const club = Club.findById(req.params.id)
+module.exports = async (req, res) => {
+    const user = await User.findById(req.session.userId)
+    const club = await Club.findById(req.params.id)
 
-    res.render('/adminregistration', {
+    res.render('adminregistration', {
         user,
         club
     })

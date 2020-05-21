@@ -13,6 +13,7 @@ const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const validator = require('express-validator') //new
 //routes
+const authMiddleWare = require('./middleware/authMiddleware')
 const userSignUpController = require('./controllers/newUser')
 const homeController = require('./controllers/home')
 const storeUserController = require('./controllers/storeUser')
@@ -51,6 +52,8 @@ const clubMarkettingSettingsController = require('./controllers/clubMarkettingSe
 const updateClubTagsController = require('./controllers/updateClubTags')
 const deleteclubTagController = require('./controllers/deleteTag')
 const adminregistrationController = require('./controllers/adminregistration')
+const adminregistrationapplyController = require('./controllers/adminregistrationpost')
+const adminapplicationsettingscontroller = require('./controllers/clubadminappsettings')
 //db connect
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL)
@@ -138,7 +141,9 @@ app.post('/newUserPassword', newUserPasswordController)
 app.get('/clubMarkettingSettings/:id', clubMarkettingSettingsController)
 app.post('/updatetags/:id', updateClubTagsController)
 app.get('/deletetag/:id/:tagName', deleteclubTagController)
-app.get('/adminregistration/:id', adminregistrationController)
+app.get('/adminregistration/:id', authMiddleWare, adminregistrationController)
+app.get('/submitadminapplication/:id', adminregistrationapplyController)
+app.get('/clubAdminApplications/:id', adminapplicationsettingscontroller)
 // app.get('/searchlanding' , (req, res) => {
 //     res.render('searchLanding')
 // })
