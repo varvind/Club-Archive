@@ -11,7 +11,6 @@ module.exports = (req, res) => {
                 if(same) {
                     req.session.userId = user._id
                     res.redirect('/')
-                    
                 }
                 else {
                     error = "Invalid Login"

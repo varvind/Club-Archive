@@ -123,9 +123,13 @@
                 <h5 style = "text-align: center;"><%= user.firstName %>'s Clubs</h5>
                 <hr style = "width: 40%;">
                 <% if(user.clubs.length != 0) { %> 
-                <% user.clubs.forEach(uClub =>{ %> 
-                    <a href = "/post/<%=uClub._id%>"><h6 style = "text-align: center;"><%=uClub.name%></h6></a>
-                <% }); %> 
+                    <% i = 0 %> 
+                    <% user.clubs.forEach(uClub =>{ %> 
+                        <a href = "/post/<%=uClub%>">
+                            <h6 style = "text-align: center;"> <%= clubNames[i] %></h6>
+                            <% i += 1 %> 
+                        </a>
+                    <% }); %> 
                 <% }else{ %>
                     <h6 style = "text-align: center;">You don't own any clubs!</h6>
                 <% } %>
