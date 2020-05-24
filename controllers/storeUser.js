@@ -24,7 +24,7 @@ module.exports = (req, res) => {
                     password: hash,
                     major: req.body.major,
                     gradYear: req.body.gradYear,
-                    image: path.resolve(__dirname, '..', '/public', 'user-images', imageName)
+                    image: path.resolve(__dirname, '..', '/', 'public', 'user-images', imageName)
                 }, function(error, newlymade) {
                     if(error){
                         console.log(error)

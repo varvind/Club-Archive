@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
                           return
                         }
                     })
-                    club.image = path.resolve(__dirname, '..', '/public', 'club-images', imageName);
+                    club.image = path.resolve(__dirname, '..', '/', 'public', 'club-images', imageName);
                     
                     club.save();
                 })

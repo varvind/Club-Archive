@@ -17,7 +17,7 @@ module.exports = (req, res) => {
             }
             await Club.create({
                 ...req.body,
-                image: path.resolve(__dirname, '..', '/public', 'club-images', imageName)
+                image: path.resolve(__dirname, '..', '/', 'public', 'club-images', imageName)
             }, async function(error, newlymade) {
                 if(error){
                     console.log(error)

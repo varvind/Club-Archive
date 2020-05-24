@@ -49,7 +49,7 @@ module.exports = (req, res)=> {
                           return
                         }
                     })
-                    user.image = path.resolve(__dirname, '..', '/public', 'user-images', imageName);
+                    user.image = path.resolve(__dirname, '..', '/', 'public', 'user-images', imageName);
 
                     user.save();
                 });
