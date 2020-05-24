@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     var canEdit = false;
     if(user != null){
         for(var i = 0; i < user.clubs.length; i++){
-            if(String(user.clubs[i]._id) == String(club._id)){
+            if(String(user.clubs[i]) == String(club._id)){
                 canEdit = true
             }
         }
@@ -36,5 +36,4 @@ module.exports = async (req, res) => {
         user,
         canEdit
     })
-
 }

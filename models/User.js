@@ -34,8 +34,12 @@ const UserSchema = new Schema ({
         type :String,
         required: true
     },
+<<<<<<< HEAD
     clubs :[Object],
     pending_applications:[Object],
+=======
+    clubs :[String],
+>>>>>>> d1c2d058664332fd87aee309cb10572cd156eaad
     image : String
 })
 

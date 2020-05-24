@@ -1,6 +1,7 @@
 const Club = require('../models/Club')
 const path = require('path')
 const User = require('../models/User')
+const fs = require('fs')
 
 module.exports = async (req, res) => {
     var name = req.body.name
@@ -14,6 +15,7 @@ module.exports = async (req, res) => {
     var reg_season = req.body.registration_season
     if(!req.files){
         Club.findById(req.params.id, (error, club) =>{
+<<<<<<< HEAD
             if(name != ""){
                 club.name = name;
             }
@@ -41,20 +43,32 @@ module.exports = async (req, res) => {
             if(reg_season !=""){
                 club.registration_season = reg_season
             }
+=======
+            if(name != ""){ club.name = name; }
+            if(members != ""){ club.memberCount = members }
+            if(president!= ""){ club.president_organizer = president }
+            if(email != ""){ club.email = email }
+            if(phone != ""){ club.phonenumber = phone }
+            if(description !="" ){ club.description = description }
+            if(meetings != ""){ club.meeting_times = meetings }
+            if(category!= ""){ club.category = category }
+>>>>>>> d1c2d058664332fd87aee309cb10572cd156eaad
             club.save()
-            
         })
         res.redirect('/post/' + req.params.id)
     }
     else{
         let image = req.files.image
-        image.mv(path.resolve(__dirname, '..','public/img',image.name), async (error) =>{
+        let imageName = Date.now() + '-' + image.name
+
+        image.mv(path.resolve(__dirname, '..', 'public', 'club-images', imageName), async (error) =>{
             if(error) {
                 console.log("error while updating club")
                 res.redirect('/clubSettings/' + req.params.id)
             }
             else{
                 Club.findById(req.params.id, (error, club)=> {
+<<<<<<< HEAD
                     if(name != ""){
                         club.name = name;
                     }
@@ -83,9 +97,29 @@ module.exports = async (req, res) => {
                         club.registration_season = reg_season
                     }
                     club.image = '/public/img/' + image.name;
+=======
+                    if(name != ""){ club.name = name; }
+                    if(members != ""){ club.memberCount = members }
+                    if(president!= ""){ club.president_organizer = president }
+                    if(email != ""){ club.email = email }
+                    if(phone != ""){ club.phonenumber = phone }
+                    if(description !="" ){ club.description = description }
+                    if(meetings != ""){ club.meeting_times = meetings }
+                    if(category!= ""){ club.category = category }
+
+                    let delete_path = path.join(path.resolve(__dirname, '..'), club.image)
+                    fs.unlink(delete_path, (err) => {
+                        if (err) {
+                          console.error(err)
+                          return
+                        }
+                    })
+                    club.image = path.resolve(__dirname, '..', '/public', 'club-images', imageName);
+                    
+>>>>>>> d1c2d058664332fd87aee309cb10572cd156eaad
                     club.save();
                 })
-                const club = Club.findById(req.params._id)
+                //const club = Club.findById(req.params._id)
                 // User.findById(req.session.userId, (error, user)=> {
                 //     for(var i =0; i < user.clubs.length; i++){
                 //         if(String(user.clubs[i]._id) == String(club._id)){
@@ -96,9 +130,7 @@ module.exports = async (req, res) => {
                 //     }
                 // })
                 res.redirect('/post/' + req.params.id)
-
             }
-            
         })
     }
 }
