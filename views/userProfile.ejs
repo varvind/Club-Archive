@@ -129,6 +129,14 @@
                 <% }else{ %>
                     <h6 style = "text-align: center;">You don't own any clubs!</h6>
                 <% } %>
+                
+
+                <br>
+                <h5 style = "text-align: center;">Pending Applications</h5>
+                <hr style = "width: 40%;">
+                <%user.pending_applications.forEach(user_app => { %>
+                    <h6 style = "text-align: center;"><%=user_app.name%> Admin :      <%=user_app.status%></h6>
+                <%})%>
 
                 
             </div>

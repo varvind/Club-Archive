@@ -24,9 +24,7 @@
             .SmallSignUp:visited {
                 color:blue;
             }
-            .btn, .btn-outline-secondary {
-                margin-left: 33%; margin-top: 3%; width : 30%; height: 5%; font-size: 90vw 90vh;
-            }
+            
             .vertical-menu {
                 width: 200px; /* Set a width if you like */
             }
@@ -97,14 +95,34 @@
                 <div class = "row">
                     <div class = "col-sm-2">
                         <div class="vertical-menu">
-                            <a href="/clubSettings/<%=club._id%>" class="active">Club Settings</a>
+                            <a href="/clubSettings/<%=club._id%>" >Club Settings</a>
                             <a href="/clubProfile">Club Profile</a>
                             <a href="/clubMarkettingSettings/<%=club._id%>">Marketting Settings</a>
+                            <a href="/clubAdminApplications/<%=club._id%>" class="active">Administrators Applications</a>
                           </div>
                     </div>
                     <div class = "col-sm-8">
-                       
-                        
+                        <% club.admin_applications.forEach(applicant => { %>
+                        <div class="card" style="width: 18rem; margin-left:10%">
+                            <div class="card-body">
+                              <h5 class="card-title"><%=applicant.name%></h5>
+                              <h6 class="card-subtitle mb-2 text-muted"><%=applicant.major%></h6>
+                              <p class="card-text"><%=applicant.email%></p>
+                              <div class="form-group">
+                                <label for="exampleSelect1"></label>
+                                
+                                <form action = "/submitadminapplication/<%=applicant.id%>/<%=club._id%>" method ="POST">
+                                    <select class="form-control" id="exampleSelect1" name = "applicationdecision">
+                                        <option>Accept</option>
+                                        <option>Reject</option>
+                                    
+                                    </select>
+                                    <button  type="submit" class="btn btn-outline-secondary" style = "margin-top: 1%; width: 50%">Submit</button>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        <% }) %>
                     </div>
                 </div>
                         
@@ -118,7 +136,7 @@
 
 
 
-        
+
 
     </body>
 

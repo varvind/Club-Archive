@@ -11,13 +11,22 @@ module.exports = async (req, res) => {
                 canEdit = true
             }
         }
+        for(var i = 0; i < club.adminstrators.length; i++){
+            if(String(req.session.userId) == club.adminstrators[i] ){
+                canEdit = true
+            }
+        }
     }
     
+    
     if(canEdit){
+        
         res.render('clubAdminApplicationsSettings' , {
             user,
             club
+
         })
+       
     }else{
         res.redirect('/')
     }

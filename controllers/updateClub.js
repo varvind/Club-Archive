@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
     var description = req.body.description
     var meetings = req.body.meeting_times
     var category = req.body.category
+    var reg_season = req.body.registration_season
     if(!req.files){
         Club.findById(req.params.id, (error, club) =>{
             if(name != ""){
@@ -36,6 +37,9 @@ module.exports = async (req, res) => {
             }
             if(category!= ""){
                 club.category = category
+            }
+            if(reg_season !=""){
+                club.registration_season = reg_season
             }
             club.save()
             
@@ -74,6 +78,9 @@ module.exports = async (req, res) => {
                     }
                     if(category!= ""){
                         club.category = category
+                    }
+                    if(reg_season !=""){
+                        club.registration_season = reg_season
                     }
                     club.image = '/public/img/' + image.name;
                     club.save();
