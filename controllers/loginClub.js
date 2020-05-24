@@ -1,8 +1,5 @@
-const bcrypt = require('bcrypt')
-
 const Club = require('../models/Club')
-
-
+const bcrypt = require('bcrypt')
 
 module.exports = (req, res) => {
     const {userName, password} = req.body;

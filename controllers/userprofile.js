@@ -7,10 +7,7 @@ module.exports = async (req, res) => {
     const user = await User.findById(req.session.userId, (err, foundUser) => {
         if(err || !foundUser){
             console.log("Problem finding User")
-        }else{
-            console.log(`The name of the session user is ${foundUser.userName}`)
         }
-
     })
 
     const clubNames = new Array()
@@ -19,7 +16,7 @@ module.exports = async (req, res) => {
             if(err || !foundClub){
                 console.log("No club found")
             }else{
-                console.log(foundClub.name)
+                //console.log(foundClub.name)
                 clubNames.push(foundClub.name)
             }
         })

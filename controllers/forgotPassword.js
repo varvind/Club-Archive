@@ -1,3 +1,3 @@
 module.exports = (req, res) => {
-    res.render('forgotPassword')
+    res.render('forgotPassword', {error: null})
 }
