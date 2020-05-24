@@ -70,6 +70,7 @@ module.exports = async (req, res) => {
                 //     }
                 // })
                 res.redirect('/post/' + req.params.id)
+                
             }
         })
     }
