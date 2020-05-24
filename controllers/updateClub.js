@@ -15,35 +15,6 @@ module.exports = async (req, res) => {
     var reg_season = req.body.registration_season
     if(!req.files){
         Club.findById(req.params.id, (error, club) =>{
-<<<<<<< HEAD
-            if(name != ""){
-                club.name = name;
-            }
-            if(members != ""){
-                club.memberCount = members
-            }
-            if(president!= ""){
-                club.president_organizer = president
-            }
-            if(email != ""){
-                club.email = email
-            }
-            if(phone != ""){
-                club.phonenumber = phone
-            }
-            if(description !="" ){
-                club.description = description
-            }
-            if(meetings != ""){
-                club.meeting_times = meetings
-            }
-            if(category!= ""){
-                club.category = category
-            }
-            if(reg_season !=""){
-                club.registration_season = reg_season
-            }
-=======
             if(name != ""){ club.name = name; }
             if(members != ""){ club.memberCount = members }
             if(president!= ""){ club.president_organizer = president }
@@ -52,7 +23,7 @@ module.exports = async (req, res) => {
             if(description !="" ){ club.description = description }
             if(meetings != ""){ club.meeting_times = meetings }
             if(category!= ""){ club.category = category }
->>>>>>> d1c2d058664332fd87aee309cb10572cd156eaad
+            if(reg_season!=""){club.registration_season = reg_season}
             club.save()
         })
         res.redirect('/post/' + req.params.id)
@@ -68,36 +39,6 @@ module.exports = async (req, res) => {
             }
             else{
                 Club.findById(req.params.id, (error, club)=> {
-<<<<<<< HEAD
-                    if(name != ""){
-                        club.name = name;
-                    }
-                    if(members != ""){
-                        club.memberCount = members
-                    }
-                    if(president!= ""){
-                        club.president_organizer = president
-                    }
-                    if(email != ""){
-                        club.email = email
-                    }
-                    if(phone != ""){
-                        club.phonenumber = phone
-                    }
-                    if(description !="" ){
-                        club.description = description
-                    }
-                    if(meetings != ""){
-                        club.meeting_times = meetings
-                    }
-                    if(category!= ""){
-                        club.category = category
-                    }
-                    if(reg_season !=""){
-                        club.registration_season = reg_season
-                    }
-                    club.image = '/public/img/' + image.name;
-=======
                     if(name != ""){ club.name = name; }
                     if(members != ""){ club.memberCount = members }
                     if(president!= ""){ club.president_organizer = president }
@@ -106,7 +47,7 @@ module.exports = async (req, res) => {
                     if(description !="" ){ club.description = description }
                     if(meetings != ""){ club.meeting_times = meetings }
                     if(category!= ""){ club.category = category }
-
+                    if(reg_season!=""){club.registration_season = reg_season}
                     let delete_path = path.join(path.resolve(__dirname, '..'), club.image)
                     fs.unlink(delete_path, (err) => {
                         if (err) {
@@ -116,7 +57,6 @@ module.exports = async (req, res) => {
                     })
                     club.image = path.resolve(__dirname, '..', '/public', 'club-images', imageName);
                     
->>>>>>> d1c2d058664332fd87aee309cb10572cd156eaad
                     club.save();
                 })
                 //const club = Club.findById(req.params._id)

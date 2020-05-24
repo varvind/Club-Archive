@@ -28,11 +28,6 @@ module.exports = (req, res) => {
                         user.clubs.push(newlymade._id)
                         user.save()
                     })
-<<<<<<< HEAD
-                    
-                    //user.clubs.push(newlymade._id) 
-=======
->>>>>>> d1c2d058664332fd87aee309cb10572cd156eaad
                     res.redirect('/')
                 }
             })            
