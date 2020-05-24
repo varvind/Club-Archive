@@ -9,8 +9,9 @@ module.exports = (req, res) => {
     }
     else {
         let image = req.files.image;
+        let imageName = Date.now() + '-' + image.name
     
-        image.mv(path.resolve(__dirname,'..','public/img',image.name), async (error) => {
+        image.mv(path.resolve(__dirname, '..', 'public', 'user-images', imageName), async (error) => {
             if(error){
                 console.log("Error making image")
             }
@@ -23,25 +24,18 @@ module.exports = (req, res) => {
                     password: hash,
                     major: req.body.major,
                     gradYear: req.body.gradYear,
-                    image: '/public/img/' + image.name
+                    image: path.resolve(__dirname, '..', '/public', 'user-images', imageName)
                 }, function(error, newlymade) {
                     if(error){
                         console.log(error)
-                        res.render('userSignUp', {
-                            error
-                        })
+                        res.render('userSignUp', { error: error })
                     }
                     else {
                         req.session.userId = newlymade._id
                         res.redirect('/')
                     }
                 })
-            })
-            
-            //req.session.userId = user._id
-            
+            })            
         })
     }
-    
-    
 }

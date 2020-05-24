@@ -32,12 +32,12 @@ module.exports = (req, res) => {
                     nodemailer.createTestAccount((err, account) => {
                         // create reusable transporter object using the default SMTP transport
                         let transporter = nodemailer.createTransport({
-                            host: 'smtp.ethereal.email',
-                            port: 587,
-                            secure: false, // true for 465, false for other ports
+                            host: 'smtp.gmail.com',
+                            port: 465,
+                            secure: true, // true for 465, false for other ports
                             auth: {
-                                user: account.user, // generated ethereal user
-                                pass: account.pass  // generated ethereal password
+                                user: "quentinromanoski@gmail.com", // generated ethereal user
+                                pass: "peter1712"  // generated ethereal password
                             }
                         })
                         transporter.verify(function(error, success) {
@@ -50,7 +50,7 @@ module.exports = (req, res) => {
 
                         var mailOptions = {
                             to: user.email,
-                            from: account.email,
+                            from: "quentinromanoski@gmail.com",
                             subject: 'Reset your ClubArchive Password',
                             messageId: 'Rest Password',
                             text: 'You are receiving this because you (or someone else) have requested the reset of the password for your ClubArchive profile.\n\n' +

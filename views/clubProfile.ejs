@@ -66,7 +66,7 @@
         
         
     </div>
-    <div style = "height: 450px;background-image: url(<%=club.image%>);background-position:center;background-size:cover">
+    <div style = "height: 450px;background-image: url('<%=club.image%>');background-position:center;background-size:cover">
         
 
             
@@ -133,6 +133,11 @@
                         <%}%>
                     </p>
                 </div>
+                <div class = "col">
+                    <% if(loggedIn) { %> 
+                        <button type="button" class="btn btn-info" onclick = "window.location.href = '/adminregistration/<%=club._id%>'">Want to be an adminstrator for this club?</button>
+                    <% } %>
+                </div>
             </div>
         </div>
     </div>
@@ -146,7 +151,7 @@
                     <h6>Org President: <%= club.president_organizer %> </h7> <br>
                     <h6>Member Count: <%= club.memberCount %> </h7>
                     <br>
-                    <h6>Recruiting Season: Fall</h7>
+                    <h6>Recruiting Season: <%=club.registration_season%></h7>
                 </div>
             </div>
         </div>
@@ -155,7 +160,7 @@
     <br>
     <br>
     <br>
-    <footer class="page-footer font-small unique-color-dark pt-4" style = "background-color:lightgrey">
+    <footer class="page-footer font-small unique-color-dark pt-4" style = "background-color:lightgrey; margin-bottom: 0px;">
 
         <!-- Footer Elements -->
         <!-- Footer Elements -->

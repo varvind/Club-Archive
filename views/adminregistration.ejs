@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+
+
+<head>
+    <meta charset="utf-8">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/shishirraven/animate-on-scroll@v1.0/oyethemes_onscroll_animation.js"></script>
+    
+    <title>ClubArchive</title>
+    <link rel="icon" href="../public/img/finalLogo2.png">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .card{
+                width: 100%; margin-left: 0% ; height: 100%
+            }
+        .card-img-top {
+            height: 170px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        AOS.init();
+    </script>
+    <div >
+        <div class ="container">
+            <div class = "row">
+                    <div class ="col-sm-2">
+                        <a href = "/"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px; "></a>
+                    </div>
+                    
+                    <div class = "col">
+                        <form class="example" action="/search" style="margin:auto" method="GET">
+                            <input style ="margin-top:24px; height:50px;" placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" name = "search2" >
+                        </form>
+                            
+                    </div>
+                    <div class = "col" >
+                        <% if (!loggedIn) {%>
+                            <button type="button" class="btn btn-outline-dark" style = "font-size:18; float: right; margin-top:24px ; margin-right: 2% ; color:white; background-color: #38a8f3; height:50px;width: 85px" onclick= "window.location.href = '/signup';">Sign Up</button>
+                            <button type="button" class="btn btn-outline-dark signUp"  style = "font-size:18; float : right; margin-top: 24px; margin-right: 2%;height:50px; width: 85px" onclick= "window.location.href = '/login';">Log in</button>
+                        <% } %> 
+                        <% if(loggedIn) { %>
+                            <div class="dropdown">
+                        
+                                <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="/userprofile">View Profile</a>
+                                    <a class="dropdown-item" href="/usersettings">User Settings</a>
+                                    <a class="dropdown-item" href="/userlogout">Logout</a>
+                                </div>
+                            </div>
+    
+                        <% } %>
+                    </div>
+    
+            </div>
+        </div>
+        
+        
+    </div>
+    <div style = "height: 450px;background-image: url('/public/img/admincoverphoto.jpg');background-position:center;background-size:cover;filter: brightness(60%);">
+        
+        
+            
+    </div>
+    <h1 style = "color:white;font-weight: bold;margin-top: 0%;position:relative;margin-top: -150px;text-align: center;font-size: 50px;">So...<br> you want to be an admin?</h1>
+    
+    
+    <center><div class = "container" style = "margin-top:90px">
+        <h1 style = "font-size: 40px;">Just one button away!</h1>
+        <hr>
+        <div class = "row">
+            <div class = "col">
+                <h2><%=club.name%> wants to welcome you to the team!</h2>
+                <h6>Click the button down below to apply today, and you will receive a notification after the club owner reviews your request!</h6>
+            </div>
+        </div>
+    </div></center>
+    
+    
+    
+    
+    
+    <center><div class ="container" style = "margin-top:100px;margin-bottom: 100px;">
+        <div class = "row">
+            <div class = "col">
+                
+                    
+                    <button type="button" class="btn btn-info" onclick = "window.location.href = '/submitadminapplication/<%=club._id%>'" style = "width:300px;font-size: 30px;">Apply now!</button>
+                
+            </div>
+            
+        </div>
+    </div></center> 
+    
+    
+    
+    
+    
+    
+    
+    
+
+</body>

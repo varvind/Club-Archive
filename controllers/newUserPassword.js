@@ -2,7 +2,6 @@ const ResetPassword = require('../models/ResetPassword')
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
 
-
 module.exports = (req, res) => {
     console.log(`The req.body.resetId is ${req.body.resetId}`)
     if(req.body.newPassword != req.body.verifyPassword){
@@ -18,16 +17,11 @@ module.exports = (req, res) => {
                     if(error || !user){
                         res.render('login', {error: "Error Finding User"})
                     }else{
-                        bcrypt.hash(verifiedPassword, 10, (error, hash) => { 
-                            if(error || !hash){
-                                console.log("Error Hashing new Password")
-                            }else{
-                                user.password = hash
-                                user.save()
-                                console.log("Updated User Password")
-                            }
+                        bcrypt.hash(verifiedPassword, 10, async function(error, hash) {
+                            user.password = hash
+                            user.save()
+                            console.log("Updated User Password")
                         })
-                        
                     }
                 })
                 resetPassword.remove();

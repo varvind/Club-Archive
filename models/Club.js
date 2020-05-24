@@ -46,6 +46,19 @@ const clubSchema = new Scheme ({
         type:Boolean,
         default: false
     },
+    registration_season: {
+        type:String,
+        default :"Fall"
+    },
+    tags : {
+        type : [String]
+    },
+    adminstrators: {
+        type : [String]
+    },
+    admin_applications: {
+        type: [Object]
+    },
     image:String
 
 
