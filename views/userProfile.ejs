@@ -139,7 +139,7 @@
                 <h5 style = "text-align: center;">Pending Applications</h5>
                 <hr style = "width: 40%;">
                 <%user.pending_applications.forEach(user_app => { %>
-                    <h6 style = "text-align: center;"><%=user_app.name%> Admin :      <%=user_app.status%></h6>
+                    <h6 style = "text-align: center;"><%=user_app.name%> Admin :      <%=user_app.status%> <a href = "/deleteapplication/<%=user_app.id%>"><img src = "../public/img/xpng.png" style = "width: 10px; margin-left: 2%;margin-top: -2px;"></a></h6>
                 <%})%>
 
                 
