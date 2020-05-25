@@ -57,7 +57,7 @@ const adminapplicationsettingscontroller = require('./controllers/clubadminappse
 const submitadminapplicationcontroller = require('./controllers/submitadminapplication')
 //db connect
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/club_archive', {useNewUrlParser:true})
+mongoose.connect(process.env.DATABASE_URL)
 
 
 //app features and functions that are being implemented
