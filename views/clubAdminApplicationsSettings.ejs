@@ -101,7 +101,7 @@
                             <a href="/clubAdminApplications/<%=club._id%>" class="active">Administrators Applications</a>
                           </div>
                     </div>
-                    <div class = "col-sm-8">
+                    <div class = "col-sm-6">
                         <% club.admin_applications.forEach(applicant => { %>
                         <div class="card" style="width: 18rem; margin-left:10%">
                             <div class="card-body">
@@ -122,6 +122,12 @@
                               </div>
                             </div>
                           </div>
+                        <% }) %>
+                    </div>
+                    <div class = "col">
+                        <h3><u>Current Administrators</u></h3>
+                        <% club.adminstrators.forEach(admin => { %>
+                            <h5><%= admin.name  %> </h5>
                         <% }) %>
                     </div>
                 </div>

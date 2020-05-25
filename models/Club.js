@@ -54,7 +54,7 @@ const clubSchema = new Scheme ({
         type : [String]
     },
     adminstrators: {
-        type : [String]
+        type : [Object]
     },
     admin_applications: {
         type: [Object]

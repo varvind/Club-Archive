@@ -22,7 +22,8 @@ module.exports = async (req, res) => {
     }
     const appDecision = String(req.body.applicationdecision)
     if(appDecision == "Accept"){
-        club.adminstrators.push(req.params.userId)
+        admin = {name : club.admin_applications[i].name, id:req.params.userId}
+        club.adminstrators.push(admin)
         club.admin_applications.splice(club_application_index,1)
         club.save()
 
