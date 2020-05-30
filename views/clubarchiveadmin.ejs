@@ -1,0 +1,106 @@
+<html>
+
+
+    <head>
+            <meta charset="utf-8">
+            <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <title>ClubArchive</title>
+            <style>
+                a:visited{
+                    color: black;
+                }
+                a:hover {
+                    text-decoration : none;
+                    color: black;
+                }
+                a{
+                    color:black
+                }
+                .btn-outline-secondary:hover {
+                    background-color: #41bbac
+                }
+
+                .btn-outline-dark {
+                    width:15%;
+                    height: 45%;
+                    color:black;
+                }
+                .btn-outline-dark:hover {
+                    background-color: lightgray
+                }
+                
+            
+            </style>
+
+
+
+    </head>
+    
+
+    <body>
+        <div class ="container">
+            <div class = "row">
+                    <div class ="col-sm-2">
+                        <a href = "/"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px; "></a>
+                    </div>
+                    
+                    <div class = "col">
+                        <form class="example" action="/search" style="margin:auto" method="GET">
+                            <input style ="margin-top:24px" placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" name = "search2" >
+                        </form>
+                            
+                    </div>
+                    <div class = "col" >
+                        <!-- <% if (!loggedIn) {%>
+                            <button type="button" class="btn btn-outline-dark" style = "font-size:18; float: right; margin-top:24px ; margin-right: 3% ; color:white; background-color: #38a8f3" onclick= "window.location.href = '/signup';">Sign Up</button>
+                            <button type="button" class="btn btn-outline-dark signUp"  style = "font-size:18; float : right; margin-top: 24px; margin-right: 3%;" onclick= "window.location.href = '/login';">Log in</button>
+                        <% } %>  -->
+                        <% if(loggedIn) { %>
+                            <div class="dropdown">
+                        
+                                <img src = "<%= user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="/userprofile">View Profile</a>
+                                    <a class="dropdown-item" href="/usersettings">User Settings</a>
+                                    <a class="dropdown-item" href="/userlogout">Logout</a>
+                                </div>
+                            </div>
+    
+                        <% } %>
+                    </div>
+    
+            </div>
+        </div>
+        <hr style = "margin-top: 0%">
+
+
+        <div class ="container">
+            <% applications.forEach(app => { %>
+
+                <div class="card" style="width: 18rem; margin-left:10%">
+                    <div class="card-body">
+                      <h5 class="card-title"><%=app.club.name%></h5>
+                      <h6 class="card-subtitle mb-2 text-muted"><%=app.club.president_organizer%></h6>
+                      <p class="card-text"><%=app.club.email%></p>
+                      <div class="form-group">
+                        <label for="exampleSelect1"></label>
+                        
+                        <form action = "/clubarchiveapprovedprocessed/<%=app._id%>" method ="POST">
+                            <select class="form-control" id="exampleSelect1" name = "applicationdecision">
+                                <option>Accept</option>
+                                <option>Reject</option>
+                            
+                            </select>
+                            <button  type="submit" class="btn btn-outline-secondary" style = "margin-top: 1%; width: 50%">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+            <% }) %> 
+        </div>
+    </body>

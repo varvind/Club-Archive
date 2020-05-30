@@ -56,6 +56,10 @@ const adminregistrationapplyController = require('./controllers/adminregistratio
 const adminapplicationsettingscontroller = require('./controllers/clubadminappsettings')
 const submitadminapplicationcontroller = require('./controllers/submitadminapplication')
 const deleteuserapplicationcontroller = require('./controllers/deleteUserApplication')
+const clubarchiveadminviewcontroller = require('./controllers/clubarchiveadminview')
+const clubprofilesettingscontroller = require('./controllers/clubprofilesettings')
+const submitclubarchiveapprovedappcontroller = require('./controllers/submitclubarchiveapp')
+const clubapprovalprocessedcontroller = require('./controllers/submitapprovalapp')
 //db connect
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL)
@@ -148,6 +152,10 @@ app.get('/submitadminapplication/:id', adminregistrationapplyController)
 app.get('/clubAdminApplications/:id', adminapplicationsettingscontroller)
 app.post('/submitadminapplication/:userId/:clubId', submitadminapplicationcontroller)
 app.get('/deleteapplication/:id', deleteuserapplicationcontroller)
+app.get('/clubarchiveadmin',clubarchiveadminviewcontroller)
+app.get('/clubprofilesettings/:id', clubprofilesettingscontroller)
+app.post('/submitapprovalapp/:id',submitclubarchiveapprovedappcontroller)
+app.post('/clubarchiveapprovedprocessed/:id',clubapprovalprocessedcontroller)
 // app.get('/searchlanding' , (req, res) => {
 //     res.render('searchLanding')
 // })
