@@ -10,9 +10,9 @@ module.exports = async (req, res) => {
         const club = await Club.findById(clubId);
         club.club_archive_approved = true;
         club.save()
-        CAApprovedApp.remove({currentApp});
+        await CAApprovedApp.deleteOne({"_id" : currentApp._id})
     } else {
-        CAApprovedApp.remove({currentApp})
+        await CAApprovedApp.deleteOne({"_id" : currentApp._id})
     }
     res.redirect('/')
 }

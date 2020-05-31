@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
     }
     const appDecision = String(req.body.applicationdecision)
     if(appDecision == "Accept"){
-        admin = {name : club.admin_applications[i].name, id:req.params.userId}
+        admin = {name : club.admin_applications[i].name, id:user._id}
         club.adminstrators.push(admin)
         club.admin_applications.splice(club_application_index,1)
         club.save()
@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
        
         user.pending_applications[user_application_index].status = "Accept"
         user.markModified('pending_applications')
+        user.clubs.push(club._id)
         user.save()
     }
     else{
