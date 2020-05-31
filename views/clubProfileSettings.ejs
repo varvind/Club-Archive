@@ -102,13 +102,18 @@
                     </div>
                     <div class = "col-sm-8">
                         
-                        <%if (!club.club_archive_approved) { %>
+                        <%if (!club.club_archive_approved && !appSubmitted) { %>
                             <h3 style = "text-align: center;">Want to get apply to be ClubArchive approved?</h3>
                             <form method="POST" action ="/submitapprovalapp/<%=club._id%>">
                                 <center>
                                     <button  class="btn btn-info" type = "submit" style = "width:30%;height:15%">Submit Application</button>
                                 </center>
                             </form>
+                        <% } else if (appSubmitted) { %>
+                            <h3 style = "text-align: center;">Your application is under review!</h3>
+                            <h5 style = "text-align: center;">So whats next?</h5>
+                            <p style = "text-align: center;">You can check your application status here, or if you a see a gold symbol next to your clubs name if youve been approved!</p>
+                            <p style = "text-align: center;">If you dont get approved, you can submit an email to theclubarchive@gmail.com and we can get things sorted out!</p>
                         <% } else { %>
                             <h3 style = "text-align: center;">Congratulations you are club archive approved!</h3>
                             <h5 style = "text-align: center;">So whats next?</h5>
