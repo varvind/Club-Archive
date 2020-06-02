@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <title>ClubArchive</title>
+        <style>
+            .btn-outline-secondary:hover {
+                background-color: lightgray
+            }
+            .SmallSignUp {
+                color: blue;
+                font-size: 100%;
+                margin-left : 70%;
+            }
+            .SmallSignUp:visited {
+                color:blue;
+            }
+            .form-control, .form-control-lg {
+                width :30%; height : 50%; margin-left : 33%; margin-top : 5%; margin-right : 1%
+            }
+            .btn, .btn-outline-secondary {
+                margin-left: 33%; margin-top: 3%; width : 30%; height: 5%; font-size: 90vw 90vh;
+            }
+            .alert.info {background-color: #2196F3;width:30%}
+            .closebtn {
+                color: white;
+                font-weight: bold;
+                float: right;
+                font-size: 22px;
+                line-height: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }     
+        </style>
+
+    </head>
+
+
+    <body>
+
+        <nav class="navbar navbar-expand-sm navbar-light" style = "background-color:#38a8f3 ;">
+            <a href = "/" style = " margin-left: 45%;"><img src = "../public/img/finalLogo2.png" style="width :100px; height:100px;" ></a>
+        </nav>
+
+        <br><br>    
+
+        <h2 class="text-center">Create Custom Application</h2>
+        
+        <form action = "/addApplication/<%=club._id%>" method ="POST" enctype = "multipart/form-data" class="form-control form-control-lg">
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="true" id="allowApplication" name="allowApplication" <%if(club.onlineApplication.allow){ %>
+                checked 
+                <% }%> >
+                <label class="form-check-label" for="allowApplication">Allow Online Application: </label>
+            </div>
+            <br>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="true" id="fullnameCheckbox" name="fullname" <%if(club.onlineApplication.allow){ %>
+                    checked 
+                    <% }%> >
+                <label class="form-check-label" for="fullnameCheckbox">Require Fullname</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="true" id="emailCheckbox" name="email" <%if(club.onlineApplication.allow){ %>
+                    checked 
+                    <% }%> >
+                <label class="form-check-label" for="emailCheckbox">Require Email</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="true" id="rankCheckbox" name="classRank" <%if(club.onlineApplication.allow){ %>
+                    checked 
+                    <% }%> >
+                <label class="form-check-label" for="rankCheckbox">Require Graduation Year</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="true" id="majorCheckbox" name="major" <%if(club.onlineApplication.allow){ %>
+                    checked 
+                    <% }%> >
+                <label class="form-check-label" for="majorCheckbox">Require Major</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="true" id="fullnameCheckbox" name="resume" <%if(club.onlineApplication.allow){ %>
+                    checked 
+                    <% }%> >
+                <label class="form-check-label" for="fullnameCheckbox">Require Resume</label>
+            </div>
+            
+            <div class="form-check">
+                <input type="text" placeholder="<%=club.onlineApplication.custom1 || 'Custom Question #1' %>"  name = "custom1" style = "margin-top: 5%">
+            </div>
+            <div class="form-check">
+                <input type="text" placeholder="<%=club.onlineApplication.custom2 || 'Custom Question #2' %>" name = "custom2" style = "margin-top: 5%">
+            </div>
+            <div class="form-check">
+                <input type="text" placeholder="<%=club.onlineApplication.custom3 || 'Custom Question #3' %>" name = "custom3" style = "margin-top: 5%">
+            </div>
+            <br>
+            <button  type="submit" name="submit" class="btn btn-outline-secondary" >Save Application</button>
+        </form>
+             
+
+        <script>
+            var close = document.getElementsByClassName("closebtn");
+            var i;
+            
+            for (i = 0; i < close.length; i++) {
+              close[i].onclick = function(){
+                var div = this.parentElement;
+                div.style.opacity = "0";
+                setTimeout(function(){ div.style.display = "none"; }, 600);
+              }
+            }
+        </script>
+        
+
+
+
+    </body>
+
+
+
+
+
+
+</html>

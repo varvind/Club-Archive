@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <title>ClubArchive</title>
+        <style>
+            .btn-outline-secondary:hover {
+                background-color: lightgray
+            }
+            .SmallSignUp {
+                color: blue;
+                font-size: 100%;
+                margin-left : 70%;
+            }
+            .SmallSignUp:visited {
+                color:blue;
+            }
+            .form-control, .form-control-lg {
+                width :30%; height : 50%; margin-left : 33%; margin-top : 5%; margin-right : 1%
+            }
+            .btn, .btn-outline-secondary {
+                margin-left: 33%; margin-top: 3%; width : 30%; height: 5%; font-size: 90vw 90vh;
+            }
+            .alert.info {background-color: #2196F3;width:30%}
+            .closebtn {
+                color: white;
+                font-weight: bold;
+                float: right;
+                font-size: 22px;
+                line-height: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }     
+        </style>
+
+    </head>
+
+
+    <body>
+
+        <nav class="navbar navbar-expand-sm navbar-light" style = "background-color:#38a8f3 ;">
+            <a href = "/" style = " margin-left: 45%;"><img src = "../public/img/finalLogo2.png" style="width :100px; height:100px;" ></a>
+        </nav>
+
+        <br><br>    
+
+        <h2 class="text-center">Create Custom Application</h2>
+        
+        <form action = "/addApplication/<%=club._id%>" method ="POST" enctype = "multipart/form-data" class="form-control form-control-lg">
+            <% if(club.onlineApplication.fullname){ %>
+                <input type="text" placeholder="Fullname" name = "fullname" style = "margin-top: 5%">
+            <% } %> 
+            <% if(club.onlineApplication.email){ %>
+                <input type="email" placeholder="Email" name = "email" style = "margin-top: 5%">
+            <% } %> 
+            <% if(club.onlineApplication.rank){ %>
+                <input type="text" placeholder="Graduation Year" name = "rank" style = "margin-top: 5%">
+            <% } %> 
+            <% if(club.onlineApplication.major){ %>
+                <input type="text" placeholder="Major" name = "major" style = "margin-top: 5%">
+            <% } %>
+            <% if(club.onlineApplication.custom1 != ""){ %>
+                <input type="text" placeholder="<%=club.onlineApplication.custom1%>"  name = "custom1" style = "margin-top: 5%">
+            <% } %> 
+            <% if(club.onlineApplication.custom2 != ""){ %>
+                <input type="text" placeholder="<%=club.onlineApplication.custom2%>"  name = "custom2" style = "margin-top: 5%">
+            <% } %> 
+            <% if(club.onlineApplication.custom3 != ""){ %>
+                <input type="text" placeholder="<%=club.onlineApplication.custom3%>"  name = "custom3" style = "margin-top: 5%">
+            <% } %> 
+            
+            <br>
+            <button  type="submit" name="submit" class="btn btn-outline-secondary" >Apply!</button>
+        </form>
+             
+
+        <script>
+            var close = document.getElementsByClassName("closebtn");
+            var i;
+            
+            for (i = 0; i < close.length; i++) {
+              close[i].onclick = function(){
+                var div = this.parentElement;
+                div.style.opacity = "0";
+                setTimeout(function(){ div.style.display = "none"; }, 600);
+              }
+            }
+        </script>
+        
+
+
+
+    </body>
+</html>
