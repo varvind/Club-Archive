@@ -56,6 +56,10 @@ const adminregistrationapplyController = require('./controllers/adminregistratio
 const adminapplicationsettingscontroller = require('./controllers/clubadminappsettings')
 const submitadminapplicationcontroller = require('./controllers/submitadminapplication')
 const deleteuserapplicationcontroller = require('./controllers/deleteUserApplication')
+const applicationDesignController = require('./controllers/memberApplication')
+const addOnlineApplicationController = require('./controllers/addApplication')
+const onlineClubApplicationController = require('./controllers/onlineClubApplication')
+
 //db connect
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL)
@@ -148,6 +152,10 @@ app.get('/submitadminapplication/:id', adminregistrationapplyController)
 app.get('/clubAdminApplications/:id', adminapplicationsettingscontroller)
 app.post('/submitadminapplication/:userId/:clubId', submitadminapplicationcontroller)
 app.get('/deleteapplication/:id', deleteuserapplicationcontroller)
+app.get('/clubMemberApplicationDesign/:id', applicationDesignController)
+app.post('/addapplication/:id', addOnlineApplicationController)
+app.get('/:id/applyonline', onlineClubApplicationController)
+
 // app.get('/searchlanding' , (req, res) => {
 //     res.render('searchLanding')
 // })

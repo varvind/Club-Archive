@@ -59,8 +59,45 @@ const clubSchema = new Scheme ({
     admin_applications: {
         type: [Object]
     },
-    image:String
-
+    image:String,
+    onlineApplication: {
+        allow: {
+            type: Boolean,
+            default: false
+        },
+        fullname: {
+            type: Boolean,
+            default: false
+        },
+        email: {
+            type: Boolean,
+            default: false
+        },
+        rank: {
+            type: Boolean,
+            default: false
+        },
+        major: {
+            type: Boolean,
+            default: false
+        },
+        resume: {
+            type: Boolean,
+            default: false
+        },
+        custom1: {
+            type: String,
+            default: ""
+        },
+        custom2: {
+            type: String,
+            default: ""
+        },
+        custom3: {
+            type: String,
+            default: ""
+        }
+    }
 
 })
 clubSchema.pre('save', function(next) {

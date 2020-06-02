@@ -136,6 +136,10 @@
                 <div class = "col">
                     <% if(loggedIn) { %> 
                         <button type="button" class="btn btn-info" onclick = "window.location.href = '/adminregistration/<%=club._id%>'">Want to be an adminstrator for this club?</button>
+                        <br><br>
+                        <% if(club.onlineApplication.allow){ %>
+                            <button type="button" class="btn btn-info" onclick = "window.location.href = '/<%=club._id%>/applyonline'">Apply to become a member of  <%= club.name %> </button>
+                        <% } %> 
                     <% } %>
                 </div>
             </div>
