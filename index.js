@@ -56,13 +56,10 @@ const adminregistrationapplyController = require('./controllers/adminregistratio
 const adminapplicationsettingscontroller = require('./controllers/clubadminappsettings')
 const submitadminapplicationcontroller = require('./controllers/submitadminapplication')
 const deleteuserapplicationcontroller = require('./controllers/deleteUserApplication')
-<<<<<<< HEAD
 const applicationDesignController = require('./controllers/memberApplication')
 const addOnlineApplicationController = require('./controllers/addApplication')
 const onlineClubApplicationController = require('./controllers/onlineClubApplication')
 
-=======
->>>>>>> fdce88403c0cb0c0575fc8b728e807ed8d612161
 const clubarchiveadminviewcontroller = require('./controllers/clubarchiveadminview')
 const clubprofilesettingscontroller = require('./controllers/clubprofilesettings')
 const submitclubarchiveapprovedappcontroller = require('./controllers/submitclubarchiveapp')
@@ -161,13 +158,10 @@ app.get('/submitadminapplication/:id', adminregistrationapplyController)
 app.get('/clubAdminApplications/:id', adminapplicationsettingscontroller)
 app.post('/submitadminapplication/:userId/:clubId', submitadminapplicationcontroller)
 app.get('/deleteapplication/:id', deleteuserapplicationcontroller)
-<<<<<<< HEAD
 app.get('/clubMemberApplicationDesign/:id', applicationDesignController)
 app.post('/addapplication/:id', addOnlineApplicationController)
 app.get('/:id/applyonline', onlineClubApplicationController)
 
-=======
->>>>>>> fdce88403c0cb0c0575fc8b728e807ed8d612161
 app.get('/clubarchiveadmin',clubarchiveadminviewcontroller)
 app.get('/clubprofilesettings/:id', clubprofilesettingscontroller)
 app.post('/submitapprovalapp/:id',submitclubarchiveapprovedappcontroller)
