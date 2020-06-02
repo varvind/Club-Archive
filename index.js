@@ -60,6 +60,12 @@ const applicationDesignController = require('./controllers/memberApplication')
 const addOnlineApplicationController = require('./controllers/addApplication')
 const onlineClubApplicationController = require('./controllers/onlineClubApplication')
 
+const clubarchiveadminviewcontroller = require('./controllers/clubarchiveadminview')
+const clubprofilesettingscontroller = require('./controllers/clubprofilesettings')
+const submitclubarchiveapprovedappcontroller = require('./controllers/submitclubarchiveapp')
+const clubapprovalprocessedcontroller = require('./controllers/submitapprovalapp')
+const confirmclubdeletepagecontroller = require('./controllers/confirmclubdeletepage')
+const confirmclubdeletecontroller = require('./controllers/confirmclubdelete')
 //db connect
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL)
@@ -156,6 +162,12 @@ app.get('/clubMemberApplicationDesign/:id', applicationDesignController)
 app.post('/addapplication/:id', addOnlineApplicationController)
 app.get('/:id/applyonline', onlineClubApplicationController)
 
+app.get('/clubarchiveadmin',clubarchiveadminviewcontroller)
+app.get('/clubprofilesettings/:id', clubprofilesettingscontroller)
+app.post('/submitapprovalapp/:id',submitclubarchiveapprovedappcontroller)
+app.post('/clubarchiveapprovedprocessed/:id',clubapprovalprocessedcontroller)
+app.get('/confirmdeletepage/:id',confirmclubdeletepagecontroller)
+app.post('/submitclubdelete/:id',confirmclubdeletecontroller)
 // app.get('/searchlanding' , (req, res) => {
 //     res.render('searchLanding')
 // })

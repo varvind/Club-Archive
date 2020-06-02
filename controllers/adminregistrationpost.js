@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
         }
     }
     for(var i = 0; i < club.adminstrators.length; i++){
-        if(String(req.session.userId) == club.adminstrators[i] ){
+        if(String(req.session.userId) == String(club.adminstrators[i].id) ){
             duplicate = true
         }
     }

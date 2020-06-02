@@ -112,7 +112,12 @@
     <div style = "margin-top:2%;">
         <div class = "row">
             <div class = "col-sm-3">
-                <h5 style = "text-align: center;">About <%= user.firstName %> <a href = "/usersettings"><img src = "../public/img/settings icon.png" style = "width: 22px;"></a></h5>
+                <h5 style = "text-align: center;">About <%= user.firstName %> 
+                    <a href = "/usersettings"><img src = "../public/img/settings icon.png" style = "width: 22px;"></a>
+                    <% if(user.firstName == "Arvind" && user.lastName =="Venkatesan") { %>
+                        <a href = "/clubarchiveadmin"><img src = "../Images/blueLogo.png" style ="width: 25px;"></a>
+                    <% } %>  
+                </h5>
                 <hr style = "width: 40%;">
                 
                 <h6 style = "text-align: center;">University : Texas A&M University</h6>
