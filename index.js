@@ -62,6 +62,7 @@ const onlineClubApplicationController = require('./controllers/onlineClubApplica
 const applyToClubApplication = require('./controllers/applyToClub')
 const allMemberApplicationsController = require('./controllers/allMemberApplications')
 const singleMemberApplicationController = require('./controllers/singleMemberApplication')
+const approveMemberApplicationController = require('./controllers/approveMemberApplication')
 
 const clubarchiveadminviewcontroller = require('./controllers/clubarchiveadminview')
 const clubprofilesettingscontroller = require('./controllers/clubprofilesettings')
@@ -166,7 +167,8 @@ app.post('/addapplication/:id', authMiddleWare, addOnlineApplicationController)
 app.get('/:id/applyonline', authMiddleWare, onlineClubApplicationController)
 app.post('/add-application/:id', applyToClubApplication)
 app.get('/:clubid/club-applications', allMemberApplicationsController)
-app.get('/:clubid/club-applications/:userid', singleMemberApplicationController)
+app.get('/:club_id/club-applications/:user_id', singleMemberApplicationController)
+app.post('/:club_id/club-applications/:user_id', approveMemberApplicationController)
 
 app.get('/clubarchiveadmin',clubarchiveadminviewcontroller)
 app.get('/clubprofilesettings/:id', clubprofilesettingscontroller)

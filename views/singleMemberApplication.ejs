@@ -90,9 +90,52 @@
         </div>
         <hr>
 
-            <div class="d-flex justify-content-center"><h2><%=user_applied.firstname%>'s Application</h2></div>
+            <div class="d-flex justify-content-center"><h2><%=user_applied.firstName%>'s Application</h2></div>
+            <br>
+            <div class="d-flex justify-content-center">
+                <ul>
+                    <% if(application.fullname){ %>
+                        <li class="list-group-item">Fullname: <%=application.fullname%> </li>
+                    <% } %>  
+                    <% if(application.email){ %>
+                        <li class="list-group-item">Email: <%=application.email%> </li>
+                    <% } %> 
+                    <% if(application.rank){ %>
+                        <li class="list-group-item">Graduation Year: <%=application.rank%> </li>
+                    <% } %> 
+                    <% if(application.major){ %>
+                        <li class="list-group-item">Major: <%=application.major%> </li>
+                    <% } %> 
+                    <% if(application.custom1.question){ %>
+                        <li class="list-group-item"><%=application.custom1.question%>: <%=application.custom1.answer%> </li>
+                    <% } %> 
+                    <% if(application.custom2.question){ %>
+                        <li class="list-group-item"><%=application.custom2.question%>: <%=application.custom2.answer%> </li>
+                    <% } %> 
+                    <% if(application.custom3.question){ %>
+                        <li class="list-group-item"><%=application.custom3.question%>: <%=application.custom3.answer%> </li>
+                    <% } %> 
+                </ul>
+            </div>
+
+            <br><br>
+
+          
+            <div class="btn-group d-flex justify-content-center mx-auto" style="width: 50%" role="group" >
+                <form method="POST" action ="/<%=club._id%>/club-applications/<%=application.userId%>">
+                    <button type="submit" name="deny" value="deny" class="btn btn-outline-danger">Deny</button>
+                    <button type="submit" name="approve" value="approve" class="btn btn-outline-success">Approve</button>
+                </form>
+            </div>
+            
             <br>
             
+            <div class="btn-group d-flex justify-content-center mx-auto" style="width: 50%" role="group" >
+                <form method="GET" action ="/<%=club._id%>/club-applications">
+                    <button type="submit" class="btn btn-outline-secondary">Cancel</button>
+                </form>
+            </div>
+
             
 
     </body>
