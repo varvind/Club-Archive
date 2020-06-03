@@ -29,11 +29,24 @@ module.exports = async (req, res) => {
    if(found == false) {
        searches.push(club)
    }
+
+   //let alreadyAppliedAdmin = false;
+   //for each if already applied to admin
+   let alreadyAppliedMember = false;
+   if(user != null){
+    club.member_applications.forEach(user_app => {
+        if(String(user_app.userId) == String(user._id)){
+            alreadyAppliedMember = true;
+        }
+    });
+   }
+
     //console.log(searches)
     req.session.searches=searches
     res.render('clubProfile' ,{
         club,
         user,
-        canEdit
+        canEdit,
+        alreadyAppliedMember
     })
 }
