@@ -27,8 +27,11 @@ module.exports = (req, res) => {
                     User.findById(req.session.userId, (err, user) => {
                         user.clubs.push(newlymade._id)
                         user.save()
+
                         admin = {name : user.firstName + " " + user.lastName, id: user._id}
                         newlymade.adminstrators.push(admin)
+                        member = {name : user.firstName + " " + user.lastName, id: user._id}
+                        newlymade.members.push(member)
                         newlymade.save()
                     })
                     
