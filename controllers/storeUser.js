@@ -24,7 +24,7 @@ module.exports = (req, res) => {
                     password: hash,
                     major: req.body.major,
                     gradYear: req.body.gradYear,
-                    image: path.join(__dirname, '..', 'public', 'img', imageName)
+                    image: "/public/img/" + imageName
                 }, function(error, newlymade) {
                     if(error){
                         console.log(error)
