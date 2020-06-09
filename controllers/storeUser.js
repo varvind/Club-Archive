@@ -11,7 +11,7 @@ module.exports = (req, res) => {
         let image = req.files.image;
         let imageName = Date.now() + '-' + image.name
     
-        image.mv(path.resolve(__dirname, '..', 'public', 'user-images', imageName), async (error) => {
+        image.mv(path.resolve(__dirname, '..', 'public', 'img', imageName), async (error) => {
             if(error){
                 console.log("Error making image")
             }
@@ -24,7 +24,7 @@ module.exports = (req, res) => {
                     password: hash,
                     major: req.body.major,
                     gradYear: req.body.gradYear,
-                    image: path.join(__dirname, '..', 'public', 'user-images', imageName)
+                    image: path.join(__dirname, '..', 'public', 'img', imageName)
                 }, function(error, newlymade) {
                     if(error){
                         console.log(error)

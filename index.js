@@ -90,7 +90,7 @@ app.use(express.static(__dirname));
 
 // var storage = multer.diskStorage({
 //     destination: function(req, file, cb){
-//         cb(null, 'public/club_images');
+//         cb(null, 'public/herokuclub_images');
 //     },
 //     filename: function(req, file, cb){ 
 //         cb(null, Date.now() + '-' + file.originalname)
