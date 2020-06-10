@@ -43,10 +43,13 @@ module.exports = async (req, res) => {
 
     //console.log(searches)
     req.session.searches=searches
-    res.render('clubProfile' ,{
-        club,
-        user,
-        canEdit,
-        alreadyAppliedMember
-    })
+    setTimeout(() => {
+        res.render('clubProfile' ,{
+            club,
+            user,
+            canEdit,
+            alreadyAppliedMember
+        })
+    }, 2000);
+    
 }

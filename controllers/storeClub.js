@@ -1,25 +1,17 @@
 const Club = require('../models/Club')
 const User = require('../models/User')
 const path = require('path')
-module.exports = (req, res) => {
-    if(!req.files){
+module.exports = async (req, res) => {
+    if(!req.file){
         res.render('clubSignUp',  { error:"error" })
     }
     else {
-        let image = req.files.image;
-        let imageName = Date.now() + '-' + image.name
-    
-        console.log(path.resolve(__dirname,'..'))
-
-        image.mv(path.resolve(__dirname, '..', 'public', 'club-images', imageName), async (error) => {
-            if(error){
-                console.log("Error making image")
-            }
             await Club.create({
                 ...req.body,
-                image: path.resolve(__dirname, '..', '/', 'public', 'club-images', imageName)
+                image: req.file.filename
             }, async function(error, newlymade) {
                 if(error){
+                    console.log("hello")
                     console.log(error)
                     res.render('clubSignUp', { error: error})
                 }
@@ -38,6 +30,5 @@ module.exports = (req, res) => {
                     res.redirect('/')
                 }
             })            
-        })
     }
 }
