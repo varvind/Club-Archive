@@ -12,6 +12,12 @@ const mongoose = require('mongoose')
 const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const validator = require('express-validator') //new
+const crypto = require('crypto')
+const multer = require('multer')
+const GridFsStorage = require('multer-gridfs-storage')
+const Grid = require('gridfs-stream')
+const methodOverride = require('method-override')
+const path = require('path')
 //routes
 const authMiddleWare = require('./middleware/authMiddleware')
 const userSignUpController = require('./controllers/newUser')
@@ -71,19 +77,52 @@ const confirmclubdeletepagecontroller = require('./controllers/confirmclubdelete
 const confirmclubdeletecontroller = require('./controllers/confirmclubdelete')
 const manageAllMembersController = require('./controllers/manageAllMembers')
 const editClubPriviledgesController = require('./controllers/editClubPriviledges')
-//db connect
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DATABASE_URL)
-
 
 //app features and functions that are being implemented
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
-app.use(fileUpload())
+app.use(methodOverride('_method'))
+//app.use(fileUpload())
 app.use(expressSession({
     secret: 'keyboard cat'
 }))
 app.use(express.static(__dirname));
+
+
+
+
+//db connect
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.DATABASE_URL)
+const conn = mongoose.createConnection(process.env.DATABASE_URL)
+
+
+let gfs;
+conn.once('open', () => {
+    gfs = Grid(conn.db, mongoose.mongo)
+    gfs.collection('uploads')
+})
+
+var storage = new GridFsStorage({
+  url: process.env.DATABASE_URL,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: 'uploads'
+        };
+        resolve(fileInfo);
+      });
+    });
+  }
+});
+const upload = multer({ storage });
+
 
 // //multer
 // const multer = require('multer')
@@ -125,7 +164,7 @@ console.log(clubloggedin)
 //routing
 app.get('/', homeController)
 app.get('/signup',redirectIfAuthenticatedMiddleware,userSignUpController)
-app.post('/adduser',redirectIfAuthenticatedMiddleware, storeUserController)
+app.post('/adduser',upload.single('image'), storeUserController)
 app.get('/login',redirectIfAuthenticatedMiddleware, loginController)
 app.post('/userlogin',redirectIfAuthenticatedMiddleware, loginUserController)
 app.get('/userprofile', userProfileController)
@@ -178,6 +217,11 @@ app.get('/confirmdeletepage/:id',confirmclubdeletepagecontroller)
 app.post('/submitclubdelete/:id',confirmclubdeletecontroller)
 app.get('/:id/manage-members', manageAllMembersController)
 app.post('/:club_id/edit-user-priviledges/:user_id', editClubPriviledgesController)
+app.get('/image/:filename', async (req, res) => {
+    const file = await gfs.files.findOne({filename : req.params.filename})
+    const readstream = gfs.createReadStream(file.filename)
+    readstream.pipe(res)
+})
 // app.get('/searchlanding' , (req, res) => {
 //     res.render('searchLanding')
 // })
