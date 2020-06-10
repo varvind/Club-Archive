@@ -14,22 +14,23 @@ module.exports = async (req, res) =>{
     var club_application_index;
     var i = 0
     user.pending_applications.forEach(application => {
-        if(String(application.clubId) == req.params.club_id && application.type == "member"){
+        if(String(application.clubId) == String(req.params.club_id) && application.type == "member"){
             user_application_index = i
         }
-        i += 0
+        i += 1
     });
     i = 0
     club.member_applications.forEach(application => {
-        if(String(application.userId) == req.params.user_id && application.type == "member"){
+        if(String(application.userId) == String(req.params.user_id)){
             club_application_index = i
         }
-        i += 0
+        i += 1
     });
     
 
     if(req.body.approve){
-        member = {name : club.member_applications[i].fullname, id:user._id}
+        console.log(club_application_index)
+        member = {name : club.member_applications[club_application_index].fullname, id:user._id}
         let insert1 = false
         club.members.forEach(member => {
             if(String(member.id) == String(user._id)){
