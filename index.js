@@ -222,8 +222,5 @@ app.get('/image/:filename', async (req, res) => {
     const readstream = gfs.createReadStream(file.filename)
     readstream.pipe(res)
 })
-// app.get('/searchlanding' , (req, res) => {
-//     res.render('searchLanding')
-// })
 
 
