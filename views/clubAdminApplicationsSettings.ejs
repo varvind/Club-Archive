@@ -99,10 +99,13 @@
                             <a href="/clubSettings/<%=club._id%>" >Club Settings</a>
                             <a href="/clubprofilesettings/<%=club._id%>">Club Profile</a>
                             <a href="/clubMarkettingSettings/<%=club._id%>">Marketting Settings</a>
-                            <a href="/clubAdminApplications/<%=club._id%>" class="active">Administrators Applications</a>
+                            <a href="/clubAdminApplications/<%=club._id%>"  class="active">Administrators Applications</a>
+                            <a href="/clubMemberApplicationDesign/<%= club._id %>">Design Online Application</a>
+                            <a href="/<%=club._id%>/club-applications">Manage Member Application</a>
+                            <a href="/<%=club._id%>/manage-members">Manage Current Members</a>
                           </div>
                     </div>
-                    <div class = "col-sm-6">
+                    <div class = "col-sm-6" >
                         <% club.admin_applications.forEach(applicant => { %>
                         <div class="card" style="width: 18rem; margin-left:10%">
                             <div class="card-body">

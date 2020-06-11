@@ -90,60 +90,57 @@
             </div>
         </div>
         <hr>
-        
-            <div class="d-flex justify-content-center">
-                <h2>All Members</h2>
-            </div>
-            <br>
-            
-            <div class="d-flex justify-content-around">
-                <div class = "col-sm-2">
-                    <div class="vertical-menu">
-                        <a href="/clubSettings/<%=club._id%>" class="active">Club Settings</a>
-                        <a href="/clubprofilesettings/<%=club._id%>">Club Profile</a>
-                        <a href="/clubMarkettingSettings/<%=club._id%>">Marketting Settings</a>
-                        <a href="/clubAdminApplications/<%=club._id%>">Administrators Applications</a>
-                        <a href="/clubMemberApplicationDesign/<%= club._id %>">Design Online Application</a>
-                        <a href="/<%=club._id%>/club-applications">Manage Member Application</a>
+            <div class = "container">
+                <div class="row">
+                    <div class = "col-sm-2">
+                        <div class="vertical-menu">
+                            <a href="/clubSettings/<%=club._id%>" >Club Settings</a>
+                            <a href="/clubprofilesettings/<%=club._id%>">Club Profile</a>
+                            <a href="/clubMarkettingSettings/<%=club._id%>">Marketting Settings</a>
+                            <a href="/clubAdminApplications/<%=club._id%>">Administrators Applications</a>
+                            <a href="/clubMemberApplicationDesign/<%= club._id %>">Design Online Application</a>
+                            <a href="/<%=club._id%>/club-applications" >Manage Member Application</a>
+                            <a href="/<%=club._id%>/manage-members"  class="active">Manage Current Members</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="d-flex flex-column justify-content-center">
-                    <ul>
-                        <li class="list-group-item"><h3>Administrators</h3></li>
-                        <% if(club.adminstrators != null){ %> 
-                            <% club.adminstrators.forEach(admin => { %>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span><%=admin.name%></span>
-                                    <form class="ml-3" method="POST" action ="/<%=club._id%>/edit-user-priviledges/<%=admin.id%>">
-                                        <button type="submit" name="remove_admin" value="remove_admin" class="btn btn-sm btn-outline-primary">Remove Admin</button>
-                                        <button type="submit" name="delete_member" value="delete_member" class="btn btn-sm btn-outline-danger">Delete Member</button>
-                                    </form>
-                                </li>
-                            <% });  %> 
-                        <% } %> 
-                    </ul>
-                    <br><br>
-                    <ul>
-                        <li class="list-group-item"><h3>Non-Admins</h3></li>
-                        <% if(non_admins != null){ %> 
-                            <% non_admins.forEach(member => { %>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span><%=member.name%></span>
-                                    <form class="ml-3" method="POST" action="/<%=club._id%>/edit-user-priviledges/<%=member.id%>">
-                                        <button type="submit" name="make_admin" value="make_admin" class="btn btn-sm btn-outline-success">Make Admin</button>
-                                        <button type="submit" name="delete_member" value="delete_member" class="btn btn-sm btn-outline-danger">Delete Member</button>
-                                    </form>                                
-                                </li>
-                            <% });  %> 
-                        <% } %> 
-                    </ul>
+                    <div class="col-sm-8" style = "margin-left:10%">
+                        <h2 style = "text-align: center;margin-bottom:2%">All Members</h2>
+                        <ul>
+                            <li class="list-group-item"><h3>Administrators</h3></li>
+                            <% if(club.adminstrators != null){ %> 
+                                <% club.adminstrators.forEach(admin => { %>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span><%=admin.name%></span>
+                                        <form class="ml-3" method="POST" action ="/<%=club._id%>/edit-user-priviledges/<%=admin.id%>">
+                                            <button type="submit" name="remove_admin" value="remove_admin" class="btn btn-sm btn-outline-primary">Remove Admin</button>
+                                            <button type="submit" name="delete_member" value="delete_member" class="btn btn-sm btn-outline-danger">Delete Member</button>
+                                        </form>
+                                    </li>
+                                <% });  %> 
+                            <% } %> 
+                        </ul>
+                        <br><br>
+                        <ul>
+                            <li class="list-group-item"><h3>Non-Admins</h3></li>
+                            <% if(non_admins != null){ %> 
+                                <% non_admins.forEach(member => { %>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span><%=member.name%></span>
+                                        <form class="ml-3" method="POST" action="/<%=club._id%>/edit-user-priviledges/<%=member.id%>">
+                                            <button type="submit" name="make_admin" value="make_admin" class="btn btn-sm btn-outline-success">Make Admin</button>
+                                            <button type="submit" name="delete_member" value="delete_member" class="btn btn-sm btn-outline-danger">Delete Member</button>
+                                        </form>                                
+                                    </li>
+                                <% });  %> 
+                            <% } %> 
+                        </ul>
+                    
+                    </div>
+                    <div class="mr-5"></div>
+                    <div class="mr-4"></div>
                 </div>
-                
-                <div class="mr-5"></div>
-                <div class="mr-4"></div>
-            </div>
-            
+        </div>
 
               
 

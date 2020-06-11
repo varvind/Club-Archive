@@ -90,36 +90,37 @@
             </div>
         </div>
         <hr>
-        
-            <div class="d-flex justify-content-center">
-                <h2>Active Applications</h2>
-            </div>
-            <br>
             
-            <div class="d-flex justify-content-around">
-                <div class = "col-sm-2">
-                    <div class="vertical-menu">
-                        <a href="/clubSettings/<%=club._id%>" class="active">Club Settings</a>
-                        <a href="/clubprofilesettings/<%=club._id%>">Club Profile</a>
-                        <a href="/clubMarkettingSettings/<%=club._id%>">Marketting Settings</a>
-                        <a href="/clubAdminApplications/<%=club._id%>">Administrators Applications</a>
-                        <a href="/clubMemberApplicationDesign/<%= club._id %>">Design Online Application</a>
-                        <a href="/<%=club._id%>/club-applications">Manage Member Application</a>
-                    </div>
-                </div>
+            <div class="container">
+                <div class = "row">
 
-                <div class="d-flex justify-content-center">
-                    <ul>
-                        <% if(club.member_applications != null){ %> 
-                            <% club.member_applications.forEach(user_app => { %>
-                                <li class="list-group-item"><a href="/<%=club._id%>/club-applications/<%=user_app.userId%>"><%=user_app.fullname%></a></li>
-                            <% });  %> 
-                        <% } %> 
-                    </ul>
+                    <div class = "col-sm-2">
+                        <div class="vertical-menu">
+                            <a href="/clubSettings/<%=club._id%>" >Club Settings</a>
+                            <a href="/clubprofilesettings/<%=club._id%>">Club Profile</a>
+                            <a href="/clubMarkettingSettings/<%=club._id%>">Marketting Settings</a>
+                            <a href="/clubAdminApplications/<%=club._id%>">Administrators Applications</a>
+                            <a href="/clubMemberApplicationDesign/<%= club._id %>">Design Online Application</a>
+                            <a href="/<%=club._id%>/club-applications" class="active" >Manage Member Application</a>
+                            <a href="/<%=club._id%>/manage-members"  >Manage Current Members</a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-8" style = "margin-left:10%">
+                        <h2 style = "text-align: center;">Active Applications</h2>
+                        <ul>
+                            <% if(club.member_applications != null){ %> 
+                                <% club.member_applications.forEach(user_app => { %>
+                                    <li class="list-group-item"><a href="/<%=club._id%>/club-applications/<%=user_app.userId%>"><%=user_app.fullname%></a></li>
+                                <% });  %> 
+                            <% } %> 
+                        </ul>
+                    </div>
+                    
+                    <div class="mr-5"></div>
+                    <div class="mr-4"></div>
+               
                 </div>
-                
-                <div class="mr-5"></div>
-                <div class="mr-4"></div>
             </div>
             
 
