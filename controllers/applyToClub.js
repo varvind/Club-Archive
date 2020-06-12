@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
     const club = await Club.findById(req.params.id)
     const user = await User.findById(req.session.userId)
 
-    let applicationForUser = {clubId: club._id,  name: club.name, type: "member", status: "pending"}
+    let applicationForUser = {clubId: club._id,  name: club.name, type: "member", status: "Pending"}
     user.pending_applications.push(applicationForUser)
     user.save()
 
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
             question: club.onlineApplication.custom3 || "",
             answer: req.body.custom3 || ""
         },
-        status: "pending"
+        status: "Pending"
     }
     club.member_applications.push(applicationForClub)
     club.save()

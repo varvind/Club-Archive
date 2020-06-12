@@ -2,10 +2,17 @@ const User = require('../models/User')
 const path = require('path')
 const bcrypt = require('bcrypt')
 module.exports = (req, res) => {
-    console.log(req.file)
+    let inputs = []
+    for(let input in req.body){
+        if(input != null){
+            inputs.push(req.body[input])}
+        else{inputs.push("")}
+    }
+
     if(!req.file){
         res.render('userSignUp',  {
-            error:"error"
+            error:"error",
+            fields: inputs
         })
     }
     else {
@@ -22,7 +29,7 @@ module.exports = (req, res) => {
             }, function(error, newlymade) {
                 if(error){
                     console.log(error)
-                    res.render('userSignUp', { error: error })
+                    res.render('userSignUp', { error: error, fields:inputs })
                 }
                 else {
                     req.session.userId = newlymade._id

@@ -59,9 +59,7 @@ const clubSchema = new Scheme ({
     members: {
         type: [Object]
     },
-    admin_applications: {
-        type: [Object]
-    },
+    admin_applications: [Object],
     member_applications: [Object],
     image:String,
     onlineApplication: {

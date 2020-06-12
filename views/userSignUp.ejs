@@ -64,17 +64,17 @@
                 <% } %>
                     <form action = "/adduser" method ="POST" enctype = "multipart/form-data">
 
-                        <input placeholder="First Name" type="text" class="form-control form-control-lg" name = "firstName" style = "margin-top: 5%" >
-                        <input placeholder="Last Name" type="text" class="form-control form-control-lg" name = "lastName" style = "margin-top: 2%">
-                        <input placeholder="Email" type="text" class="form-control form-control-lg" name = "email" style = "margin-top: 2%">
-                        <input placeholder="Username" type="text" class="form-control form-control-lg" name = "userName" style = " margin-top: 2%">
-                        <input placeholder="Password" type="password" class="form-control form-control-lg" name="password" style = " margin-top: 2%">
-                        <input placeholder="Major" type="text" class="form-control form-control-lg" name="major" style = " margin-top: 2%">
-                        <input placeholder="Graduation Year" type="text" class="form-control form-control-lg" name="gradYear" style = " margin-top: 2%">
+                        <input placeholder="First Name" type="text" class="form-control form-control-lg" name = "firstName" style = "margin-top: 5%" required <%if(fields.length != 0){%>value="<%=fields[0]%>"<%}%>>
+                        <input placeholder="Last Name" type="text" class="form-control form-control-lg" name = "lastName" style = "margin-top: 2%" required <%if(fields.length != 0){%>value="<%=fields[1]%>"<%}%>>
+                        <input placeholder="Email" type="email" class="form-control form-control-lg" name = "email" style = "margin-top: 2%" required <%if(fields.length != 0){%>value="<%=fields[2]%>"<%}%>>
+                        <input placeholder="Username" type="text" class="form-control form-control-lg" name = "userName" style = " margin-top: 2%" required <%if(fields.length != 0){%>value="<%=fields[3]%>"<%}%>>
+                        <input placeholder="Password" type="password" class="form-control form-control-lg" name="password" style = " margin-top: 2%" required>
+                        <input placeholder="Major" type="text" class="form-control form-control-lg" name="major" style = " margin-top: 2%" required <%if(fields.length != 0){%>value="<%=fields[5]%>"<%}%>>
+                        <input placeholder="Graduation Year" type="text" class="form-control form-control-lg" name="gradYear" style = " margin-top: 2%" required <%if(fields.length != 0){%>value="<%=fields[6]%>"<%}%>>
                         
                         <div class = "form-group form-inline">
                             
-                            <input type = "file" class = "form-control" id = "image" name = "image" value = "image" style = "margin-top:2%;width:400px" alt ="">
+                            <input type = "file" class = "form-control" id = "image" name = "image" value = "image" style = "margin-top:2%;width:400px" alt ="" required>
                             <label for="image" style = "margin-top:2%">Add a profile image!</label>
                         </div>    
                         <button  type="submit" name = "submit" class="btn btn-outline-secondary" >Sign Up</button>

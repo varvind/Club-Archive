@@ -56,7 +56,7 @@
 
         <h2 class="text-center">Create Custom Application</h2>
         
-        <form action = "/add-application/<%=club._id%>" method ="POST" enctype = "multipart/form-data" class="form-control form-control-lg">
+        <form action = "/add-application/<%=club._id%>" method ="POST" class="form-control form-control-lg">
             <% if(club.onlineApplication.fullname){ %>
                 <input type="text" placeholder="Fullname" name = "fullname" style = "margin-top: 5%">
             <% } %> 

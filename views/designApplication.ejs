@@ -103,57 +103,45 @@
                 <div class = "col-sm-8" style ="margin-right:5%">
                     <h2 class="text-center">Create Custom Application</h2>
         
-                    <form action = "/addApplication/<%=club._id%>" method ="POST" enctype = "multipart/form-data" class="form-control form-control-lg">
+                    <form action = "/addapplication/<%=club._id%>" method ="POST" class="form-control form-control-lg">
                         <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="true" id="allowApplication" name="allowApplication" <%if(club.onlineApplication.allow){ %>
-                            checked 
-                            <% }%> >
+                            <input class="form-check-input" type="checkbox" value="true" id="allowApplication" name="allowApplication" <%if(club.onlineApplication.allow){%> checked <%}%> >
                             <label class="form-check-label" for="allowApplication">Allow Online Application: </label>
                         </div>
-                        <br>
+                        <br><br>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="true" id="fullnameCheckbox" name="fullname" <%if(club.onlineApplication.allow){ %>
-                                checked 
-                                <% }%> >
+                            <input class="form-check-input" type="checkbox" value="true" id="fullnameCheckbox" name="fullname" checked >
                             <label class="form-check-label" for="fullnameCheckbox">Require Fullname</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="true" id="emailCheckbox" name="email" <%if(club.onlineApplication.allow){ %>
-                                checked 
-                                <% }%> >
+                            <input class="form-check-input" type="checkbox" value="true" id="emailCheckbox" name="email" <%if(club.onlineApplication.email){%> checked <%}%> >
                             <label class="form-check-label" for="emailCheckbox">Require Email</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="true" id="rankCheckbox" name="classRank" <%if(club.onlineApplication.allow){ %>
-                                checked 
-                                <% }%> >
+                            <input class="form-check-input" type="checkbox" value="true" id="rankCheckbox" name="classRank" <%if(club.onlineApplication.rank){%> checked <%}%> >
                             <label class="form-check-label" for="rankCheckbox">Require Graduation Year</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="true" id="majorCheckbox" name="major" <%if(club.onlineApplication.allow){ %>
-                                checked 
-                                <% }%> >
+                            <input class="form-check-input" type="checkbox" value="true" id="majorCheckbox" name="major" <%if(club.onlineApplication.major){%> checked <%}%> >
                             <label class="form-check-label" for="majorCheckbox">Require Major</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="true" id="fullnameCheckbox" name="resume" <%if(club.onlineApplication.allow){ %>
-                                checked 
-                                <% }%> >
+                            <input class="form-check-input" type="checkbox" value="true" id="fullnameCheckbox" name="resume" <%if(club.onlineApplication.resume){%> checked <%}%> >
                             <label class="form-check-label" for="fullnameCheckbox">Require Resume</label>
                         </div>
                         <center>
-                            <div class="form-check">
-                                <input type="text" placeholder="<%=club.onlineApplication.custom1 || 'Custom Question #1' %>"  name = "custom1" style = "margin-top: 5%; margin-left: -5%;" class="form-control form-control-lg">
+                            <div class="form-group">
+                                <input type="text" placeholder="<%=club.onlineApplication.custom1 || 'Custom Question #1' %>"  name = "custom1" style = "margin-top: 5%; margin-left: -5%;" class="form-control form-control-lg" value="<%=club.onlineApplication.custom1%>">
                             </div>
                         </center>
                         <center>
-                            <div class="form-check">
-                                <input type="text" placeholder="<%=club.onlineApplication.custom2 || 'Custom Question #2' %>" name = "custom2" style = "margin-top: 5% ; margin-left: -5%;" class="form-control form-control-lg">
+                            <div class="form-group">
+                                <input type="text" placeholder="<%=club.onlineApplication.custom2 || 'Custom Question #2' %>" name = "custom2" style = "margin-top: 5% ; margin-left: -5%;" class="form-control form-control-lg" value="<%=club.onlineApplication.custom1%>">
                             </div>
                         </center>
                         <center>
-                            <div class="form-check">
-                                <input type="text" placeholder="<%=club.onlineApplication.custom3 || 'Custom Question #3' %>" name = "custom3" style = "margin-top: 5% ; margin-left: -5%;" class="form-control form-control-lg">
+                            <div class="form-group">
+                                <input type="text" placeholder="<%=club.onlineApplication.custom3 || 'Custom Question #3' %>" name = "custom3" style = "margin-top: 5% ; margin-left: -5%;" class="form-control form-control-lg" value="<%=club.onlineApplication.custom1%>">
                             </div>
                         </center>
                         <br>

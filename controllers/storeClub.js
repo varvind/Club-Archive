@@ -17,6 +17,10 @@ module.exports = async (req, res) => {
                 }
                 else {
                     User.findById(req.session.userId, (err, user) => {
+                        var adminApplication = {clubId: newlymade._id,  name: newlymade.name, type: "admin", status: "Approved"}
+                        user.pending_applications.push(adminApplication)
+                        var memberApplication = {clubId: newlymade._id,  name: newlymade.name, type: "member", status: "Approved"}
+                        user.pending_applications.push(memberApplication)
                         user.clubs.push(newlymade._id)
                         user.save()
 

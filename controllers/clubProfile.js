@@ -7,18 +7,14 @@ module.exports = async (req, res) => {
     
     var canEdit = false;
     if(user != null){
-        for(var i = 0; i < user.clubs.length; i++){
-            if(String(user.clubs[i]) == String(club._id)){
-                canEdit = true
-            }
-        }
         for(var i = 0; i < club.adminstrators.length; i++){
-            if(String(req.session.userId) ==String(club.adminstrators[i].id) ){
+            if(String(user._id) == String(club.adminstrators[i].id) ){
                 canEdit = true
             }
         }
     }
-   var found = false;
+   
+    var found = false;
    for(var i =0; i < searches.length; i++) {
         if(String(searches[i]._id) == String(club._id)) {
             found = true;
@@ -30,16 +26,54 @@ module.exports = async (req, res) => {
        searches.push(club)
    }
 
-   //let alreadyAppliedAdmin = false;
    //for each if already applied to admin
-   let alreadyAppliedMember = false;
+   let ableToApplyAdmin = false;
    if(user != null){
-    club.member_applications.forEach(user_app => {
-        if(String(user_app.userId) == String(user._id)){
-            alreadyAppliedMember = true;
+        let currentMember = false
+        club.members.forEach(mem => { //must be a member in order to apply for admin
+            if(String(mem.id) == String(user._id)){
+                currentMember = true
+            }
+        })
+        if(currentMember){
+            console.log("Current Member")
+            let appliedAdmin = false
+            club.admin_applications.forEach(admin_app => { //already applied for admin position
+                if(String(admin_app.userId) == String(user._id)){
+                    appliedAdmin = true;
+                }
+            })
+            if(!appliedAdmin){
+                ableToApplyAdmin = true
+            }
+            
+            club.adminstrators.forEach(admin => {
+                if(String(admin.id) == String(user._id)){
+                    ableToApplyAdmin = false
+                }
+            })
+
+            
         }
-    });
    }
+
+    let ableToApplyMember = false
+    let alreadyAppliedMember = false
+    let alreadyMember = false
+    if(user != null){
+        club.member_applications.forEach(user_app => {
+            if(String(user_app.userId) == String(user._id)){
+                alreadyAppliedMember = true;
+            }
+        });
+    
+        club.members.forEach(mem => {
+            if(String(mem.id) == String(user._id)){
+                alreadyMember = true
+            }
+        })
+    }
+    if(!alreadyAppliedMember && !alreadyMember){ableToApplyMember = true}
 
     //console.log(searches)
     req.session.searches=searches
@@ -48,7 +82,8 @@ module.exports = async (req, res) => {
             club,
             user,
             canEdit,
-            alreadyAppliedMember
+            ableToApplyMember,
+            ableToApplyAdmin
         })
     }, 2000);
     

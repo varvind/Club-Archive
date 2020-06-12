@@ -22,15 +22,18 @@ module.exports = async (req, res) => {
 
 
     if(!duplicate){
-        var currentApplication = {id: club._id, name : club.name, status : "In Review"}
+        var currentApplication = {clubId: club._id,  name: club.name, type: "admin", status: "Pending"}
+        user.pending_applications.push(currentApplication)
+        user.save()
+
         var club_side_application = {id:user._id, name : user.firstName + " " + user.lastName, major : user.major}
         club.admin_applications.push(club_side_application)
-        user.pending_applications.push(currentApplication)
         club.save()
-        user.save()
+        
         res.redirect('/post/'+club._id)
     }
     else {
+        console.log("Already applied for admin position")
         res.redirect('/')
     }
     
