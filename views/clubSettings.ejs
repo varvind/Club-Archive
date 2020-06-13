@@ -149,7 +149,8 @@
                 <div class = "row" style = "margin-top:2%">
                     
                     <div class = "col">
-                        <% for(var i = 0; i < 5; i++) { %> 
+                    <% if (club.images.length< 5) { %> 
+                        <% for(var i = 0; i < club.images.length; i++) { %> 
                             <div class="card" style=" float : left; margin-right : 2%; height: 290px; width: 17%">
                                 <img class="card-img-top" src="/image/<%= club.images[i]  %> " alt="Card image cap" style = "height: 200px; object-fit: cover;object-position: center;">
                                 <div class="card-body">
@@ -184,7 +185,8 @@
                                 })
 
                             </script>
-                        <% } %> 
+                        <% } %>
+                    <%}%> 
                     </div>
                     
                 </div>
