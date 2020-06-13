@@ -36,16 +36,17 @@ const UserSchema = new Schema ({
     },
     pending_applications:[Object],
     clubs :[Object],
-    image : String
+    image : {
+        filename: {
+            required: true,
+            type: String
+        },
+        id: {
+            required: true,
+            type: String
+        }
+    }
 })
-
-// UserSchema.pre('save', function(next) {
-//     const user = this
-//     bcrypt.hash(user.password, 10, (error, hash) => {
-//         user.password = hash
-//         next()
-//     })
-// })
 
 const User = mongoose.model('User', UserSchema)
 module.exports = User
