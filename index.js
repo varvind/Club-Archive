@@ -97,7 +97,7 @@ mongoose.connect(process.env.DATABASE_URL)
 const conn = mongoose.createConnection(process.env.DATABASE_URL)
 
 
-let gfs;
+global.gfs;
 conn.once('open', () => {
     gfs = Grid(conn.db, mongoose.mongo)
     gfs.collection('uploads')
@@ -122,22 +122,6 @@ var storage = new GridFsStorage({
   }
 });
 const upload = multer({ storage });
-
-
-// //multer
-// const multer = require('multer')
-// const path = require('path')
-
-// var storage = multer.diskStorage({
-//     destination: function(req, file, cb){
-//         cb(null, 'public/herokuclub_images');
-//     },
-//     filename: function(req, file, cb){ 
-//         cb(null, Date.now() + '-' + file.originalname)
-//     }
-// })
-
-// var upload = multer({ storage:storage })
 
 //to use ejs for the app
 app.set('view engine', 'ejs')
