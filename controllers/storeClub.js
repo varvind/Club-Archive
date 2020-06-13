@@ -29,9 +29,7 @@ module.exports = async (req, res) => {
                     res.render('clubSignUp', { error: error})
                 }
                 else {
-                    req.files.forEach(element => {
-                        newlymade.images.push(element.filename)
-                    });
+                    
                     User.findById(req.session.userId, (err, user) => {
                         var adminApplication = {clubId: newlymade._id,  name: newlymade.name, type: "admin", status: "Approved"}
                         user.pending_applications.push(adminApplication)
@@ -44,9 +42,11 @@ module.exports = async (req, res) => {
                         newlymade.adminstrators.push(admin)
                         member = {name : user.firstName + " " + user.lastName, id: user._id}
                         newlymade.members.push(member)
-                        
+                        req.files.forEach(element => {
+                            newlymade.images.push(element.filename)
+                        });
+                        newlymade.save()
                     })
-                    newlymade.save()
                     res.redirect('/')
                 }
             })  
