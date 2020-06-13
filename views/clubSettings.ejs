@@ -144,7 +144,100 @@
 
                     <br>
                     <br>
+                    <br>
+               
+                <div class = "row" style = "margin-top:2%">
+                    
+                    <div class = "col">
+                        <% for(var i = 0; i < 5; i++) { %> 
+                            <div class="card" style=" float : left; margin-right : 2%; height: 290px; width: 17%">
+                                <img class="card-img-top" src="/image/<%= club.images[i]  %> " alt="Card image cap" style = "height: 200px; object-fit: cover;object-position: center;">
+                                <div class="card-body">
+                                    <form action = "/deleteClubImage/<%=club.images[i]%>" method = "POST">
+                                        <button class = "btn btn-danger" style = "height: 39px;"><img src = "../public/img/xpng.png" style = "width:10px"></button>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        <% } %> 
+                        <% if (club.images.length < 5)  { %>
+                            <form action ="/addClubImage/<%= club._id %>" method = "POST" enctype="multipart/form-data">
+                                <input type ="file" id = "real-file" name = "image" hidden="hidden">
+                                <a id = "addImageButton">
+                                    <div class="card" style=" float : left; margin-right : 3%; height: 290px; width: 17%">
+                                        <img class="card-img-top" src="../public/img/plusSymbol.png" alt="Card image cap" style = "height: 290px; object-fit: cover;object-position: center;">
+                                    </div>
+                                </a>
+                                <button type = submit hidden="hidden" id = "submit"></button>
+                            </form>
+                            <script type = "text/javascript">
+                                const realBtn = document.getElementById("real-file")
+                                const fakeButton = document.getElementById("addImageButton")
+                                const submit = document.getElementById("submit")
+                                fakeButton.addEventListener("click", () => {
+                                    realBtn.click()
+                                })
+                                realBtn.addEventListener("change", () => {
+                                    if(realBtn.value){
+                                        submit.click();
+                                    }
+                                })
+
+                            </script>
+                        <% } %> 
+                    </div>
+                    
+                </div>
+                
+                <% if (club.images.length >= 5 ) { %> 
+                    <div class = "row" style = "margin-top: 2%;">
+                        <div class = "col">
+                            <% for(var i = 5; i < club.images.length; i++) { %>
+                                
+                                    <div class="card" style="width: 18rem; float : left; margin-right : 2%; height: 290px; width:17%">
+                                        <img class="card-img-top" src="/image/<%= club.images[i]  %> " alt="Card image cap" style = "height: 200px; object-fit: cover;object-position: center;">
+                                        <div class="card-body">
+                                            <form action = "/deleteClubImage/<%=club.images[i]%>" method = "POST">
+                                                <button class = "btn btn-danger" style = "height: 39px;"><img src = "../public/img/xpng.png" style = "width:10px"></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                
+                            <% } %> 
+                            <% if (club.images.length < 10)  { %>
+                                <form action ="/addClubImage/<%= club._id %>" method = "POST" enctype="multipart/form-data">
+                                    <input type ="file" id = "real-file" name = "image" hidden="hidden">
+                                    <a id = "addImageButton">
+                                        <div class="card" style=" float : left; margin-right : 2%; height: 290px; width: 200px; width:17%">
+                                            <img class="card-img-top" src="../public/img/plusSymbol.png" alt="Card image cap" style = "height: 290px; object-fit: cover;object-position: center;">
+                                        </div>
+                                    </a>
+                                    <button type = submit hidden="hidden" id = "submit"></button>
+                                </form>
+                                <script type = "text/javascript">
+                                    const realBtn = document.getElementById("real-file")
+                                    const fakeButton = document.getElementById("addImageButton")
+                                    const submit = document.getElementById("submit")
+                                    fakeButton.addEventListener("click", () => {
+                                        realBtn.click()
+                                    })
+                                    realBtn.addEventListener("change", () => {
+                                        if(realBtn.value){
+                                            submit.click();
+                                        }
+                                    })
+        
+                                </script>
+                            <% } %>         
+                        <% } %>
+                        </div>
+
+                    </div>
+                    
             </div>
+            <br>
+            <br>
+            
         </div>
              
 

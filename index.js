@@ -77,6 +77,7 @@ const confirmclubdeletepagecontroller = require('./controllers/confirmclubdelete
 const confirmclubdeletecontroller = require('./controllers/confirmclubdelete')
 const manageAllMembersController = require('./controllers/manageAllMembers')
 const editClubPriviledgesController = require('./controllers/editClubPriviledges')
+const addclubImageController = require('./controllers/addClubImage')
 
 //app features and functions that are being implemented
 app.use(bodyParser.json())
@@ -217,6 +218,7 @@ app.get('/confirmdeletepage/:id',confirmclubdeletepagecontroller)
 app.post('/submitclubdelete/:id',confirmclubdeletecontroller)
 app.get('/:id/manage-members', manageAllMembersController)
 app.post('/:club_id/edit-user-priviledges/:user_id', editClubPriviledgesController)
+app.post('/addClubImage/:id', upload.single('image'), addclubImageController)
 app.get('/image/:filename', async (req, res) => {
     const file = await gfs.files.findOne({filename : req.params.filename})
     const readstream = gfs.createReadStream(file.filename)

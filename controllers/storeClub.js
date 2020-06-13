@@ -13,8 +13,15 @@ module.exports = async (req, res) => {
     }
     else {
         var validFiles = true;
+        if(req.files.length > 10){
+            error = "No more than 10 files supported currently"
+            res.render('clubSignUp',  {
+                error : "No more than 10 files supported currently",
+                fields: inputs
+            })
+        }
         for(var i = 0; i < req.files.length; i++){
-            if(req.files[i].mimetype == "image/jpeg" || req.files[i].mimetype == "image/png"){
+            if(req.files[i].mimetype != "image/jpeg" && req.files[i].mimetype != "image/png"){
                 false;
                 break;
             }
