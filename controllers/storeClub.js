@@ -8,14 +8,27 @@ module.exports = async (req, res) => {
             inputs.push(req.body[input])}
         else{inputs.push("")}
     }
-    if(!req.file){
-        res.render('clubSignUp',  { error:"Error please upload a profile photo", fields: inputs })
+    if(!req.files){
+        res.render('clubSignUp',  { error:"Error please upload at least 1 cover photo", fields: inputs })
     }
     else {
-        if(req.file.mimetype == "image/jpeg" || req.file.mimetype == "image/png"){
+        var validFiles = true;
+        if(req.files.length > 10){
+            error = "No more than 10 files supported currently"
+            res.render('clubSignUp',  {
+                error : "No more than 10 files supported currently",
+                fields: inputs
+            })
+        }
+        for(var i = 0; i < req.files.length; i++){
+            if(req.files[i].mimetype != "image/jpeg" && req.files[i].mimetype != "image/png"){
+                false;
+                break;
+            }
+        }
+        if(validFiles){
             await Club.create({
-                ...req.body,
-                image: req.file.filename
+                ...req.body
             }, async function(error, newlymade) {
                 if(error){
                     console.log("hello")
@@ -23,6 +36,7 @@ module.exports = async (req, res) => {
                     res.render('clubSignUp', { error: error})
                 }
                 else {
+                    
                     User.findById(req.session.userId, (err, user) => {
                         var adminApplication = {clubId: newlymade._id,  name: newlymade.name, type: "admin", status: "Approved"}
                         user.pending_applications.push(adminApplication)
@@ -35,9 +49,11 @@ module.exports = async (req, res) => {
                         newlymade.adminstrators.push(admin)
                         member = {name : user.firstName + " " + user.lastName, id: user._id}
                         newlymade.members.push(member)
+                        req.files.forEach(element => {
+                            newlymade.images.push(element.filename)
+                        });
                         newlymade.save()
                     })
-                    
                     res.redirect('/')
                 }
             })  
