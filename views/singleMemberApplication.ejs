@@ -58,7 +58,7 @@
         <div class ="container">
             <div class = "row">
                     <div class ="col-sm-2">
-                        <a href = "/"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px; "></a>
+                        <a href = "/"><img src = "../../public/img/blueLogo.png" style = "width: 100px; height: 100px; "></a>
                     </div>
                     
                     <div class = "col">
@@ -75,7 +75,7 @@
                         <% if(loggedIn) { %>
                             <div class="dropdown">
                         
-                                <img src = "../image/<%=user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:24px;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src = "/image/<%=user.image %>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:24px;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="/userprofile">View Profile</a>
@@ -106,6 +106,9 @@
                     <% } %> 
                     <% if(application.major){ %>
                         <li class="list-group-item">Major: <%=application.major%> </li>
+                    <% } %>
+                    <% if (application.resume) { %>
+                        <li class = "list-group-item"> Resume: <a href = "/resume/<%=application.resume %>" target="_blank"><%= application.fullname%>'s resume </a></li>
                     <% } %> 
                     <% if(application.custom1.question){ %>
                         <li class="list-group-item"><%=application.custom1.question%>: <%=application.custom1.answer%> </li>

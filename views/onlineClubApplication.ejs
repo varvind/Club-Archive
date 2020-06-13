@@ -54,9 +54,14 @@
 
         <br><br>    
 
-        <h2 class="text-center">Create Custom Application</h2>
-        
-        <form action = "/add-application/<%=club._id%>" method ="POST" class="form-control form-control-lg">
+        <h2 class="text-center">Apply to <%= club.name %> </h2>
+        <% if (error != null) {%>
+            <div class=" alert alert info" style = "margin-left:33%">
+                 <span class="closebtn">&times;</span>  
+                 <strong>Error : </strong> <%= error %>
+             </div>
+         <% } %>
+        <form action = "/add-application/<%=club._id%>" method ="POST" class="form-control form-control-lg" enctype="multipart/form-data">
             <% if(club.onlineApplication.fullname){ %>
                 <input type="text" placeholder="Fullname" name = "fullname" style = "margin-top: 5%">
             <% } %> 
@@ -69,6 +74,12 @@
             <% if(club.onlineApplication.major){ %>
                 <input type="text" placeholder="Major" name = "major" style = "margin-top: 5%">
             <% } %>
+            <% if (club.onlineApplication.resume) {%>
+                <div class = "form-group form-inline"> 
+                    <input type = "file" class = "form-control" id = "resume" name = "resume" style = "margin-top:2%;width:400px" alt ="" required>
+                    <label for="image" style = "margin-top:2%">Upload your resume (PDF)!</label>
+                </div>  
+            <% } %> 
             <% if(club.onlineApplication.custom1 != ""){ %>
                 <input type="text" placeholder="<%=club.onlineApplication.custom1%>"  name = "custom1" style = "margin-top: 5%">
             <% } %> 
@@ -96,9 +107,5 @@
               }
             }
         </script>
-        
-
-
-
     </body>
 </html>

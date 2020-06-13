@@ -77,14 +77,13 @@ module.exports = async (req, res) => {
 
     //console.log(searches)
     req.session.searches=searches
-    setTimeout(() => {
-        res.render('clubProfile' ,{
-            club,
-            user,
-            canEdit,
-            ableToApplyMember,
-            ableToApplyAdmin
-        })
-    }, 2000);
+
+    res.render('clubProfile' ,{
+        club,
+        user,
+        canEdit,
+        ableToApplyMember,
+        ableToApplyAdmin
+    })
     
 }

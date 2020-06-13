@@ -1,3 +1,6 @@
 module.exports = (req, res) => {
-    res.render('clubSignUp')
+    res.render('clubSignUp', {
+        error : null,
+        fields :{}
+    })
 }

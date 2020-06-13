@@ -2,10 +2,17 @@ const Club = require('../models/Club')
 const User = require('../models/User')
 const path = require('path')
 module.exports = async (req, res) => {
+    let inputs = []
+    for(let input in req.body){
+        if(input != null){
+            inputs.push(req.body[input])}
+        else{inputs.push("")}
+    }
     if(!req.file){
-        res.render('clubSignUp',  { error:"error" })
+        res.render('clubSignUp',  { error:"Error please upload a profile photo", fields: inputs })
     }
     else {
+        if(req.file.mimetype == "image/jpeg" || req.file.mimetype == "image/png"){
             await Club.create({
                 ...req.body,
                 image: req.file.filename
@@ -33,6 +40,15 @@ module.exports = async (req, res) => {
                     
                     res.redirect('/')
                 }
-            })            
+            })  
+        }
+        else{
+            error = "File type invalid, please upload a jpg or png"
+            res.render('clubSignUp',  {
+                error : "File type invalid, please upload a jpg or png",
+                fields: inputs
+            })
+        }
+                      
     }
 }

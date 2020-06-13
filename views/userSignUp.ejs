@@ -59,7 +59,7 @@
                 <% if (error != null) {%>
                     <div class=" alert alert info" style = "margin-left:33%">
                         <span class="closebtn">&times;</span>  
-                        <strong>Error : </strong> Make sure you enter all fields!
+                        <strong>Error : </strong> <%=error  %> 
                     </div>
                 <% } %>
                     <form action = "/adduser" method ="POST" enctype = "multipart/form-data">

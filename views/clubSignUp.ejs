@@ -23,23 +23,16 @@
                 .form-group {
                     width:100%; margin-left: 0%;
                 }
-                @media only screen and (max-width: 600px) {
-                    .btn, .btn-outline-secondary {
-                        margin-left: 25% ;margin-top: 3%; width : 48%; height: 40px; font-size: 100%;
-                    }
-                    .btn-outline-secondary:active {
-                        background-color: #41bbac
-                    }
-                    
-                    .form-control, .form-control-lg {
-                        width :60%; height : 35px; margin-left : 20%; margin-top: 10%
-                    }
-                    .form-control::placeholder {
-                        font-size: 70%;
-                    }
-                
-                }  
-            
+                .alert.info {background-color: #2196F3;width:30%}
+                .closebtn {
+                    color: white;
+                    font-weight: bold;
+                    float: right;
+                    font-size: 22px;
+                    line-height: 20px;
+                    cursor: pointer;
+                    transition: 0.3s;
+                } 
             </style>
 
     </head>
@@ -53,16 +46,21 @@
             
         
             </nav>
-
+            <% if (error != null) {%>
+                <div class=" alert alert info" style = "margin-left:33%; margin-top:5%">
+                    <span class="closebtn">&times;</span>  
+                    <strong>Error : </strong> <%=error  %> 
+                </div>
+            <% } %>
             <form method="POST" action ="/addclub" enctype="multipart/form-data">
-                <input placeholder="Organization Name" type="text" class="form-control form-control-lg" style = "margin-top : 5%" name = "name">
+                <input placeholder="Organization Name" type="text" class="form-control form-control-lg" style = "margin-top : 5%" name = "name" required <%if(fields.length != 0){%>value="<%=fields[0]%>"<%}%>>
                 
-                <input placeholder="Current Or Estimated Membership Count" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "memberCount">
+                <input placeholder="Current Or Estimated Membership Count" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "memberCount" required <%if(fields.length != 0){%>value="<%=fields[1]%>"<%}%>>
 
-                <input placeholder="Organizer, Admin or President of Organization" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "president_organizer">
-                <input placeholder="Organization Email" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "email">
-                <input placeholder="Organization Phone Number" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "phonenumber">
-                <textarea class="form-control" aria-label="Club Description" style = "margin-top: 2%;" placeholder="Tell us a little about your club! The more information the better!" name = "description"></textarea>
+                <input placeholder="Organizer, Admin or President of Organization" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "president_organizer" required <%if(fields.length != 0){%>value="<%=fields[2]%>"<%}%>>
+                <input placeholder="Organization Email" type="email" class="form-control form-control-lg" style = "margin-top: 2%" name = "email" required <%if(fields.length != 0){%>value="<%=fields[3]%>"<%}%>>
+                <input placeholder="Organization Phone Number" type="text" class="form-control form-control-lg" style = "margin-top: 2%" name = "phonenumber" required <%if(fields.length != 0){%>value="<%=fields[4]%>"<%}%>>
+                <textarea class="form-control" aria-label="Club Description" style = "margin-top: 2%;" placeholder="Tell us a little about your club! The more information the better!" name = "description" required ><%if(fields.length != 0){%><%=fields[5]%><%}%></textarea>
                 
                 <textarea class="form-control" aria-label="Meeting Times" style = "margin-top: 2%;" placeholder=
 "Monday : 12AM - 12PM
@@ -70,20 +68,36 @@ Tuesday : 12AM - 12PM
 Wednesday : 12AM - 12PM
 Thursday : 12AM - 12PM
 Friday : 12AM - 12PM" 
-                name = "meeting_times" rows="5"></textarea>
+                name = "meeting_times" rows="5" required ><%if(fields.length != 0){%><%=fields[6]%><%}%></textarea>
                 <div class="form-group">
                     <label for="exampleSelect1"></label>
-                    <select class="form-control" id="exampleSelect1" name = "category">
+                    <select class="form-control" id="exampleSelect1" name = "category" >
                       <option>Academic Organization</option>
                       <option>Greek Organization</option>
                       <option>Sports</option>
                       <option>Interest Groups</option>
                     </select>
                   </div>
-                  <input type = "file" class = "form-control" id = "image" name = "image" value = "image" style = "margin-top:2%;width:400px" alt ="">
+                  
+                  <div class = "form-group form-inline">
+                    <input type = "file" class = "form-control" id = "image" name = "image" value = "image" style = "margin-top:2%;width:400px" alt ="">
+                    <label for="image" style = "margin-top:2%; margin-left: 1%">Add a cover image!</label>
+                  </div>
                   <!-- <label for="image" style = "margin-top:2%">Add a cover photo for your club's profile!</label> -->
                 <button  type="submit" class="btn btn-outline-secondary" style = "margin-top: 1%;">Sign Up</button>
 
             </form>
+            <script>
+                var close = document.getElementsByClassName("closebtn");
+                var i;
+                
+                for (i = 0; i < close.length; i++) {
+                  close[i].onclick = function(){
+                    var div = this.parentElement;
+                    div.style.opacity = "0";
+                    setTimeout(function(){ div.style.display = "none"; }, 600);
+                  }
+                }
+            </script>
     </body>
 </html>

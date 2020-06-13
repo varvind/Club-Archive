@@ -24,55 +24,65 @@ module.exports = async (req, res) => {
         }
         else if(req.body.remove_admin){
             //console.log("Remove Admin")
-            let i=0
-            club.adminstrators.forEach(admin => {
-                if(String(admin.id) == String(member._id)){
-                    club.adminstrators.splice(i,1)
-                    club.save()
-                }
-                i += 1
-            });
+            if(club.adminstrators.length > 1) {
+                let i=0
+                club.adminstrators.forEach(admin => {
+                    if(String(admin.id) == String(member._id)){
+                        club.adminstrators.splice(i,1)
+                        club.save()
+                    }
+                    i += 1
+                });
+            } else {
+                console.log("Cannot remove admin if there is only 1")
+            }
+            
 
             //need to remove admin priviledges
         }
         else if(req.body.delete_member){
             console.log("Delete Member")
-            let i =0
-            club.adminstrators.forEach(admin => {
-                if(String(admin.id) == String(member._id)){
-                    club.adminstrators.splice(i,1)
-                    club.save()
-                }
-                i += 1
-            });
+            if(club.administrators > 1){
+                let i =0
+                club.adminstrators.forEach(admin => {
+                    if(String(admin.id) == String(member._id)){
+                        club.adminstrators.splice(i,1)
+                        club.save()
+                    }
+                    i += 1
+                });
 
-            i=0
-            club.members.forEach(mem => {
-                if(String(mem.id) == String(member._id)){
-                    club.members.splice(i,1)
-                    club.save()
-                }
-                i += 1
-            });
+                i=0
+                club.members.forEach(mem => {
+                    if(String(mem.id) == String(member._id)){
+                        club.members.splice(i,1)
+                        club.save()
+                    }
+                    i += 1
+                });
 
-            i= 0
-            member.clubs.forEach(found => {
-                if(String(found) == String(club._id)){
-                    member.clubs.splice(i,1)
-                    member.save()
-                }
-                i += 1
-            })
+                i= 0
+                member.clubs.forEach(found => {
+                    if(String(found) == String(club._id)){
+                        member.clubs.splice(i,1)
+                        member.save()
+                    }
+                    i += 1
+                })
 
-            i = 0
-            member.pending_applications.forEach(application => {
-                if(String(application.clubId) == club._id){
-                    member.pending_applications[i].status = "Removed From Club"
-                    member.markModified('pending_applications')
-                    member.save()
-                }
-                i += 1
-            });
+                i = 0
+                member.pending_applications.forEach(application => {
+                    if(String(application.clubId) == club._id){
+                        member.pending_applications[i].status = "Removed From Club"
+                        member.markModified('pending_applications')
+                        member.save()
+                    }
+                    i += 1
+                });
+            } else {
+                console.log("cannot delete only member of club")
+            }
+            
             
         }
         else{

@@ -205,7 +205,7 @@ app.get('/deleteapplication/:id', deleteuserapplicationcontroller)
 app.get('/clubMemberApplicationDesign/:id', authMiddleWare, applicationDesignController)
 app.post('/addapplication/:id', authMiddleWare, addOnlineApplicationController)
 app.get('/:id/applyonline', authMiddleWare, onlineClubApplicationController)
-app.post('/add-application/:id', applyToClubApplication)
+app.post('/add-application/:id', upload.single('resume'), applyToClubApplication)
 app.get('/:clubid/club-applications', allMemberApplicationsController)
 app.get('/:club_id/club-applications/:user_id', singleMemberApplicationController)
 app.post('/:club_id/club-applications/:user_id', approveMemberApplicationController)
@@ -222,5 +222,9 @@ app.get('/image/:filename', async (req, res) => {
     const readstream = gfs.createReadStream(file.filename)
     readstream.pipe(res)
 })
-
+app.get('/resume/:filename', async (req, res) => {
+  const file = await gfs.files.findOne({filename : req.params.filename})
+  const readstream = gfs.createReadStream(file.filename)
+  readstream.pipe(res)
+})
 

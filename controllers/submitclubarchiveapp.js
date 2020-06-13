@@ -15,5 +15,8 @@ module.exports = async (req, res) => {
             console.log(newlymade)
         }
     })
-    res.redirect('/clubprofilesettings/' + club._id)
+    setTimeout(() => {
+        res.redirect('/clubprofilesettings/' + club._id)
+    }, 500);
+    
 }
