@@ -154,7 +154,7 @@
                             <div class="card" style=" float : left; margin-right : 2%; height: 290px; width: 17%">
                                 <img class="card-img-top" src="/image/<%= club.images[i]  %> " alt="Card image cap" style = "height: 200px; object-fit: cover;object-position: center;">
                                 <div class="card-body">
-                                    <form action = "/deleteClubImage/<%=club.images[i]%>" method = "POST">
+                                    <form action = "/<%=club._id%>/deleteClubImage/<%=club.images[i]%>" method = "POST">
                                         <button class = "btn btn-danger" style = "height: 39px;"><img src = "../public/img/xpng.png" style = "width:10px"></button>
                                     </form>
                                     
@@ -166,7 +166,7 @@
                             <div class="card" style=" float : left; margin-right : 2%; height: 290px; width: 17%">
                                 <img class="card-img-top" src="/image/<%= club.images[i]  %> " alt="Card image cap" style = "height: 200px; object-fit: cover;object-position: center;">
                                 <div class="card-body">
-                                    <form action = "/deleteClubImage/<%=club.images[i]%>" method = "POST">
+                                    <form action = "/<%=club._id%>/deleteClubImage/<%=club.images[i]%>" method = "POST">
                                         <button class = "btn btn-danger" style = "height: 39px;"><img src = "../public/img/xpng.png" style = "width:10px"></button>
                                     </form>
                                     
@@ -213,7 +213,7 @@
                                     <div class="card" style="width: 18rem; float : left; margin-right : 2%; height: 290px; width:17%">
                                         <img class="card-img-top" src="/image/<%= club.images[i]  %> " alt="Card image cap" style = "height: 200px; object-fit: cover;object-position: center;">
                                         <div class="card-body">
-                                            <form action = "/deleteClubImage/<%=club.images[i]%>" method = "POST">
+                                            <form action = "/<%=club._id%>/deleteClubImage/<%=club.images[i]%>" method = "POST">
                                                 <button class = "btn btn-danger" style = "height: 39px;"><img src = "../public/img/xpng.png" style = "width:10px"></button>
                                             </form>
                                         </div>
