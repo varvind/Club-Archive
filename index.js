@@ -78,6 +78,7 @@ const confirmclubdeletecontroller = require('./controllers/confirmclubdelete')
 const manageAllMembersController = require('./controllers/manageAllMembers')
 const editClubPriviledgesController = require('./controllers/editClubPriviledges')
 const addclubImageController = require('./controllers/addClubImage')
+const deleteClubImageController = require('./controllers/deleteClubImage')
 
 //app features and functions that are being implemented
 app.use(bodyParser.json())
@@ -213,4 +214,5 @@ app.get('/resume/:filename', async (req, res) => {
   const readstream = gfs.createReadStream(file.filename)
   readstream.pipe(res)
 })
+app.post('/:club_id/deleteClubImage/:filename', deleteClubImageController)
 
