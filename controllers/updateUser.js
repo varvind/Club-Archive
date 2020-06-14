@@ -1,9 +1,8 @@
 const User = require('../models/User')
-const path = require('path')
-const bcrypt = require('bcrypt')
-const fs = require('fs')
+const mongoose = require('mongoose')
 
 module.exports = (req, res)=> {
+    var gfs = global.gfs
     var userid = req.session.userId;
     var first = req.body.firstName;
     var last = req.body.lastName;
@@ -32,7 +31,22 @@ module.exports = (req, res)=> {
             if(userName != ""){ user.userName = userName }
             if(major!= ""){ user.major = major; }
             if(grad != ""){ user.gradYear = grad; }
-            user.image = req.file.filename
+            
+            //delete previous image
+            gfs.remove({_id: new mongoose.Types.ObjectId(user.image.id), root: 'uploads'}, (err) => {
+                if(err){
+                    console.log("Issue with deleting old user image files")
+                    res.redirect('/')
+                }else{
+                    console.log("Successfully Deleted Old image files")
+                }
+            })
+    
+            user.image= {
+                filename: req.file.filename,
+                id: req.file.id
+            }
+
             user.save();
             console.log(error)
         });

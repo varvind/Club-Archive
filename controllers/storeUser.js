@@ -25,7 +25,10 @@ module.exports = (req, res) => {
                     password: hash,
                     major: req.body.major,
                     gradYear: req.body.gradYear,
-                    image: req.file.filename
+                    image: {
+                        filename: req.file.filename,
+                        id: req.file.id
+                    }
                 }, function(error, newlymade) {
                     if(error){
                         console.log(error)
