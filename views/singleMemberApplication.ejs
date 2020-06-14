@@ -91,10 +91,11 @@
         </div>
         <hr>
 
-            <div class="d-flex justify-content-center"><h2><%=user_applied.firstName%>'s Application</h2></div>
+            
             <br>
             <div class="d-flex justify-content-center">
                 <ul>
+                    <h2 style="text-align: center; margin-bottom: 3%;"><%=user_applied.firstName%>'s Application</h2>
                     <% if(application.fullname){ %>
                         <li class="list-group-item">Fullname: <%=application.fullname%> </li>
                     <% } %>  
@@ -118,27 +119,30 @@
                     <% } %> 
                     <% if(application.custom3.question){ %>
                         <li class="list-group-item"><%=application.custom3.question%>: <%=application.custom3.answer%> </li>
-                    <% } %> 
+                    <% } %>
+                    <br>
+
+          
+                    <div class="btn-group d-flex justify-content-center mx-auto" style="width: 50%" role="group" >
+                        <form method="POST" action ="/<%=club._id%>/club-applications/<%=application.userId%>">
+                            <button type="submit" name="approve" value="approve" class="btn btn-outline-success" style = "width:80%;">Approve</button>
+                            <button type="submit" name="deny" value="deny" class="btn btn-outline-danger" style = "width:80%;  margin-top:2% ">Deny</button>
+                            
+                        </form>
+                    </div>
+                    <br>
+            
+                    <div class="btn-group d-flex justify-content-center mx-auto" style="width: 50%" role="group" >
+                        <form method="GET" action ="/<%=club._id%>/club-applications">
+                            <button type="submit" class="btn btn-outline-secondary" style = "width:170%;  margin-top:2%; margin-left:-30px ">Cancel</button>
+                        </form>
+                    </div>
+             
                 </ul>
             </div>
 
-            <br><br>
-
-          
-            <div class="btn-group d-flex justify-content-center mx-auto" style="width: 50%" role="group" >
-                <form method="POST" action ="/<%=club._id%>/club-applications/<%=application.userId%>">
-                    <button type="submit" name="deny" value="deny" class="btn btn-outline-danger">Deny</button>
-                    <button type="submit" name="approve" value="approve" class="btn btn-outline-success">Approve</button>
-                </form>
-            </div>
             
-            <br>
             
-            <div class="btn-group d-flex justify-content-center mx-auto" style="width: 50%" role="group" >
-                <form method="GET" action ="/<%=club._id%>/club-applications">
-                    <button type="submit" class="btn btn-outline-secondary">Cancel</button>
-                </form>
-            </div>
 
             
 

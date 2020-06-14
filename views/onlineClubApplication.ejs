@@ -12,6 +12,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="icon" href="../public/img/finalLogo2.png">
         <title>ClubArchive</title>
         <style>
             .btn-outline-secondary:hover {
@@ -49,49 +50,49 @@
     <body>
 
         <nav class="navbar navbar-expand-sm navbar-light" style = "background-color:#38a8f3 ;">
-            <a href = "/" style = " margin-left: 45%;"><img src = "../public/img/finalLogo2.png" style="width :100px; height:100px;" ></a>
+            <a href = "/" style = " margin-left: 48%;"><img src = "../public/img/finalLogo2.png" style="width :100px; height:100px;" ></a>
         </nav>
 
         <br><br>    
 
-        <h2 class="text-center">Apply to <%= club.name %> </h2>
         <% if (error != null) {%>
             <div class=" alert alert info" style = "margin-left:33%">
-                 <span class="closebtn">&times;</span>  
-                 <strong>Error : </strong> <%= error %>
-             </div>
-         <% } %>
-        <form action = "/add-application/<%=club._id%>" method ="POST" class="form-control form-control-lg" enctype="multipart/form-data">
+                    <span class="closebtn">&times;</span>  
+                    <strong>Error : </strong> <%= error %>
+                </div>
+            <% } %>
+        <form action = "/add-application/<%=club._id%>" method ="POST" enctype="multipart/form-data">
+            <h2 style ="text-align: center;">Apply to <%= club.name %> </h2>
             <% if(club.onlineApplication.fullname){ %>
-                <input type="text" placeholder="Fullname" name = "fullname" style = "margin-top: 5%">
+                <input type="text" placeholder="Fullname" class="form-control form-control-lg" name = "fullname" style = "margin-top: 2%;width:33%" required>
             <% } %> 
             <% if(club.onlineApplication.email){ %>
-                <input type="email" placeholder="Email" name = "email" style = "margin-top: 5%">
+                <input type="email" placeholder="Email" name = "email" style = "margin-top: 2%;width:33%" required>
             <% } %> 
             <% if(club.onlineApplication.rank){ %>
-                <input type="text" placeholder="Graduation Year" name = "rank" style = "margin-top: 5%">
+                <input type="text" placeholder="Graduation Year" name = "rank" style = "margin-top: 2%;width:33%" required>
             <% } %> 
             <% if(club.onlineApplication.major){ %>
-                <input type="text" placeholder="Major" name = "major" style = "margin-top: 5%">
+                <input type="text" placeholder="Major" name = "major" style = "margin-top: 2%;width:33%" required>
             <% } %>
             <% if (club.onlineApplication.resume) {%>
                 <div class = "form-group form-inline"> 
-                    <input type = "file" class = "form-control" id = "resume" name = "resume" style = "margin-top:2%;width:400px" alt ="" required>
-                    <label for="image" style = "margin-top:2%">Upload your resume (PDF)!</label>
+                    <input type = "file" class = "form-control" id = "resume" name = "resume" style = "margin-top:2%;width:400px;width:20%" class="form-control form-control-lg" alt ="" required>
+                    <h6  style = "margin-top:2%">Upload your resume (PDF)!</h6>
                 </div>  
             <% } %> 
             <% if(club.onlineApplication.custom1 != ""){ %>
-                <input type="text" placeholder="<%=club.onlineApplication.custom1%>"  name = "custom1" style = "margin-top: 5%">
+                <input type="text" placeholder="<%=club.onlineApplication.custom1%>" class="form-control form-control-lg" name = "custom1" style = "margin-top: 2%;width:33%" required>
             <% } %> 
             <% if(club.onlineApplication.custom2 != ""){ %>
-                <input type="text" placeholder="<%=club.onlineApplication.custom2%>"  name = "custom2" style = "margin-top: 5%">
+                <input type="text" placeholder="<%=club.onlineApplication.custom2%>" class="form-control form-control-lg" name = "custom2" style = "margin-top: 2%;width:33%" required>
             <% } %> 
             <% if(club.onlineApplication.custom3 != ""){ %>
-                <input type="text" placeholder="<%=club.onlineApplication.custom3%>"  name = "custom3" style = "margin-top: 5%">
+                <input type="text" placeholder="<%=club.onlineApplication.custom3%>" class="form-control form-control-lg"  name = "custom3" style = "margin-top: 2%;width:33%" required>
             <% } %> 
             
             <br>
-            <button  type="submit" name="submit" class="btn btn-outline-secondary" >Apply!</button>
+            <button  type="submit" name="submit" class="btn btn-outline-secondary" style = "width:33%">Apply!</button>
         </form>
              
 
