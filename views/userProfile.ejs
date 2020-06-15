@@ -145,9 +145,9 @@
                 <hr style = "width: 40%;">
                 <%user.pending_applications.forEach(user_app => { %>
                     <% if(user_app.type == "member"){ %> 
-                        <h6 style = "text-align: center;"><%=user_app.name%> Member :      <%=user_app.status%> <a href = "/deleteapplication/<%=user_app.id%>"><img src = "../public/img/xpng.png" style = "width: 10px; margin-left: 2%;margin-top: -2px;"></a></h6>
+                        <h6 style = "text-align: center;"><%=user_app.name%> Member :      <%=user_app.status%> <a href = "/deleteapplication/<%=user_app.clubId%>"><img src = "../public/img/xpng.png" style = "width: 10px; margin-left: 2%;margin-top: -2px;"></a></h6>
                     <% }else{ %> 
-                        <h6 style = "text-align: center;"><%=user_app.name%> Admin :      <%=user_app.status%> <a href = "/deleteapplication/<%=user_app.id%>"><img src = "../public/img/xpng.png" style = "width: 10px; margin-left: 2%;margin-top: -2px;"></a></h6>
+                        <h6 style = "text-align: center;"><%=user_app.name%> Admin :      <%=user_app.status%> <a href = "/deleteapplication/<%=user_app.clubId%>"><img src = "../public/img/xpng.png" style = "width: 10px; margin-left: 2%;margin-top: -2px;"></a></h6>
                     <% } %> 
                 <%})%>
 

@@ -12,6 +12,12 @@ module.exports = async (req, res) => {
         })
     }
     else {
+        let filename;
+        if(!req.file){
+            filename = "";
+        } else {
+            filename = req.file.filename
+        }
         let applicationForUser = {clubId: club._id,  name: club.name, type: "member", status: "Pending"}
         user.pending_applications.push(applicationForUser)
         user.save()
@@ -22,7 +28,7 @@ module.exports = async (req, res) => {
             email: req.body.email || "",
             rank: req.body.rank || "",
             major: req.body.major || "",
-            resume : req.file.filename || "",
+            resume : filename,
             custom1: {
                 question: club.onlineApplication.custom1 || "",
                 answer: req.body.custom1 || ""
