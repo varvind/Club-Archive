@@ -51,7 +51,9 @@ module.exports = async (req, res) => {
                     }
                     i += 1
                 });
-
+            } else {
+                console.log("cannot delete only member of club")
+            }
                 i=0
                 club.members.forEach(mem => {
                     if(String(mem.id) == String(member._id)){
@@ -79,9 +81,7 @@ module.exports = async (req, res) => {
                     }
                     i += 1
                 });
-            } else {
-                console.log("cannot delete only member of club")
-            }
+            
             
             
         }
