@@ -15,12 +15,12 @@
     <title>ClubArchive</title>
     <link rel="icon" href="../public/img/finalLogo2.png">
     <style>
-        a:visited{
+        /* a:visited{
                     color: black;
         }
         a:hover {
             text-decoration : none;
-        }
+        } */
         .btn-outline-secondary:hover {
             background-color: #41bbac
         }
@@ -164,8 +164,8 @@
             <div class = "col">
                 <h5 style = "text-align: center;">Activity</h5>
                 <hr style = "width:10%">
-                <h5 >Recent Searches</h5>
-                <% if (clubs != null) {%> 
+                <h5 >Recent Searches   <a href = "/deleteSearchHistory" style = "margin-left: 1%; font-size: small;">Clear</a></h5>
+                <% if (clubs != null && clubs.length != 0) {%> 
                 <% clubs.forEach(club => { %> 
                 
                 <div>

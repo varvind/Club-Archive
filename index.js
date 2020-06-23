@@ -79,6 +79,7 @@ const manageAllMembersController = require('./controllers/manageAllMembers')
 const editClubPriviledgesController = require('./controllers/editClubPriviledges')
 const addclubImageController = require('./controllers/addClubImage')
 const deleteClubImageController = require('./controllers/deleteClubImage')
+const deleteSearchHistoryController = require('./controllers/deleteSearchHistory')
 
 //app features and functions that are being implemented
 app.use(bodyParser.json())
@@ -215,4 +216,5 @@ app.get('/resume/:filename', async (req, res) => {
   readstream.pipe(res)
 })
 app.post('/:club_id/deleteClubImage/:filename', deleteClubImageController)
+app.get('/deleteSearchHistory', deleteSearchHistoryController)
 
