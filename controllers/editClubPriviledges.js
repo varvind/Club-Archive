@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
         }
         else if(req.body.delete_member){
             console.log("Delete Member")
-            if(club.administrators > 1){
+            if(club.adminstrators.length > 1){
                 let i =0
                 club.adminstrators.forEach(admin => {
                     if(String(admin.id) == String(member._id)){
@@ -66,8 +66,7 @@ module.exports = async (req, res) => {
                 i= 0
                 member.clubs.forEach(found => {
                     if(String(found) == String(club._id)){
-                        member.clubs.splice(i,1)
-                        member.save()
+                        member.clubs.splice(i,1);
                     }
                     i += 1
                 })
@@ -77,11 +76,11 @@ module.exports = async (req, res) => {
                     if(String(application.clubId) == club._id){
                         member.pending_applications[i].status = "Removed From Club"
                         member.markModified('pending_applications')
-                        member.save()
+                        
                     }
                     i += 1
                 });
-            
+                member.save()
             
             
         }

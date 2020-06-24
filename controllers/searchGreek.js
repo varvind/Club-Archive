@@ -10,7 +10,8 @@ module.exports = async (req, res) => {
             res.render('searchLanding', {
                 clubs,
                 query,
-                user
+                user,
+                layout:'layouts/topMenuBar'
             })
         }catch {
             res.redirect('/')
@@ -21,7 +22,8 @@ module.exports = async (req, res) => {
             res.render('searchLanding', {
                 clubs,
                 query,
-                user
+                user,
+                layout:'layouts/topMenuBar'
             })
         }catch {
             res.redirect('/')

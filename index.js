@@ -18,6 +18,7 @@ const GridFsStorage = require('multer-gridfs-storage')
 const Grid = require('gridfs-stream')
 const methodOverride = require('method-override')
 const path = require('path')
+const expressLayouts = require('express-ejs-layouts')
 //routes
 const authMiddleWare = require('./middleware/authMiddleware')
 const userSignUpController = require('./controllers/newUser')
@@ -79,9 +80,11 @@ const manageAllMembersController = require('./controllers/manageAllMembers')
 const editClubPriviledgesController = require('./controllers/editClubPriviledges')
 const addclubImageController = require('./controllers/addClubImage')
 const deleteClubImageController = require('./controllers/deleteClubImage')
+const deleteSearchHistoryController = require('./controllers/deleteSearchHistory')
 
 //app features and functions that are being implemented
 app.use(bodyParser.json())
+app.use(expressLayouts)
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
 //app.use(fileUpload())
@@ -127,7 +130,6 @@ const upload = multer({ storage });
 
 //to use ejs for the app
 app.set('view engine', 'ejs')
-
 //port 3000 for output
 app.listen(process.env.PORT || 3000)
 
@@ -215,4 +217,5 @@ app.get('/resume/:filename', async (req, res) => {
   readstream.pipe(res)
 })
 app.post('/:club_id/deleteClubImage/:filename', deleteClubImageController)
+app.get('/deleteSearchHistory', deleteSearchHistoryController)
 

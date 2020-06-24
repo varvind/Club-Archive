@@ -34,43 +34,7 @@
     <script>
         AOS.init();
     </script>
-    <div class ="container">
-        <div class = "row">
-                <div class ="col-sm-2">
-                    <a href = "/"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px; "></a>
-                </div>
-                
-                <div class = "col">
-                    <form class="example" action="/search" style="margin:auto" method="GET">
-                        <input style ="margin-top:24px" placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" name = "search2" >
-                    </form>
-                        
-                </div>
-                <div class = "col" >
-                    <% if (!loggedIn) {%>
-                        <button type="button" class="btn btn-outline-dark" style = "font-size:18; float: right; margin-top:24px ; margin-right: 3% ; color:white; background-color: #38a8f3" onclick= "window.location.href = '/signup';">Sign Up</button>
-                        <button type="button" class="btn btn-outline-dark signUp"  style = "font-size:18; float : right; margin-top: 24px; margin-right: 3%;" onclick= "window.location.href = '/login';">Log in</button>
-                    <% } %> 
-                    <% if(loggedIn) { %>
-                        <div class="dropdown">
-                    
-                            <% if(user.image.id != "0") {%> 
-                                <img src = "image/<%=user.image.filename%>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <% }  else { %>
-                                <img src = "../public/img/defaultProfileImage.png" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <% } %>                            
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/userprofile">View Profile</a>
-                                <a class="dropdown-item" href="/usersettings">User Settings</a>
-                                <a class="dropdown-item" href="/userlogout">Logout</a>
-                            </div>
-                        </div>
 
-                    <% } %>
-                </div>
-
-        </div>
-    </div>
     <div style = "height: 450px;background-image: url('/public/img/AcademicBuilding-TAMU.jpg');background-position:center;background-size:cover;filter: brightness(60%);">
         
         

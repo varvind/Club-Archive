@@ -5,17 +5,17 @@ const bcrypt = require('bcrypt')
 module.exports = (req, res) => {
     console.log(`The req.body.resetId is ${req.body.resetId}`)
     if(req.body.newPassword != req.body.verifyPassword){
-        res.render('userReset', {error: "Verify Password"})
+        res.render('userReset', {error: "Verify Password", layout:false})
     }else{
         ResetPassword.findOne({resetPasswordToken: req.body.resetId}, (err, resetPassword) => {
             if(err || !resetPassword){
-                res.render('login', {error: "Reset Token Not Found"})
+                res.render('login', {error: "Reset Token Not Found", layout:false})
             } else{
                 console.log(resetPassword._id)
                 const verifiedPassword = req.body.newPassword
                 User.findOne({_id: resetPassword.userId }, (error, user) => {
                     if(error || !user){
-                        res.render('login', {error: "Error Finding User"})
+                        res.render('login', {error: "Error Finding User", layout:false})
                     }else{
                         bcrypt.hash(verifiedPassword, 10, async function(error, hash) {
                             user.password = hash

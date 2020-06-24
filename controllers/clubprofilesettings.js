@@ -32,7 +32,8 @@ module.exports = async (req, res) => {
         res.render('clubProfileSettings' , {
             user,
             club,
-            appSubmitted
+            appSubmitted,
+            layout:'layouts/topMenuBar'
         })
     }
     else{

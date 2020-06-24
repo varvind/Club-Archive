@@ -26,7 +26,8 @@ module.exports = async (req, res) => {
         res.render('userProfile', {
             user,
             clubs,
-            clubNames
+            clubNames,
+            layout : 'layouts/topMenuBar'
         })
     }, 2000)
 }

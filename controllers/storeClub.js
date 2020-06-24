@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
         else{inputs.push("")}
     }
     if(!req.files){
-        res.render('clubSignUp',  { error:"Error please upload at least 1 cover photo", fields: inputs })
+        res.render('clubSignUp',  { error:"Error please upload at least 1 cover photo", fields: inputs, layout:false })
     }
     else {
         var validFiles = true;
@@ -17,7 +17,8 @@ module.exports = async (req, res) => {
             error = "No more than 10 files supported currently"
             res.render('clubSignUp',  {
                 error : "No more than 10 files supported currently",
-                fields: inputs
+                fields: inputs,
+                layout:false
             })
         }
         for(var i = 0; i < req.files.length; i++){
@@ -33,7 +34,7 @@ module.exports = async (req, res) => {
                 if(error){
                     console.log("hello")
                     console.log(error)
-                    res.render('clubSignUp', { error: error})
+                    res.render('clubSignUp', { error: error, layout:false})
                 }
                 else {
                     
@@ -62,7 +63,8 @@ module.exports = async (req, res) => {
             error = "File type invalid, please upload a jpg or png"
             res.render('clubSignUp',  {
                 error : "File type invalid, please upload a jpg or png",
-                fields: inputs
+                fields: inputs,
+                layout:false
             })
         }
                       

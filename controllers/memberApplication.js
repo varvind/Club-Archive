@@ -9,6 +9,7 @@ module.exports = async (req, res) => {
         console.log('Invalid user or club')
         res.redirect('/')
     }else{
-        res.render('designApplication', {club, user})
+        res.render('designApplication', {club, user,
+            layout:'layouts/topMenuBar'})
     }
 }

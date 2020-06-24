@@ -23,7 +23,8 @@ module.exports = async (req, res) => {
     if(canEdit){
         res.render('clubMarkettingSettings', {
             user,
-            club
+            club,
+            layout:'layouts/topMenuBar'
         })
     }else{
         res.redirect('/')

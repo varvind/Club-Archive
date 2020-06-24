@@ -25,6 +25,7 @@ module.exports = async (req, res) => {
             if(insert){non_admins.push(mem)}
         });
 
-        res.render('manageMembers' ,{club, user, non_admins})
+        res.render('manageMembers' ,{club, user, non_admins,
+            layout:'layouts/topMenuBar'})
     }
 }

@@ -1,100 +1,5 @@
-<!DOCTYPE html>
 
-<html>
-
-
-<head>
-    <meta charset="utf-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
-    <title>ClubArchive</title>
-    <link rel="icon" href="../public/img/finalLogo2.png">
-    <style>
-        a:visited{
-                    color: black;
-        }
-        a:hover {
-            text-decoration : none;
-        }
-        .btn-outline-secondary:hover {
-            background-color: #41bbac
-        }
-        /* .form-control, .form-control-lg {
-                width :340px; height : 50%; margin-left : 10%; margin-top: 25px
-        } */
-        .btn-outline-dark {
-            width:80px;
-            height: 45%;
-            color:black;
-        }
-        .btn-outline-dark:hover {
-            background-color: lightgray
-        }
-        .backsplash {
-            height: 240px;
-            background-color: lightslategrey;
-            margin-top: 0%;
-        }
-        .profileImage {
-            width: 250px; 
-            height: 250px;
-            border-radius: 5%;
-            display:block;
-            margin-right:auto;
-            margin-left: auto;
-            
-        }
-        body {
-                font-family: 'Didact Gothic', sans-serif;
-        }
-        .vl {
-            border-left: 1px solid lightgrey;
-            height: 500px;
-        }
-    </style>
-</head>
 <body>
-    <div class ="container">
-        <div class = "row">
-                <div class ="col-sm-2">
-                    <a href = "/"><img src = "../public/img/blueLogo.png" style = "width: 100px; height: 100px; "></a>
-                </div>
-                
-                <div class = "col">
-                    <form class="example" action="/search" style="margin:auto" method="GET">
-                        <input style ="margin-top:24px" placeholder="Engineering Clubs, Frats, Bagel Club" type="text" class="form-control form-control-lg" name = "search2" >
-                    </form>
-                        
-                </div>
-                <div class = "col" >
-                    <% if (!loggedIn) {%>
-                        <button type="button" class="btn btn-outline-dark" style = "font-size:18; float: right; margin-top:24px ; margin-right: 3% ; color:white; background-color: #38a8f3" onclick= "window.location.href = '/signup';">Sign Up</button>
-                        <button type="button" class="btn btn-outline-dark signUp"  style = "font-size:18; float : right; margin-top: 24px; margin-right: 3%;" onclick= "window.location.href = '/login';">Log in</button>
-                    <% } %> 
-                    <% if(loggedIn) { %>
-                        <div class="dropdown">
-                            <% if(user.image.id != "0") {%> 
-                                <img src = "image/<%=user.image.filename%>" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <% }  else { %>
-                                <img src = "../public/img/defaultProfileImage.png" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <% } %>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/userprofile">View Profile</a>
-                                <a class="dropdown-item" href="/usersettings">User Settings</a>
-                                <a class="dropdown-item" href="/userlogout">Logout</a>
-                            </div>
-                        </div>
-
-                    <% } %>
-                </div>
-
-        </div>
-    </div>
     <div class = "backsplash">
     </div>
     <div style = "width: 100%; margin-top: -100px;" >
@@ -164,8 +69,8 @@
             <div class = "col">
                 <h5 style = "text-align: center;">Activity</h5>
                 <hr style = "width:10%">
-                <h5 >Recent Searches</h5>
-                <% if (clubs != null) {%> 
+                <h5 >Recent Searches   <a href = "/deleteSearchHistory" style = "margin-left: 1%; font-size: small;">Clear</a></h5>
+                <% if (clubs != null && clubs.length != 0) {%> 
                 <% clubs.forEach(club => { %> 
                 
                 <div>

@@ -1,3 +1,5 @@
 module.exports = (req, res) => {
-    res.render('clublogin') 
+    res.render('clublogin',{
+        layout:false
+    }) 
 }

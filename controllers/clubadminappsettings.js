@@ -22,7 +22,12 @@ module.exports = async (req, res) => {
     if(canEdit){
         res.render('clubAdminApplicationsSettings' , {
             user,
+<<<<<<< HEAD
             club
+=======
+            club,
+            layout:'layouts/topMenuBar'
+>>>>>>> 6044c25cf3ace387401f196d1fd1deae3ec2b1f6
         })
        
     }else{
