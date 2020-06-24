@@ -20,11 +20,9 @@ module.exports = async (req, res) => {
     
     
     if(canEdit){
-        
         res.render('clubAdminApplicationsSettings' , {
             user,
             club
-
         })
        
     }else{

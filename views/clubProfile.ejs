@@ -101,46 +101,53 @@
           <span class="sr-only">Next</span>
         </a>
     </div>
+
+    <br><br>
+
     <div style = "margin-top: 2%;">
-        <div class = "container">
+        <div class = "container pl-1 pr-1">
             <div class = "row">
-                <div class = "col-sm-2">
-                
-                    
-                    
-                </div>
-                <div class = "col">
+                <div class = "col-sm-3">
                     <h2 style = "color:#00a8f3"> <%= club.name %> 
                         <% if(canEdit){ %><a href = "/clubSettings/<%=club._id%>" ><img src = "../public/img/settings icon.png" style = "width: 22px;"></a><% } %>
                         <% if(club.club_archive_approved){ %><img src = "../public/img/GoldLogo.png" style = "width: 47px;"> <%}%>
                     </h2>  
-                    <h5 >Texas A&M University</h5>
-                    <p> <h7>About Us : </h7> <%= club.description %> </p>
-    
-                    
+                    <h5 >Texas A&M University</h5> 
                 </div>
-                <div class = "col-sm-3">
-                    <div class = "contactBox">
-                        <h5>Get Involved!</h5>
-                        <p>Phone Number : <%= club.phonenumber %> </p>
-                        <p>Email: <%= club.email %> </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-    <div>
-        <div class = "container">
-            <div class = "row">
-                <div class ="col">
-                    
-                </div>
-            </div>
-        </div>
-        
 
+                <%if(loggedIn){%>
+                    <div class="col-sm-5 d-flex justify-content-start align-items-start">
+                        <form action="#" method="POST" class="d-flex flex-column justify-content-center align-items-center">
+                            <div class="d-inline-block d-flex">
+                                <label for="rating">1</label>
+                                <input type="range" class="custom-range" id="rating" name="rating" min="1" max="5" step=".5" > 
+                                <label for="rating">5</label>
+                            </div>
+
+                            <div class="d-inline-block">
+                                <button  type="submit" name="submit" class="btn btn-outline-secondary">Rate this Club</button>
+                            </div>
+                        </form>
+                    </div>
+                <%}%>
+
+                <div class = "col-sm-4 border border-dark">
+                    <h5>Get Involved!</h5>
+                    <p>Phone Number : <%= club.phonenumber %> </p>
+                    <p>Email: <%= club.email %> </p>
+                </div>
+            </div>
+        <div>
+
+        <div class="row">
+            <div class = "col-sm-8">
+                <p> <h7>About Us : </h7> <%= club.description %> </p>
+            </div>
+        </div>
     </div>
+
+    <br><br>
+
     <div>
         <div class = "container">
             <div class = "row">

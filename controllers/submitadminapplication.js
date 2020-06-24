@@ -5,8 +5,8 @@ const Club = require('../models/Club')
 module.exports = async (req, res) => {
     const user = await User.findById(req.params.userId)
     const club = await Club.findById(req.params.clubId)
-    var user_application_index;
-    var club_application_index;
+    var user_application_index = 0;
+    var club_application_index = 0;
     for(var i = 0; i < user.pending_applications.length; i++){
         if(String(user.pending_applications[i].id) == String(req.params.clubId) ){
             user_application_index = i
@@ -21,6 +21,8 @@ module.exports = async (req, res) => {
         }
     }
     const appDecision = String(req.body.applicationdecision)
+    console.log(appDecision)
+    console.log(user.pending_applications[user_application_index])
     if(appDecision == "Accept"){
         admin = {name : club.admin_applications[i].name, id:user._id}
         club.adminstrators.push(admin)
