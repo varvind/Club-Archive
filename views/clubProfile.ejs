@@ -84,7 +84,7 @@
                 </div>
 
                 <%if(loggedIn){%>
-                    <div class="col-sm-5 d-flex justify-content-start align-items-start">
+                    <div class="col-sm-4 d-flex justify-content-start align-items-start">
                         <form action="#" method="POST" class="d-flex flex-column justify-content-center align-items-center">
                             <div class="d-inline-block d-flex">
                                 <label for="rating">1</label>
@@ -97,36 +97,29 @@
                             </div>
                         </form>
                     </div>
-                <%}%>
+                <%} else { %>
+                    <div class = "col-sm-4">
+                    </div>
+                <% } %>
 
-                <div class = "col-sm-4 border border-dark">
-                    <h5>Get Involved!</h5>
-                    <p>Phone Number : <%= club.phonenumber %> </p>
-                    <p>Email: <%= club.email %> </p>
+                <div class = "col-sm-4 contactBox">            
+                        <h5>Get Involved!</h5>
+                        <p>Phone Number : <%= club.phonenumber %> </p>
+                        <p>Email: <%= club.email %> </p>
                 </div>
             </div>
         <div>
-
-        <div class="row">
-            <div class = "col-sm-8">
-                <p> <h7>About Us : </h7> <%= club.description %> </p>
-            </div>
-        </div>
     </div>
 
-    <br><br>
+    <br>
 
     <div>
-        <div class = "container">
+        <div class = "container pl-1 pr-1">
             <div class = "row">
-                
-                <div class = "col-sm-2">
-                    
-                </div>
                 <div class = "col-sm-5">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3433.457769020444!2d-96.34542498502738!3d30.62105398167621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864683bded743f95%3A0x9dd44bc87274fcce!2sAspire%20College%20Station!5e0!3m2!1sen!2sus!4v1579404523036!5m2!1sen!2sus" width="300" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                 </div>
-                <div class = "col">
+                <div class = "col-sm-4">
                     <h6 style = "text-decoration: underline;">Meeting Times</h6>
                     <p>
                         <% let times = club.meeting_times %> 
@@ -152,9 +145,6 @@
     <div>
         <div class = "container">
             <div class ="row">
-                <div class = "col-sm-2">
-    
-                </div>
                 <div class = "col">
                     <h6>Org President: <%= club.president_organizer %> </h7> <br>
                     <h6>Member Count: <%= club.memberCount %> </h7>
@@ -165,10 +155,11 @@
         </div>
         
     </div>
+    </div>
     <br>
     <br>
     <br>
-    <footer class="page-footer font-small unique-color-dark pt-4" style = "background-color:lightgrey; margin-bottom: 0px;">
+    <footer class="page-footer font-small unique-color-dark pt-4" style = "background-color:lightgrey; margin-bottom: 0px; width:100%">
 
         <!-- Footer Elements -->
         <!-- Footer Elements -->
