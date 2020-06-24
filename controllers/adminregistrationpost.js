@@ -6,8 +6,7 @@ module.exports = async (req, res) => {
     const club = await Club.findById(req.params.id)
 
     var duplicate = false
-
-    for(var i = 0; i < club.admin_applications.length; i++){
+    for(var i=0; i < club.admin_applications.length; i++){
         if(String(club.admin_applications[i].id) == String(user._id)){
             duplicate = true;
         }
@@ -18,15 +17,12 @@ module.exports = async (req, res) => {
         }
     }
 
-
-
-
     if(!duplicate){
         var currentApplication = {clubId: club._id,  name: club.name, type: "admin", status: "Pending"}
         user.pending_applications.push(currentApplication)
         user.save()
 
-        var club_side_application = {id:user._id, name : user.firstName + " " + user.lastName, major : user.major}
+        var club_side_application = {id: user._id, name: user.firstName+" "+user.lastName, major: user.major}
         club.admin_applications.push(club_side_application)
         club.save()
         

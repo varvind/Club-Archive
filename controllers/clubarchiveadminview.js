@@ -6,10 +6,6 @@ module.exports = async (req, res) => {
     applications = await CAApprovedApps.find({})
     
     
-    
-    
-    
-    
     //TODO : Add verification by ID as well
     if(user.firstName != "Arvind" || user.lastName != "Venkatesan"){
         res.redirect('/')

@@ -52,8 +52,6 @@ module.exports = async (req, res) => {
                     ableToApplyAdmin = false
                 }
             })
-
-            
         }
    }
 
