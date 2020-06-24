@@ -17,7 +17,8 @@ module.exports = async (req, res) => {
     else{
         res.render('clubarchiveadmin', {
             user,
-            applications
+            applications,
+            layout:false
         })
     }
 

@@ -23,7 +23,8 @@ module.exports = async (req, res) =>{
             club,
             user, 
             user_applied, 
-            application
+            application,
+            layout:'layouts/topMenuBar'
         })    
     }, 1000)
 

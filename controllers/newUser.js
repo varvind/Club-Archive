@@ -1,6 +1,7 @@
 module.exports =  async (req, res) => {    
     res.render('userSignUp', {
         error: null,
-        fields: {}
+        fields: {},
+        layout:false
     })
 }

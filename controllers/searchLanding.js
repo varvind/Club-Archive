@@ -5,6 +5,7 @@ module.exports = async (req, res) => {
     const user = await User.findById(req.session.userId)
     
     res.render('searchLanding', {
-        user
+        user,
+        layout:false
     })
 }

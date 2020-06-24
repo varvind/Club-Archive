@@ -83,7 +83,8 @@ module.exports = async (req, res) => {
         user,
         canEdit,
         ableToApplyMember,
-        ableToApplyAdmin
+        ableToApplyAdmin,
+        layout:'layouts/topMenuBar'
     })
     
 }

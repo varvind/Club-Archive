@@ -11,7 +11,8 @@ module.exports = async (req, res) =>{
                     error = "Error: New Password and Confirmation Do Not Match"
                     res.render('changePassword', {
                         user,
-                        error
+                        error,
+                        layout:'layouts/topMenuBar'
                     })
                 }
                 else {
@@ -28,7 +29,8 @@ module.exports = async (req, res) =>{
                 error = "Error: Current Password is Incorrect"
                 res.render('changePassword', {
                     user,
-                    error
+                    error,
+                    layout:'layouts/topMenuBar'
                 })
             
             }

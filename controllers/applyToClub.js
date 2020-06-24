@@ -8,7 +8,8 @@ module.exports = async (req, res) => {
         error = "File type invalid, please upload a pdf"
         res.render('onlineClubApplication',  {
             club,
-            error
+            error,
+            layout:false
         })
     }
     else {

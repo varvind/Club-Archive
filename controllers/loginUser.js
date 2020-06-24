@@ -15,7 +15,8 @@ module.exports = (req, res) => {
                 else {
                     error = "Invalid Login"
                     res.render('login', {
-                        error: "Invalid Login"
+                        error: "Invalid Login",
+                        layout:false
                     })
                     console.log(error)
                 }
@@ -24,7 +25,8 @@ module.exports = (req, res) => {
         else {
             console.log(error)
             res.render('login', {
-                error : "Invalid Login"
+                error : "Invalid Login",
+                layout:false
             })
 
             

@@ -6,12 +6,13 @@ module.exports = (req, res) => {
     }
     ResetPassword.findOne({resetPasswordToken: req.query.resetId}, (error, resetPassword) => {
         if(!resetPassword){
-            res.render('login', {error: "Reset Token not Found or Expired"})
+            res.render('login', {error: "Reset Token not Found or Expired", layout:false})
         }else{
             res.render('userReset', 
             {
                 error: null,
-                resetId: req.query.resetId
+                resetId: req.query.resetId,
+                layout:false
             })
         }
     })  

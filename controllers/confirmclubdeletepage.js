@@ -24,7 +24,8 @@ module.exports = async (req, res) => {
     if(canDelete){
         res.render('confirmClubDelete', {
             user,
-            club
+            club,
+            layout:'layouts/topMenuBar'
         })
     }else{
         res.redirect('/')

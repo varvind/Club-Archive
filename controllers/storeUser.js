@@ -45,7 +45,7 @@ module.exports = (req, res) => {
             }, function(error, newlymade) {
                 if(error){
                     console.log(error)
-                    res.render('userSignUp', { error: error, fields:inputs })
+                    res.render('userSignUp', { error: error, fields:inputs, layout:false })
                 }
                 else {
                     req.session.userId = newlymade._id

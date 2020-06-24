@@ -7,6 +7,7 @@ module.exports = async (req, res) => {
 
     res.render('adminregistration', {
         user,
-        club
+        club,
+        layout:'layouts/topMenuBar'
     })
 }

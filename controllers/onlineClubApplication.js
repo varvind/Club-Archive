@@ -8,6 +8,6 @@ module.exports = async (req, res) => {
         console.log('Invalid club')
         res.redirect('/')
     }else{
-        res.render('onlineClubApplication', {club, error})
+        res.render('onlineClubApplication', {club, error, layout:false})
     }
 }
