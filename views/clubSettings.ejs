@@ -76,32 +76,32 @@
                     </div>
                     <div class = "col-sm-8"  style ="margin-right:10%">
                         <form action = "/updateclub/<%=club._id%>" method ="POST" enctype = "multipart/form-data">
-                            <input placeholder="Organization Name" type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "name">
+                            <input placeholder="Organization Name" value="<%=club.name%>"  type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "name">
                 
-                            <input placeholder="Current Or Estimated Membership Count" type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "memberCount">
+                            <input placeholder="Current Or Estimated Membership Count" value="<%=club.memberCount%>" type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "memberCount">
             
-                            <input placeholder="Organizer, Admin or President of Organization" type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "president_organizer">
-                            <input placeholder="Organization Email" type="text" class="form-control form-control-lg" style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "email">
-                            <input placeholder="Organization Phone Number" type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%"name = "phonenumber">
-                            <textarea class="form-control" aria-label="Club Description"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" placeholder="Tell us a little about your club! The more information the better!" name = "description"></textarea>
+                            <input placeholder="Organizer, Admin or President of Organization" value="<%=club.president_organizer%>"type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "president_organizer">
+                            <input placeholder="Organization Email" value="<%=club.email%>" type="text" class="form-control form-control-lg" style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "email">
+                            <input placeholder="Organization Phone Number" value="<%=club.phonenumber%>" type="text" class="form-control form-control-lg"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%"name = "phonenumber">
+                            <textarea class="form-control" aria-label="Club Description" style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" placeholder="Tell us a little about your club! The more information the better!" name = "description"><%=club.description%> </textarea>
                             
-                            <textarea class="form-control" aria-label="Meeting Times"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" placeholder=
+                            <textarea class="form-control" aria-label="Meeting Times" style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" placeholder=
             "Monday : 12AM - 12PM
             Tuesday : 12AM - 12PM
             Wednesday : 12AM - 12PM
             Thursday : 12AM - 12PM
             Friday : 12AM - 12PM" 
-                            name = "meeting_times" rows="5"></textarea>
+                            name = "meeting_times" rows="5"><%=club.meeting_times%></textarea>
                             <div class="form-group">
                                 <label for="exampleSelect1"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%"></label>
                                 <select class="form-control" id="exampleSelect1" name = "category" style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%"> 
-                                  <option>Academic Organization</option>
-                                  <option>Greek Organization</option>
-                                  <option>Sports</option>
-                                  <option>Interest Groups</option>
+                                <option <%if(club.category=="Academic Organization"){%> selected <%}%> >Academic Organization</option>
+                                  <option <%if(club.category=="Greek Organization"){%> selected <%}%>>Greek Organization</option>
+                                  <option <%if(club.category=="Sports"){%> selected <%}%>>Sports</option>
+                                  <option <%if(club.category=="Interest Groups"){%> selected <%}%>>Interest Groups</option>
                                 </select>
                             </div>
-                            <input placeholder="Registration Season (i.e. Fall)" type="text" class="form-control form-control-lg" style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "registration_season">
+                            <input placeholder="Registration Season (i.e. Fall)" value="<%=club.registration_season%>" type="text" class="form-control form-control-lg" style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" name = "registration_season">
                             <button  type="submit" name = "submit" class="btn btn-outline-secondary"  style = "margin-top: 1%;width :60%; height : 50%; margin-left : 33%; margin-right : 1%" >Update</button>
                             
                         </form>
