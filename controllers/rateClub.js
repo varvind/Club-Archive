@@ -12,29 +12,57 @@ module.exports = async (req, res) => {
                     console.log("Error finding club to rate")
                     res.redirect('/')
                 }else{
-                    let newUser = true
+                    let member = false
+                    found.members.forEach(mem => {
+                        if(mem.id == req.session.userId) {member = true}
+                    });
                     
-                    found.ratings.users.forEach(user_rating => {
+                    let newUser = true
+                    let new_rating = {userId: req.session.userId, rating: req.body.rating, message: req.body.message || ""}
+                    
+                    found.ratings.global.users.forEach(user_rating => {
                         if(user_rating.userId == req.session.userId){
-                            let difference = req.body.rating - user_rating.rating
-                            found.ratings.total += difference
+                            let global_difference = Number(req.body.rating) - user_rating.rating
+                            found.ratings.global.total += global_difference
+
+                            user_rating.rating = req.body.rating
+                            user_rating.message = req.body.message
                             found.markModified('ratings')
                             found.save()
+
+                            if(member){
+                                found.ratings.members.users.forEach(mem => {
+                                    if(mem.userId == req.session.userId){
+                                        let member_difference = Number(req.body.rating) - mem.rating
+                                        found.ratings.members.total += member_difference
+
+                                        mem.rating = req.body.rating
+                                        mem.message = req.body.message
+                                        found.markModified('ratings')
+                                        found.save()
+                                    }
+                                });
+                            }
 
                             newUser = false
                         }
                     });
 
                     if(newUser){
-                        let new_rating = {userId: req.session.userId, rating: req.body.rating}
-                        found.ratings.users.push(new_rating)
-                        found.ratings.total += req.body.rating
-                        found.ratings.count += 1
+                        found.ratings.global.users.push(new_rating)
+                        found.ratings.global.total += Number(req.body.rating)
+                        found.ratings.global.count += 1
+
+                        if(member){
+                            found.ratings.members.users.push(new_rating)
+                            found.ratings.members.total += Number(req.body.rating)
+                            found.ratings.members.count += 1
+                        }
+
                         found.save()
                     }
-
-                    res.redirect('/')
                 }
+                res.redirect(`/post/${found._id}`)
             });
         }
     });

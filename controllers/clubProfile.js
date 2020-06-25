@@ -76,12 +76,29 @@ module.exports = async (req, res) => {
     //console.log(searches)
     req.session.searches=searches
 
+    //rating
+    let user_rating = 0
+    let user_message = null
+    if(user){
+        club.ratings.global.users.forEach(rat => {
+            if(rat.userId == String(user._id)){
+                user_rating = Number(rat.rating)
+                user_message = rat.message
+            }
+        });
+    }
+    let global_average = club.ratings.global.total / club.ratings.global.count
+    let member_average = club.ratings.members.total / club.ratings.members.count
+    let club_rating = {currentRat: user_rating, currentMes: user_message, global_average, member_average}
+    console.log(club_rating)
+
     res.render('clubProfile' ,{
         club,
         user,
         canEdit,
         ableToApplyMember,
         ableToApplyAdmin,
+        club_rating,
         layout:'layouts/topMenuBar'
     })
     
