@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 
 
 
@@ -7,11 +7,8 @@
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
     <link rel="icon" href="../public/img/finalLogo2.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>ClubArchive</title>
     <link rel="icon" href="../public/img/finalLogo2.png">
     <style>
@@ -25,8 +22,10 @@
         .contactBox {
             width: 160%;
             border: 8px solid lightgrey;
-            padding: 10px;
-            margin: 20px; 
+            padding: 10px; 
+        }
+        .checked {
+            color: orange;
         }
     </style>
 </head>
@@ -60,12 +59,12 @@
         </a>
     </div>
 
-    <br><br>
+    <br>
 
     <div style = "margin-top: 2%;">
         <div class = "container pl-1 pr-1">
             <div class = "row">
-                <div class = "col-sm-3">
+                <div class = "col-sm-5">
                     <h2 style = "color:#00a8f3"> <%= club.name %> 
                         <% if(canEdit){ %><a href = "/clubSettings/<%=club._id%>" ><img src = "../public/img/settings icon.png" style = "width: 22px;"></a><% } %>
                         <% if(club.club_archive_approved){ %><img src = "../public/img/GoldLogo.png" style = "width: 47px;"> <%}%>
@@ -82,6 +81,7 @@
     
                     
                 </div>
+                <div class = "col-sm-2">
 
                 <%if(loggedIn){%>
                     <div class="col-sm-5 d-flex justify-content-start align-items-start">
@@ -106,25 +106,119 @@
                 </div>
             </div>
         <div>
+    </div>
 
-        <div class="row">
-            <div class = "col-sm-8">
-                <p> <h7>About Us : </h7> <%= club.description %> </p>
+    <br>
+
+    <div>
+        <div class = "container pl-1 pr-1">
+            <div class = "row">
+                <div class = "col-sm-4">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3433.457769020444!2d-96.34542498502738!3d30.62105398167621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864683bded743f95%3A0x9dd44bc87274fcce!2sAspire%20College%20Station!5e0!3m2!1sen!2sus!4v1579404523036!5m2!1sen!2sus" width="300" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                </div>
+                <div class = "col-sm-3">
+                    
+                </div>
+                <div class = "col" hidden="hidden"> <!--get rid of hidden when feature is done :)-->
+                    <%if(loggedIn){%>
+                        
+                        <div id = "starDiv">
+                            <h5 style = "text-decoration: underline;">Leave a rating for this club!</h6>
+                            <span id = "star1" class="fa fa-star" ></span>
+                            <span id = "star2" class="fa fa-star"></span>
+                            <span id = "star3" class="fa fa-star" ></span>
+                            <span id = "star4" class="fa fa-star" ></span>
+                            <span id = "star5" class="fa fa-star" ></span>
+                        </div>
+                        
+                        <div >
+                            <form action="#" method="POST">
+                                <input type ="number" hidden = "hidden" name ="rating" id = "rating">
+                                <textarea placeholder="Leave comments about this club! (Optional)" class = "form-control" style = "margin-top:3%;width:93%"></textarea>
+                
+                                <div >
+                                    <center><button  type="submit" name="submit" class="btn btn-outline-secondary" style = "margin-top:2%; margin-right:5%">Rate this Club</button></center>
+                                </div>
+                            </form>
+                        </div>
+                        <script type="text/javascript">
+                            let star1 = document.getElementById('star1')
+                            let star2 = document.getElementById('star2')
+                            let star3 = document.getElementById('star3')
+                            let star4 = document.getElementById('star4')
+                            let star5 = document.getElementById('star5')
+                            let rating = document.getElementById('rating')
+                            star1.addEventListener("click", () => {
+                                if(star1.classList.contains("checked")){
+                                    uncheckImage(star1)
+                                    rating.value = 0
+                                }
+                                else {
+                                    checkImage(star1)
+                                    rating.value = 1
+                                }
+                                uncheckImage(star2)
+                                uncheckImage(star3)
+                                uncheckImage(star4)
+                                uncheckImage(star5)
+
+                            })
+                            star2.addEventListener("click", () => {
+                                rating.value = 2
+                                checkImage(star1)
+                                checkImage(star2)
+                                uncheckImage(star3)
+                                uncheckImage(star4)
+                                uncheckImage(star5)
+                            })
+                            star3.addEventListener("click", () => {
+                                rating.value = 3
+                                checkImage(star1)
+                                checkImage(star2)
+                                checkImage(star3)
+                                uncheckImage(star4)
+                                uncheckImage(star5)
+                            })
+                            star4.addEventListener("click", () => {
+                                rating.value = 4
+                                checkImage(star1)
+                                checkImage(star2)
+                                checkImage(star3)
+                                checkImage(star4)
+                                uncheckImage(star5)
+                            })
+                            star5.addEventListener("click", () => {
+                                rating.value = 5
+                                checkImage(star1)
+                                checkImage(star2)
+                                checkImage(star3)
+                                checkImage(star4)
+                                checkImage(star5)
+                            })
+                            
+                            
+                            function checkImage(x) {
+                                
+                                x.classList.add("checked")
+                            }
+                            function uncheckImage(x) {
+                                x.classList.remove("checked")
+                            }
+                        </script>
+                    <%}%>
+                </div>
+                
             </div>
         </div>
     </div>
-
-    <br><br>
-
     <div>
-        <div class = "container">
-            <div class = "row">
-                
-                <div class = "col-sm-2">
-                    
-                </div>
+        <div class = "container pl-1 pr-1">
+            <div class ="row">
                 <div class = "col-sm-5">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3433.457769020444!2d-96.34542498502738!3d30.62105398167621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864683bded743f95%3A0x9dd44bc87274fcce!2sAspire%20College%20Station!5e0!3m2!1sen!2sus!4v1579404523036!5m2!1sen!2sus" width="300" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    <h6>Org President: <%= club.president_organizer %> </h7> <br>
+                    <h6>Member Count: <%= club.memberCount %> </h7>
+                    <br>
+                    <h6>Recruiting Season: <%=club.registration_season%></h7>
                 </div>
                 <div class = "col">
                     <h6 style = "text-decoration: underline;">Meeting Times</h6>
@@ -143,32 +237,18 @@
                         <%}%>
                     </p>
                 </div>
-                <div class = "col">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class = "container">
-            <div class ="row">
-                <div class = "col-sm-2">
-    
-                </div>
-                <div class = "col">
-                    <h6>Org President: <%= club.president_organizer %> </h7> <br>
-                    <h6>Member Count: <%= club.memberCount %> </h7>
-                    <br>
-                    <h6>Recruiting Season: <%=club.registration_season%></h7>
-                </div>
             </div>
         </div>
         
     </div>
+    </div>
+
+
+    
     <br>
     <br>
     <br>
-    <footer class="page-footer font-small unique-color-dark pt-4" style = "background-color:lightgrey; margin-bottom: 0px;">
+    <footer class="page-footer font-small unique-color-dark pt-4" style = "background-color:lightgrey; margin-bottom: 0px; width:100%">
 
         <!-- Footer Elements -->
         <!-- Footer Elements -->
