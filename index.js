@@ -81,7 +81,9 @@ const editClubPriviledgesController = require('./controllers/editClubPriviledges
 const addclubImageController = require('./controllers/addClubImage')
 const deleteClubImageController = require('./controllers/deleteClubImage')
 const deleteSearchHistoryController = require('./controllers/deleteSearchHistory')
-
+const feedBackFormController = require('./controllers/feedbackForm')
+const requestRecordedController = require('./controllers/requestRecorded')
+const feedbacksubmissioncontroller = require('./controllers/submitfeedback')
 //app features and functions that are being implemented
 app.use(bodyParser.json())
 app.use(expressLayouts)
@@ -218,4 +220,6 @@ app.get('/resume/:filename', async (req, res) => {
 })
 app.post('/:club_id/deleteClubImage/:filename', deleteClubImageController)
 app.get('/deleteSearchHistory', deleteSearchHistoryController)
-
+app.get('/betatest', feedBackFormController)
+app.get('/requestrecorded', requestRecordedController)
+app.post('/submitfeedback', upload.array('images', 10), feedbacksubmissioncontroller)
