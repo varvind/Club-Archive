@@ -3,7 +3,7 @@ if(process.env.NODE_ENV !== 'production') {
 }
 
 
-
+ 
 
 //imports
 const express = require('express')
@@ -81,6 +81,8 @@ const editClubPriviledgesController = require('./controllers/editClubPriviledges
 const addclubImageController = require('./controllers/addClubImage')
 const deleteClubImageController = require('./controllers/deleteClubImage')
 const deleteSearchHistoryController = require('./controllers/deleteSearchHistory')
+const rateClubController = require('./controllers/rateClub')
+
 const feedBackFormController = require('./controllers/feedbackForm')
 const requestRecordedController = require('./controllers/requestRecorded')
 const feedbacksubmissioncontroller = require('./controllers/submitfeedback')
@@ -220,6 +222,8 @@ app.get('/resume/:filename', async (req, res) => {
 })
 app.post('/:club_id/deleteClubImage/:filename', deleteClubImageController)
 app.get('/deleteSearchHistory', deleteSearchHistoryController)
+app.post('/:clubId/rateclub', rateClubController)
+
 app.get('/betatest', feedBackFormController)
 app.get('/requestrecorded', requestRecordedController)
 app.post('/submitfeedback', upload.array('images', 10), feedbacksubmissioncontroller)

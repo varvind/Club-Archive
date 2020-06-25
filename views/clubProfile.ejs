@@ -108,22 +108,22 @@
                 <div class = "col-sm-3">
                     
                 </div>
-                <div class = "col" hidden="hidden"> <!--get rid of hidden when feature is done :)-->
+                <div class = "col" > <!--get rid of hidden when feature is done :)   hidden="hidden"-->
                     <%if(loggedIn){%>
                         
                         <div id = "starDiv">
                             <h5 style = "text-decoration: underline;">Leave a rating for this club!</h6>
-                            <span id = "star1" class="fa fa-star" ></span>
-                            <span id = "star2" class="fa fa-star"></span>
-                            <span id = "star3" class="fa fa-star" ></span>
-                            <span id = "star4" class="fa fa-star" ></span>
-                            <span id = "star5" class="fa fa-star" ></span>
+                            <span id = "star1" class="fa fa-star <%if(club_rating.currentRat>=1){%> checked <%}%>"></span>
+                            <span id = "star2" class="fa fa-star <%if(club_rating.currentRat>=2){%> checked <%}%>"></span>
+                            <span id = "star3" class="fa fa-star <%if(club_rating.currentRat>=3){%> checked <%}%>"></span>
+                            <span id = "star4" class="fa fa-star <%if(club_rating.currentRat>=4){%> checked <%}%>"></span>
+                            <span id = "star5" class="fa fa-star <%if(club_rating.currentRat>=5){%> checked <%}%>"></span>
                         </div>
                         
                         <div >
-                            <form action="#" method="POST">
+                            <form action="/<%=club._id%>/rateclub" method="POST">
                                 <input type ="number" hidden = "hidden" name ="rating" id = "rating">
-                                <textarea placeholder="Leave comments about this club! (Optional)" class = "form-control" style = "margin-top:3%;width:93%"></textarea>
+                                <textarea name="message" placeholder="Leave comments about this club! (Optional)" class = "form-control" style = "margin-top:3%;width:93%"><%=club_rating.currentMes%> </textarea>
                 
                                 <div >
                                     <center><button  type="submit" name="submit" class="btn btn-outline-secondary" style = "margin-top:2%; margin-right:5%">Rate this Club</button></center>
@@ -137,6 +137,7 @@
                             let star4 = document.getElementById('star4')
                             let star5 = document.getElementById('star5')
                             let rating = document.getElementById('rating')
+                            
                             star1.addEventListener("click", () => {
                                 if(star1.classList.contains("checked")){
                                     uncheckImage(star1)

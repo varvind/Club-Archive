@@ -99,6 +99,30 @@ const clubSchema = new Scheme ({
             type: String,
             default: ""
         }
+    },
+    ratings: {
+        members: {
+            total: {
+                type: Number,
+                default: 0
+            },
+            count: {
+                type: Number,
+                default: 0
+            },
+            users: [Object]
+        },
+        global: {
+            total: {
+                type: Number,
+                default: 0
+            },
+            count: {
+                type: Number,
+                default: 0
+            },
+            users: [Object]
+        }
     }
 
 })
