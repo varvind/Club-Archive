@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
         res.render('clubAdminApplicationsSettings' , {
             user,
             club,
-            layout:'layouts/topMenuBar'        
+            layout:'layouts/topMenuBar'
         })
        
     }else{
