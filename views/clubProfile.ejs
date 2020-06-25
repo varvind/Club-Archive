@@ -85,11 +85,11 @@
 
                 <%if(loggedIn){%>
                     <div class="col-sm-5 d-flex justify-content-start align-items-start">
-                        <form action="#" method="POST" class="d-flex flex-column justify-content-center align-items-center">
+                        <form action="/<%=club._id%>/rateclub" method="POST" class="d-flex flex-column justify-content-center align-items-center">
                             <div class="d-inline-block d-flex">
-                                <label for="rating">1</label>
+                                <label for="rating">1</label> 
                                 <input type="range" class="custom-range" id="rating" name="rating" min="1" max="5" step=".5" > 
-                                <label for="rating">5</label>
+                                <label for="rating">5</label> 
                             </div>
 
                             <div class="d-inline-block">

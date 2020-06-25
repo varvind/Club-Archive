@@ -3,7 +3,7 @@ if(process.env.NODE_ENV !== 'production') {
 }
 
 
-
+ 
 
 //imports
 const express = require('express')
@@ -81,6 +81,7 @@ const editClubPriviledgesController = require('./controllers/editClubPriviledges
 const addclubImageController = require('./controllers/addClubImage')
 const deleteClubImageController = require('./controllers/deleteClubImage')
 const deleteSearchHistoryController = require('./controllers/deleteSearchHistory')
+const rateClubController = require('./controllers/rateClub')
 
 //app features and functions that are being implemented
 app.use(bodyParser.json())
@@ -218,4 +219,5 @@ app.get('/resume/:filename', async (req, res) => {
 })
 app.post('/:club_id/deleteClubImage/:filename', deleteClubImageController)
 app.get('/deleteSearchHistory', deleteSearchHistoryController)
+app.post('/:clubId/rateclub', rateClubController)
 
