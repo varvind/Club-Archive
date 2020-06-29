@@ -1,0 +1,164 @@
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <title>ClubArchive</title>
+        <style>
+            .btn-outline-secondary:hover {
+                background-color: lightgray
+            }
+            .SmallSignUp {
+                color: blue;
+                font-size: 100%;
+                margin-left : 70%;
+            }
+            .SmallSignUp:visited {
+                color:blue;
+            }
+            .btn, .btn-outline-secondary {
+                margin-left: 33%; margin-top: 3%; width : 30%; height: 5%; font-size: 90vw 90vh;
+            }
+            .vertical-menu {
+                width: 200px; /* Set a width if you like */
+            }
+
+            .vertical-menu a {
+                background-color: #eee; /* Grey background color */
+                color: black; /* Black text color */
+                display: block; /* Make the links appear below each other */
+                padding: 12px; /* Add some padding */
+                text-decoration: none; /* Remove underline from links */
+            }
+
+            .vertical-menu a:hover {
+                background-color: #ccc; /* Dark grey background on mouse-over */
+            }
+
+            .vertical-menu a.active {
+                background-color:#38a8f3; /* Add a green color to the "active/current" link */
+                color: white;
+            }
+            /* The switch - the box around the slider */
+            .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            }
+
+            /* Hide default HTML checkbox */
+            .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            }
+
+            /* The slider */
+            .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+            }
+
+            .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            }
+
+            input:checked + .slider {
+            background-color: #2196F3;
+            }
+
+            input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+            }
+
+            input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+            }
+
+            /* Rounded sliders */
+            .slider.round {
+            border-radius: 34px;
+            }
+
+            .slider.round:before {
+            border-radius: 50%;
+            }
+                        
+                            
+        </style>
+
+    </head>
+
+
+<body>
+    <hr>
+        <div >
+            
+            <div  class = "container">
+                <div class = "row">
+                    <div class = "col-sm-2">
+                        <a href = "/post/<%=club._id%>" style = "text-decoration: none; color: #38a8f3;"><img src = "../public/img/back arrow.png" style = "width: 20px; object-fit: cover; "> Back to Profile</a>
+                        <div class="vertical-menu" style="margin-top: 5%;">
+                            
+                            <a href="/clubSettings/<%=club._id%>">Club Settings</a>
+                            <a href="/clubprofilesettings/<%=club._id%>">Club Profile</a>
+                            <a href = "/clubannouncements/<%=club._id%>"  class="active">Announcements</a>
+                            <a href="/clubMarkettingSettings/<%=club._id%>">Marketting Settings</a>
+                            <a href="/clubAdminApplications/<%=club._id%>">Administrators Applications</a>
+                            <a href="/clubMemberApplicationDesign/<%= club._id %>">Design Online Application</a>
+                            <a href="/<%=club._id%>/club-applications">Manage Member Application</a>
+                            <a href="/<%=club._id%>/manage-members">Manage Current Members</a>
+                          </div>
+                    </div>
+                    <div class="col-sm-8" style = "margin-left:10%">
+                        <!-- Rounded switch -->
+                        <h2 style = "text-align: center; text-decoration: underline;">Send an announcement!</h2>
+                        <form action = "/sendnnoucement/<%=club._id%>" method="POST">
+                            
+                            <label class="switch" style = "margin-top:2%">
+                                <input type="checkbox" id ="slider" name = "slider" >
+                                <span class="slider round"></span>
+                                
+                            </label>
+                            <label for="slider" style = "margin-top: 1%; margin-left:2%"><h5 id = "sliderDescrip">Public announcements (Can be seen by everyone)</h5></label>
+                            <input type = "text" class = "form-control form-control-lg" placeholder="Subject" style = "margin-top: 2%;" name = "subject">
+                            <textarea class = "form-control form-control-lg" placeholder="Body" style = "margin-top: 2%;" rows = "5" name = "body"></textarea>
+                            <button type = "submit" class = "form-control form-control-lg btn btn-outline-secondary" style="margin-top:2%">Send!</button>
+                        </form>
+
+                        <script type="text/javascript">
+                            const slider = document.getElementById("slider")
+                            const sliderDescrip = document.getElementById("sliderDescrip")
+                            
+                            slider.addEventListener('change', () => {
+                                if(slider.checked) {
+                                    sliderDescrip.innerHTML = "Private Announcement (Only to members)"
+                                } else {
+                                    sliderDescrip.innerHTML = "Public announcements (Can be seen by the public)"
+                                }
+                            })
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>    
+</body>

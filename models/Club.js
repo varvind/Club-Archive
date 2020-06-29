@@ -123,6 +123,14 @@ const clubSchema = new Scheme ({
             },
             users: [Object]
         }
+    },
+    announcements : {
+        private: {
+            type: [Object]
+        },
+        public : {
+            type:[Object]
+        }
     }
 
 })

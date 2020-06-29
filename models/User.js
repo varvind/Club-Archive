@@ -45,6 +45,10 @@ const UserSchema = new Schema ({
             required: true,
             type: String
         }
+    },
+    inbox : {
+        type: [Object],
+        default:[]
     }
 })
 
