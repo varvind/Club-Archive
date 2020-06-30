@@ -27,6 +27,13 @@
         .checked {
             color: orange;
         }
+        .card:hover {
+            transform: scale(1.05)
+        }
+        .card {
+            margin-top: 15px;
+            transition: transform .2s
+        }
     </style>
 </head>
 <body>
@@ -103,13 +110,40 @@
         <div class = "container pl-1 pr-1">
             <div class = "row">
                 <div class = "col-sm-4">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3433.457769020444!2d-96.34542498502738!3d30.62105398167621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864683bded743f95%3A0x9dd44bc87274fcce!2sAspire%20College%20Station!5e0!3m2!1sen!2sus!4v1579404523036!5m2!1sen!2sus" width="300" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13733.326842273102!2d-96.34679547281722!3d30.624607805358686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864683f733c00001%3A0x9747b8a4b9c03bc8!2sTexas%20A%26M%20University!5e0!3m2!1sen!2sus!4v1593473096958!5m2!1sen!2sus" style="border:0; width:130%; height:90%" ></iframe>
+                    
                 </div>
                 <div class = "col-sm-3">
                     
                 </div>
-                <div class = "col" > <!--get rid of hidden when feature is done :)   hidden="hidden"-->
-                    <h4 style  = "text-decoration:underline">Announcements</h4>
+                <div class = "col"  > <!--get rid of hidden when feature is done :)   hidden="hidden"-->
+                    <h4 style  = "text-decoration:underline;text-align: center;">Announcements</h4>
+                    <div style = "overflow-y: auto; height:400px">
+                        <center>
+                            <% club.announcements.public.forEach(announcement => { %>
+                                <div class="card" style = "width:80%">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <h5 class="card-title" style = " margin-left:2%;text-decoration:underline; margin-top:1%; text-align: left;"><%= announcement.subject%> </h5>
+                                    
+                                        </div>
+                                        <div class = "col-sm-4">
+                                            <p style = "float:right; color:lightgrey; font-size:x-small; margin-right:2%"><%= announcement.date%><br><%= announcement.time  %> </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 style = "margin-left:2%; text-align: left;"><%= announcement.body %></h6>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            <% }) %>
+                            <% if (club.announcements.public.length == 0) { %>
+                                <h5>None right now, check back later!</h5>
+                            <% } %>
+                        </center>
+                    </div>
                     <!-- <%if(loggedIn){%>
                         
                         <div id = "starDiv">
@@ -236,6 +270,9 @@
 
 
     
+    <br>
+    <br>
+    <br>
     <br>
     <br>
     <br>

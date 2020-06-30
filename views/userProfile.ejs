@@ -66,10 +66,10 @@
             <div class = "vl">
 
             </div>
-            <div class = "col">
-                <h5 style = "text-align: center;">Activity</h5>
-                <hr style = "width:10%">
-                <h5 >Recent Searches   <a href = "/deleteSearchHistory" style = "margin-left: 1%; font-size: small;">Clear</a></h5>
+            <div class = "col-sm-4" style = " height:50%; overflow-y: auto;">
+                <h2 style = "color:#00a8f3; text-emphasis: bold; margin-left: 1%;">Activity</h2>
+                <hr style = "width:10%; margin-left:0%">
+                <h5 >Recently Viewed   <a href = "/deleteSearchHistory" style = "margin-left: 1%; font-size: small;">Clear</a></h5>
                 <% if (clubs != null && clubs.length != 0) {%> 
                 <% clubs.forEach(club => { %> 
                 
@@ -85,16 +85,40 @@
             <% } else {%>
                 
                <h4>None! Search The Archive!</h4> 
-            <% } %> 
-            <br>
-            <br>
-            <h5 hidden ="hidden">Recent Notifications <a style = "margin-left:1%; font-size:small">View all</a></h5>        
-                     
-                    
-                
-            </div>
+            <% } %>
+            
 
         </div>
+        <div class="col-sm-4" stlye = "height:max-content;overflow-y: auto;">
+            <h2 style = "color:#00a8f3; text-emphasis: bold; margin-left: 1%; ">Notifications <a href = "/deleteSearchHistory" style = "margin-left: 1%; font-size: small;">View all</a></h2>
+            <hr style = "width:10%; margin-left:0%">
+            <% for (var i = 0; i < user.inbox.length; i++) { %>
+                <% if(i==4){break;} %>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h4><%=user.inbox[i].subject%></h4>
+                        </div>
+                        <div class="col">
+                            <p style = "font-size: small;"><%=user.inbox[i].date%></p>
+                            <p style = "font-size: small;"><%=user.inbox[i].time%></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h6><%=user.inbox[i].body%></h6>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                
+                
+                
+
+            <% } %>
+        </div> 
+        <br>
+        <br>
     </div>
 
 
