@@ -3,7 +3,10 @@ const Club = require('../models/Club')
 
 
 module.exports = async (req, res) => {
-    const clubs = req.session.searches
+    if(!loggedIn){
+        res.redirect('/')
+    } else {
+        const clubs = req.session.searches
     const user = await User.findById(req.session.userId, (err, foundUser) => {
         if(err || !foundUser){
             console.log("Problem finding User")
@@ -30,4 +33,6 @@ module.exports = async (req, res) => {
             layout : 'layouts/topMenuBar'
         })
     }, 2000)
+    }
+    
 }

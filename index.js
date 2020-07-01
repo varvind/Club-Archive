@@ -84,6 +84,7 @@ const deleteSearchHistoryController = require('./controllers/deleteSearchHistory
 const rateClubController = require('./controllers/rateClub')
 const clubannouncementsviewController = require('./controllers/clubannouncements')
 const processClubAnnouncementController = require('./controllers/processAnnouncement')
+const notificationsPageViewController = require('./controllers/notificationsPage')
 
 const feedBackFormController = require('./controllers/feedbackForm')
 const requestRecordedController = require('./controllers/requestRecorded')
@@ -231,3 +232,4 @@ app.get('/requestrecorded', requestRecordedController)
 app.post('/submitfeedback', upload.array('images', 10), feedbacksubmissioncontroller)
 app.get('/clubannouncements/:id', clubannouncementsviewController)
 app.post('/sendnnoucement/:id', processClubAnnouncementController)
+app.get('/notificationsPage', notificationsPageViewController)

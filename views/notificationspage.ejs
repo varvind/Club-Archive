@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<hr>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+            <a href = "/userprofile" style = "text-decoration: none; color: #38a8f3;"><img src = "../public/img/back arrow.png" style = "width: 20px; object-fit: cover; "> Back to Profile</a>
+
+            <%var  i = 0 %> 
+            <% user.inbox.forEach(item => { %>
+                <div class="card" style = "margin-top:3%" id="accordionExample<%=i%>">
+                    <a class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="true" aria-controls="collapse<%=i%>"></button>
+                        <div class="card-header" id="heading<%=i%>" style = "width:100%;">
+                                <p style ="float:right; margin-right:0%; color:rgb(160, 153, 153);margin-top:-.5%"><%= item.date %><br><%= item.time%></p>
+                                <h4 style = "float:left">From: <%=item.club%></h4>
+                                <h5 style = ""><%= item.subject%></h5>
+                        </div>
+                    </a>   
+                    <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading<%=i%>" data-parent="#accordionExample<%=i%>" style = "margin-top:-1%">
+                        <div class="card-body">
+                            <h6 style = "margin-right:2%">Message: <%=item.body%></h6>
+                        </div>
+                    </div>
+                </div>
+                <% i++ %>
+            
+            <% }) %>
+        </div>
+    </div>
+        
+</div>

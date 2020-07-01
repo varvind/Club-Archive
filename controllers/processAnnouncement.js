@@ -32,11 +32,11 @@ module.exports = async (req, res) => {
             club.announcements.public.unshift(announcement)
         }
         club.save()
-
+        const announcement_user = {subject: req.body.subject, body : req.body.body, date : date, time : time, club : club.name, status: "unread"}    
         // sending push notification to users
         for(var i = 0; i < club.members.length; i++){
             let user = await User.findById(club.members[i].id)
-            user.inbox.unshift(announcement)
+            user.inbox.unshift(announcement_user)
             user.markModified('inbox')
             user.save()
         }

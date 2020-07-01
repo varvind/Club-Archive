@@ -1,8 +1,18 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <style>
+        .backsplash {
+            height: 300px;
+            background-image: linear-gradient(to top right, #00a8f3, rgb(10, 74, 117));
+            margin-top: 0%;
+        }
+    </style>
+</head>
 <body>
     <div class = "backsplash">
     </div>
-    <div style = "width: 100%; margin-top: -100px;" >
+    <div style = "width: 100%; margin-top: -120px;" >
         <% if(user.image.id != "0") {%> 
             <img src = "image/<%=user.image.filename %>"  class = "profileImage" style = "object-fit: cover;">
         <% }  else { %>
@@ -12,14 +22,14 @@
             
             
     
-    <div style = "margin-top:1%">
+    <div style = "margin-top:1%" class = "container">
         <div class = "row">
             <div class = "col">
                 <h3 style = "text-align: center;"> <%=user.firstName%> <%= user.lastName %> </h3>
             </div>
         </div>
     </div>
-    <div style = "margin-top:2%;">
+    <div style = "margin-top:2%; margin-left:18%;" class = "container">
         <div class = "row">
             <div class = "col-sm-3">
                 <h5 style = "text-align: center;">About <%= user.firstName %> 
@@ -66,56 +76,71 @@
             <div class = "vl">
 
             </div>
-            <div class = "col-sm-4" style = " height:50%; overflow-y: auto;">
-                <h2 style = "color:#00a8f3; text-emphasis: bold; margin-left: 1%;">Activity</h2>
-                <hr style = "width:10%; margin-left:0%">
-                <h5 >Recently Viewed   <a href = "/deleteSearchHistory" style = "margin-left: 1%; font-size: small;">Clear</a></h5>
-                <% if (clubs != null && clubs.length != 0) {%> 
-                <% clubs.forEach(club => { %> 
-                
-                <div>
-                    <hr>
-                    <a href = "/post/<%=club._id%>"><h4 style = "font-weight:bold"><%=club.name %></h4></a>
-                    <h6>Texas A&M University</h6>
-                    <p>
-                        <%=club.description %>
-                    </p>
+            <div class = "col" style = " height:50%; overflow-y: auto;">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#notifications" role="tab" aria-controls="profile" aria-selected="false">Notifications</a>
+                      </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="home-tab" data-toggle="tab" href="#activity" role="tab" aria-controls="home" aria-selected="true">Activity</a>
+                    </li>
+                    
+                </ul>
+                <div class = "tab-content" id = "myTabContent" style = "margin-top:3%" role = "tabpanel">
+                    <div class="tab-pane fade" id = "activity">
+                        <h2 style = "color:#00a8f3; text-emphasis: bold; margin-left: 1%;">Activity</h2>
+                        <hr style = "width:10%; margin-left:1%">
+                        <h5 >Recently Viewed   <a href = "/deleteSearchHistory" style = "margin-left: 1%; font-size: small;">Clear</a></h5>
+                        <% if (clubs != null && clubs.length != 0) {%> 
+                        <% clubs.forEach(club => { %> 
+                        
+                        <div>
+                            <hr>
+                            <a href = "/post/<%=club._id%>" style = "color:black"><h4 style = "font-weight:bold"><%=club.name %></h4></a>
+                            <h6>Texas A&M University</h6>
+                            <p>
+                                <%=club.description %>
+                            </p>
+                        </div>
+                        <% }); %> 
+                        <% } else {%>
+                            
+                        <h4>None! Search The Archive!</h4> 
+                        <% } %>
+                    </div>
+                    <div class = "tab-pane fade  show active" id = "notifications" role = "tabpanel">
+                        <h2 style = "color:#00a8f3; text-emphasis: bold; margin-left: 1%; ">Notifications <a href = "/notificationsPage" style = "margin-left: 1%; font-size: small;">View all</a></h2>
+                        <hr style = "width:10%; margin-left:0%; margin-left:1%">
+                        <% for (var i = 0; i < user.inbox.length; i++) { %>
+                            <% if(i==4){break;} %>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4><%=user.inbox[i].subject%></h4>
+                                    </div>
+                                    <div class="col">
+                                        <p style = "font-size: small;"><%=user.inbox[i].date%></p>
+                                        <p style = "font-size: small; margin-top:-4%"><%=user.inbox[i].time%></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h6><%=user.inbox[i].body%></h6>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        <% } %>
+                    </div>
                 </div>
-                <% }); %> 
-            <% } else {%>
+                    
                 
-               <h4>None! Search The Archive!</h4> 
-            <% } %>
+            </div>
             
 
         </div>
-        <div class="col-sm-4" stlye = "height:max-content;overflow-y: auto;">
-            <h2 style = "color:#00a8f3; text-emphasis: bold; margin-left: 1%; ">Notifications <a href = "/deleteSearchHistory" style = "margin-left: 1%; font-size: small;">View all</a></h2>
-            <hr style = "width:10%; margin-left:0%">
-            <% for (var i = 0; i < user.inbox.length; i++) { %>
-                <% if(i==4){break;} %>
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <h4><%=user.inbox[i].subject%></h4>
-                        </div>
-                        <div class="col">
-                            <p style = "font-size: small;"><%=user.inbox[i].date%></p>
-                            <p style = "font-size: small;"><%=user.inbox[i].time%></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h6><%=user.inbox[i].body%></h6>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-                
-                
-                
-
-            <% } %>
+        <div class="col-sm-4" style = "height:max-content;overflow-y: auto;">
+            
         </div> 
         <br>
         <br>
