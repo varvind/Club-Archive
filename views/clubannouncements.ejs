@@ -102,6 +102,25 @@
             .slider.round:before {
             border-radius: 50%;
             }
+            .card:hover {
+            transform: scale(1.05)
+            }
+            .card {
+                margin-top: 15px;
+                transition: transform .2s
+            }
+            .subjectUpdateArea {
+                display:none
+            }
+            .bodyUpdateArea {
+                display:none
+            }
+            .updateButton {
+                display:none
+            }
+            .hide {
+                display: none;
+            }
                         
                             
         </style>
@@ -157,6 +176,140 @@
                                 }
                             })
                         </script>
+                    </div>
+                </div>
+                <div class="row" style = "margin-top:3%">
+                    <div class="col-sm-6">
+                        <h4 style = "text-align: center; text-decoration: underline;">Private Announcments</h4>
+                        <div style = "overflow-y: auto; height:400px">
+                            <center>
+                                <% for(var i = 0; i < club.announcements.private.length; i++) { %>
+                                    <div class="card" style = "width:80%">
+                                        <form action = "/updateAnnouncement/<%=club._id%>/private/<%=i%>" method = "POST" >
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <h5 class="card-title" style = " margin-left:2%;text-decoration:underline; margin-top:1%; text-align: left;" id = "subject<%=i%>"><%= club.announcements.private[i].subject%> </h5>
+                                                    <input placeholder = "Subject" type = "text" class = "hide form-control" style = "margin-top:1%; margin-left:2%" value = "<%= club.announcements.private[i].subject%>" id = "updateSubject<%=i%>" name = "subject" ></input>
+                                                </div>
+                                                <div class = "col-sm-4">
+                                                    <p style = "float:right; color:lightgrey; font-size:x-small; margin-right:2%"><%= club.announcements.private[i].date%><br><%= club.announcements.private[i].time  %> </p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h6 id = "body<%=i%>" style = "margin-left:2%; text-align: left;"><%= club.announcements.private[i].body %></h6>
+                                                    <textarea class = "hide form-control" id = "updateBody<%=i%>" name = "body" style = "margin-left:-17%; width:80%" placeholder="body"><%= club.announcements.private[i].body %></textarea>
+                                                    <center>
+                                                        <button type="submit" class = "btn btn-outline-secondary hide" id = "updateButton<%=i%>" style = "margin-left: 2%;">Update</button>
+                                                        <button type="button" class = "btn btn-outline-secondary hide" id = "cancelButton<%=i%>" style = "margin-left: 2%;" onclick="resetFields(<%=i%>)">Cancel</button>
+                                                    </center>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p style="text-align: left; margin-left: 2%;" id = "options<%=i %>" ><a onclick="turnOnEditMode(<%=i%>)" style = "cursor:pointer">Edit</a>  <a href = "/removeAnnouncement/<%=club._id%>/private/<%=i%>">Remove</a> </p>
+                                                </div>
+                                            </div>
+                                            <script>
+                                                function turnOnEditMode(i) {
+                                                    var subjectTextArea = document.getElementById("updateSubject" + i)
+                                                    console.log(subjectTextArea.classList.remove('hide'))
+                                                    document.getElementById('subject' + i).classList.add('hide')
+                                                    document.getElementById('updateBody' + i).classList.remove('hide')
+                                                    document.getElementById('body' + i).classList.add('hide')
+                                                    document.getElementById('options' + i).classList.add('hide')
+                                                    document.getElementById('updateButton' + i).classList.remove('hide')
+                                                    document.getElementById('cancelButton' + i).classList.remove('hide')
+                                                }
+                                                function resetFields(i){
+                                                    var subjectTextArea = document.getElementById("updateSubject" + i)
+                                                    console.log(subjectTextArea.classList.add('hide'))
+                                                    document.getElementById('subject' + i).classList.remove('hide')
+                                                    document.getElementById('updateBody' + i).classList.add('hide')
+                                                    document.getElementById('body' + i).classList.remove('hide')
+                                                    document.getElementById('options' + i).classList.remove('hide')
+                                                    document.getElementById('updateButton' + i).classList.add('hide')
+                                                    document.getElementById('cancelButton' + i).classList.add('hide')
+                                                }
+                                            </script>
+                                        </form>
+                                        
+                                        
+                                        
+                                    </div>
+                                <% } %>
+                                <% if (club.announcements.private.length == 0) { %>
+                                    <h5>None right now!</h5>
+                                <% } %>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <h4 style = "text-align: center; text-decoration: underline;">Public Announcments</h4>
+                        <div style = "overflow-y: auto; height:400px">
+                            <center>
+                                <% for(var i = 0; i < club.announcements.public.length; i++) { %>
+                                    <div class="card" style = "width:80%">
+                                        <form action = "/updateAnnouncement/<%=club._id%>/public/<%=i%>" method = "POST" >
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <h5 class="card-title" style = " margin-left:2%;text-decoration:underline; margin-top:1%; text-align: left;" id = "subject_public<%=i%>"><%= club.announcements.public[i].subject%> </h5>
+                                                    <input placeholder = "Subject" type = "text" class = "hide form-control" style = "margin-top:1%; margin-left:2%" value = "<%= club.announcements.public[i].subject%>" id = "updateSubject_public<%=i%>" name = "subject" ></input>
+                                                </div>
+                                                <div class = "col-sm-4">
+                                                    <p style = "float:right; color:lightgrey; font-size:x-small; margin-right:2%"><%= club.announcements.public[i].date%><br><%= club.announcements.public[i].time  %> </p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h6 id = "body_public<%=i%>" style = "margin-left:2%; text-align: left;"><%= club.announcements.public[i].body %></h6>
+                                                    <textarea class = "hide form-control" id = "updateBody_public<%=i%>" name = "body" style = "margin-left:-17%; width:80%" placeholder="body"><%= club.announcements.public[i].body %></textarea>
+                                                    <center>
+                                                        <button type="submit" class = "btn btn-outline-secondary hide" id = "updateButton_public<%=i%>" style = "margin-left: 2%;">Update</button>
+                                                        <button type="button" class = "btn btn-outline-secondary hide" id = "cancelButton_public<%=i%>" style = "margin-left: 2%;" onclick="resetFieldsPublic(<%=i%>)">Cancel</button>
+                                                    </center>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p style="text-align: left; margin-left: 2%;" id = "options_public<%=i %>" ><a onclick="turnOnEditModePublic(<%=i%>)" style = "cursor:pointer">Edit</a>  <a href = "/removeAnnouncement/<%=club._id%>/public/<%=i%>">Remove</a> </p>
+                                                </div>
+                                            </div>
+                                            <script>
+                                                function turnOnEditModePublic(i) {
+                                                    var subjectTextArea = document.getElementById("updateSubject_public" + i)
+                                                    console.log(subjectTextArea.classList.remove('hide'))
+                                                    document.getElementById('subject_public' + i).classList.add('hide')
+                                                    document.getElementById('updateBody_public' + i).classList.remove('hide')
+                                                    document.getElementById('body_public' + i).classList.add('hide')
+                                                    document.getElementById('options_public' + i).classList.add('hide')
+                                                    document.getElementById('updateButton_public' + i).classList.remove('hide')
+                                                    document.getElementById('cancelButton_public' + i).classList.remove('hide')
+                                                }
+                                                function resetFieldsPublic(i){
+                                                    var subjectTextArea = document.getElementById("updateSubject_public" + i)
+                                                    console.log(subjectTextArea.classList.add('hide'))
+                                                    document.getElementById('subject_public' + i).classList.remove('hide')
+                                                    document.getElementById('updateBody_public' + i).classList.add('hide')
+                                                    document.getElementById('body_public' + i).classList.remove('hide')
+                                                    document.getElementById('options_public' + i).classList.remove('hide')
+                                                    document.getElementById('updateButton_public' + i).classList.add('hide')
+                                                    document.getElementById('cancelButton_public' + i).classList.add('hide')
+                                                }
+                                            </script>
+                                        </form>
+                                        
+                                        
+                                        
+                                    </div>
+                                <% } %>
+                                <% if (club.announcements.public.length == 0) { %>
+                                    <h5>None right now!</h5>
+                                <% } %>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -89,6 +89,8 @@ const notificationsPageViewController = require('./controllers/notificationsPage
 const feedBackFormController = require('./controllers/feedbackForm')
 const requestRecordedController = require('./controllers/requestRecorded')
 const feedbacksubmissioncontroller = require('./controllers/submitfeedback')
+const updateAnnouncementController = require('./controllers/updateAnnouncement')
+const removeAnnouncementController = require('./controllers/removeAnnouncement')
 //app features and functions that are being implemented
 app.use(bodyParser.json())
 app.use(expressLayouts)
@@ -233,3 +235,5 @@ app.post('/submitfeedback', upload.array('images', 10), feedbacksubmissioncontro
 app.get('/clubannouncements/:id', clubannouncementsviewController)
 app.post('/sendnnoucement/:id', processClubAnnouncementController)
 app.get('/notificationsPage', notificationsPageViewController)
+app.post('/updateAnnouncement/:id/:visibility/:announcement_index', updateAnnouncementController)
+app.get('/removeAnnouncement/:id/:visibility/:announcement_index', removeAnnouncementController )

@@ -14,7 +14,6 @@ module.exports = async (req, res) => {
         var today = new Date();
         var date = (today.getMonth() + 1) + '-' + today.getDate()+ "-" + today.getFullYear();
         var time = "";
-        today.getU
         if(today.getUTCHours() - 5 > 12) {
              time = (today.getUTCHours() - 12 - 5) + ":" + today.getMinutes() + " pm"
         } else if (today.getUTCHours() - 5 == 12) {
@@ -43,6 +42,6 @@ module.exports = async (req, res) => {
         }
     // })
     // annoucnementAction.then(() => {
-         res.redirect(`/post/${club._id}`);
+         res.redirect(`/clubannouncements/${club._id}`);
     // })
 }
