@@ -14,14 +14,15 @@ module.exports = async (req, res) => {
         var today = new Date();
         var date = (today.getMonth() + 1) + '-' + today.getDate()+ "-" + today.getFullYear();
         var time = "";
-        if(today.getHours() > 12) {
-             time = (today.getHours() - 12) + ":" + today.getMinutes() + " pm"
-        } else if (today.getHours() == 12) {
-             time = today.getHours() + ":" + today.getMinutes() + " pm"
-        } else if (today.getHours() == 0) {
-             time = (today.getHours() + 12) + ":" + today.getMinutes() + " am"
+        today.getU
+        if(today.getUTCHours() - 5 > 12) {
+             time = (today.getUTCHours() - 12 - 5) + ":" + today.getMinutes() + " pm"
+        } else if (today.getUTCHours() - 5 == 12) {
+             time = (today.getUTCHours() - 5 ) + ":" + today.getMinutes() + " pm"
+        } else if (today.getUTCHours() - 5 == 0) {
+             time = (today.getUTCHours() + 12 - 5) + ":" + today.getMinutes() + " am"
         } else {
-             time = today.getHours() + ":" + today.getMinutes() + " am"
+             time = (today.getUTCHours() - 5) + ":" + today.getMinutes() + " am"
         }
         
         const announcement = {subject: req.body.subject, body : req.body.body, date : date, time : time}
