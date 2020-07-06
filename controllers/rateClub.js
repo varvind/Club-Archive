@@ -62,7 +62,9 @@ module.exports = async (req, res) => {
                         found.save()
                     }
                 }
-                res.redirect(`/post/${found._id}`)
+                setTimeout(()=>{
+                    res.redirect(`/post/${found._id}`)
+                }, 1000)
             });
         }
     });

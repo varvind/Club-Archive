@@ -36,7 +36,6 @@ module.exports = async (req, res) => {
             }
         })
         if(currentMember){
-            console.log("Current Member")
             let appliedAdmin = false
             club.admin_applications.forEach(admin_app => { //already applied for admin position
                 if(String(admin_app.userId) == String(user._id)){
@@ -90,7 +89,6 @@ module.exports = async (req, res) => {
     let global_average = club.ratings.global.total / club.ratings.global.count
     let member_average = club.ratings.members.total / club.ratings.members.count
     let club_rating = {currentRat: user_rating, currentMes: user_message, global_average, member_average}
-    console.log(club_rating)
 
     res.render('clubProfile' ,{
         club,
