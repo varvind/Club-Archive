@@ -51,6 +51,14 @@
             border-left: 1px solid lightgrey;
             height: 500px;
         }
+        .box {
+            height: 20px;
+            width: 20px;
+            border-radius: 15%;
+            clear: both;
+            background-color: #f04847;
+            margin-top:1%
+        }
     </style>
 </head>
 <body>
@@ -79,7 +87,12 @@
                                 <img src = "../public/img/defaultProfileImage.png" style = "width: 50px; height: 50px; float:right; margin-right:45px; border-radius: 10%;margin-top:22px;object-fit: cover;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <% } %>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <% var notifications = 0 %> 
+                                <% user.inbox.forEach(item => { %>
+                                    <% if (item.status == 'unread') { notifications ++} %>
+                                <% }) %>
                                 <a class="dropdown-item" href="/userprofile">View Profile</a>
+                                <a class="dropdown-item" href="/notificationsPage">Notifications<%if(notifications > 0){%><div style = "float:right" class="box"><p style="text-align: center; margin-top: -2%; font-size:small; color:white"><%=notifications%></p></div><%}%></a>
                                 <a class="dropdown-item" href="/usersettings">User Settings</a>
                                 <a class="dropdown-item" href="/betatest">Report Issues/Feedback</a>
                                 <a class="dropdown-item" href="/clubsignup">Claim your organization!</a>
