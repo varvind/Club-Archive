@@ -12,7 +12,7 @@
             <% var read = 0%>
             <% user.inbox.forEach(item => { %>
             <% if(item.status == "read") { read = 1}%>
-                <div class="card" style = "margin-top:3%" id="accordionExample<%=i%>" onclick="markRead(event, <%=i%>, <%= read%>)">
+                <div class="card" style = "margin-top:3%" id="accordion<%=i%>" onclick="markRead(event, <%=i%>, <%= read%>)">
                     <a class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="true" aria-controls="collapse<%=i%>"></button>
                         <div class="card-header" id="heading<%=i%>" style = "width:100%;">
                                 <p style ="float:right; margin-right:0%; color:rgb(160, 153, 153);margin-top:-.5%"><%= item.date %><br><%= item.time%></p>
@@ -20,12 +20,12 @@
                                     <h4 style = "float:left; font-weight: 600; font-size: 25px" id = "fromLine<%=i%>">From: <%=item.club%></h4>
                                     <p style = "font-weight: 600; font-size: 25px" id = "subjectLine<%=i%>"><%= item.subject%><p>
                                 <% } else { %>
-                                    <h4 style = "float:left; font-weight: normal; font-size: 25px" id = "fromLine">From: <%=item.club%></h4>
-                                    <p style = "font-weight: normal; font-size: 25px" id = "subjectLine"><%= item.subject%><p>
+                                    <h4 style = "float:left; font-weight: normal; font-size: 25px" id = "fromLine<%=i%>">From: <%=item.club%></h4>
+                                    <p style = "font-weight: normal; font-size: 25px" id = "subjectLine<%=i%>"><%= item.subject%><p>
                                 <% } %>
                         </div>
                     </a>   
-                    <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading<%=i%>" data-parent="#accordionExample<%=i%>" style = "margin-top:-1%">
+                    <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading<%=i%>" data-parent="#accordion<%=i%>" style = "margin-top:-1%">
                         <div class="card-body">
                             <h6 style = "margin-right:2%">Message: <%=item.body%></h6>
                         </div>
@@ -37,8 +37,11 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
+            var isExecuted = []
             function markRead(event, i, status) {
-                if(status == 0) {
+                if(status == 0 && !isExecuted.includes(i)) {
+                    console.log("hello")
+                    isExecuted.push(i)
                     document.getElementById('fromLine' + i).style.fontWeight = "normal"
                     document.getElementById('subjectLine' + i).style.fontWeight = "normal"
                     const url = `/markRead/${i}`
@@ -54,6 +57,7 @@
                         },
                         error: function (request, status, error) {
                             console.log(error)
+                            Response.redirect('/notificationsPage')
                         }
                     })
                 }
