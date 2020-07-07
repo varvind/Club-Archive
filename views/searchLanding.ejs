@@ -48,11 +48,44 @@
         
         <!-- Search Cards-->
         <div class = "container">
-            <% if (query !== null && query !== '')  { %> 
-                <h4>"<%= query %>"  at Texas A&M University</h4>
-            <% } else {%>
-                <h4>Clubs at Texas A&M University</h4>
-            <% } %> 
+            <div class="d-flex flex-row align-items-center">
+                <div>
+                    <% if (query !== null && query !== '')  { %> 
+                        <h4>"<%= query %>"  at Texas A&M University</h4>
+                    <% } else {%>
+                        <h4>Clubs at Texas A&M University</h4>
+                    <% } %> 
+                </div>
+                <div class="p-3"></div>
+                <div class="p-2">
+                    <form action="/search" method="GET">
+                        <input type="text" name="search2" hidden value="<%=query%>">
+                        <input type="text" name="filter" hidden value="<%=filter%>">
+                        <select name="sort" class="custom-select" onchange="this.form.submit()">
+                            <option <%if(!sort){%>selected<%}%> disabled>Sort by:</option>
+                            <option <%if(sort=="overall"){%>selected<%}%> value="overall">Highest Overall Rating</option>
+                            <option <%if(sort=="member"){%>selected<%}%> value="member">Highest Member Rating</option>
+                            <!-- <option  value="popular">Popular</option> -->
+                            <option <%if(sort=="approved"){%>selected<%}%> value="approved">Club Archived Approved</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="p-3"></div>
+                <div class="p-2">
+                    <form action="/search" method="GET">
+                        <input type="text" name="search2" hidden value="<%=query%>">
+                        <input type="text" name="sort" hidden value="<%=sort%>">
+                        <select name="filter" class="custom-select" onchange="this.form.submit()">
+                            <option selected disabled>Filter by:</option>
+                            <option <%if(filter=="academic"){%>selected<%}%> value="academic">Academic</option>
+                            <option <%if(filter=="greek"){%>selected<%}%> value="greek">Greek Life</option>
+                            <option <%if(filter=="sports"){%>selected<%}%> value="sports">Sports</option>
+                            <option <%if(filter=="special"){%>selected<%}%> value="special">Special Interests</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+            
             
             <% clubs.forEach(club => { %>
             <a href = "/post/<%=club._id%>">
