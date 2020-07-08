@@ -4,12 +4,14 @@
 
 <div class="container">
     <div class="row">
-
         <div class="col">
             <a href = "/userprofile" style = "text-decoration: none; color: #38a8f3;"><img src = "../public/img/back arrow.png" style = "width: 20px; object-fit: cover; "> Back to Profile</a>
-
+            <br>
+            <br>
+            <a href = "/markallread" style = "color: #38a8f3;">Mark All as Read</a>
             <%var  i = 0 %> 
             <% var read = 0%>
+            
             <% user.inbox.forEach(item => { %>
             <% if(item.status == "read") { read = 1}%>
                 <div class="card" style = "margin-top:3%" id="accordion<%=i%>" onclick="markRead(event, <%=i%>, <%= read%>)">
@@ -27,7 +29,8 @@
                     </a>   
                     <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading<%=i%>" data-parent="#accordion<%=i%>" style = "margin-top:-1%">
                         <div class="card-body">
-                            <h6 style = "margin-right:2%">Message: <%=item.body%></h6>
+                            <a href = "/removeinboxitem/<%=i%>"><img src = "../public/img/trash.png" style = "width:20px"></a>
+                            <h6 style = "margin-right:2%; margin-top:2%">Message: <%=item.body%></h6>
                         </div>
                     </div>
                 </div>
@@ -40,7 +43,6 @@
             var isExecuted = []
             function markRead(event, i, status) {
                 if(status == 0 && !isExecuted.includes(i)) {
-                    console.log("hello")
                     isExecuted.push(i)
                     document.getElementById('fromLine' + i).style.fontWeight = "normal"
                     document.getElementById('subjectLine' + i).style.fontWeight = "normal"
