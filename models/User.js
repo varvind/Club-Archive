@@ -49,6 +49,11 @@ const UserSchema = new Schema ({
     inbox : {
         type: [Object],
         default:[]
+    },
+    minor : {
+        type:String,
+        required: false,
+        default: ""
     }
 })
 

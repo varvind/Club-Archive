@@ -10,6 +10,7 @@ module.exports = (req, res)=> {
     var userName = req.body.userName;
     var major = req.body.major;
     var grad = req.body.gradYear;
+    var minor = req.body.minor;
     if(!req.file){
         User.findById(userid, (error, user)=>{
             if(first != ""){ user.firstName = first; }
@@ -18,7 +19,7 @@ module.exports = (req, res)=> {
             if(userName != ""){ user.userName = userName }
             if(major!= ""){ user.major = major; }
             if(grad != ""){ user.gradYear = grad; }
-
+            if(minor !=""){user.minor = minor}
             user.save();
         });
         res.redirect('/usersettings')
@@ -31,6 +32,7 @@ module.exports = (req, res)=> {
             if(userName != ""){ user.userName = userName }
             if(major!= ""){ user.major = major; }
             if(grad != ""){ user.gradYear = grad; }
+            if(minor !=""){user.minor = minor}
             
             //delete previous image
             if(user.image.filename != "default") {
