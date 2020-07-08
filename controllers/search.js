@@ -1,17 +1,15 @@
 const Club = require('../models/Club')
 const User = require('../models/User')
 module.exports = async (req, res) => {
-    const query = req.query.search2 || ""
-    const sort = req.query.sort || ""
-    const filter = req.query.filter || ""
     const user = await User.findById(req.session.userId)
+    
+    const query = req.query.search2 || "" //search bar
+    const sort = req.query.sort || "" 
+    const filter = req.query.filter || ""
    
-    var clubs
-    if(query){
-        clubs = await Club.find({"$or" : [{tags : {$regex: query, $options:"$i"}},{description: {$regex: query, $options: "$i"}}, {name: {$regex: query, $options: "$i"}}]});
-    }else{
-        clubs = await Club.find({});
-    }
+    let params = {}
+    if(query){ params = {"$or" : [{tags : {$regex: query, $options:"$i"}},{description: {$regex: query, $options: "$i"}}, {name: {$regex: query, $options: "$i"}}]} }
+    let clubs = await Club.find(params)
 
     if(sort){
         if(sort == "overall"){
@@ -42,7 +40,7 @@ module.exports = async (req, res) => {
             clubs = clubs.filter((a) => {
                 return a.club_archive_approved
             })
-        }
+        }else{console.log(sort)}
     }
 
     if(filter){
@@ -62,7 +60,7 @@ module.exports = async (req, res) => {
             clubs = clubs.filter((a) => {
                 return a.category == "Interest Groups"
             })
-        }
+        }else{console.log(filter)}
         
     }
 
