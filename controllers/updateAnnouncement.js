@@ -55,7 +55,7 @@ module.exports = async(req, res) => {
             club.save()
         }
 
-        const user_updated_announcement = {subject: subject, body : body, date : current_date, time : current_time, club : club.name, status: "unread"}
+        const user_updated_announcement = {subject: subject, body : body, date : current_date, time : current_time, club : club.name, status: "unread", type : "announcement"}
         club.members.forEach(member => {
             update_user_inbox(member, user_updated_announcement, original_announcement)
         })
