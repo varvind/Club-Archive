@@ -87,6 +87,9 @@ const requestRecordedController = require('./controllers/requestRecorded')
 const feedbacksubmissioncontroller = require('./controllers/submitfeedback')
 const updateAnnouncementController = require('./controllers/updateAnnouncement')
 const removeAnnouncementController = require('./controllers/removeAnnouncement')
+const markReadController = require('./controllers/markNotificationRead')
+const removeFromInboxController = require('./controllers/removeInboxItem')
+const markAllReadController = require('./controllers/markallread')
 //app features and functions that are being implemented
 app.use(bodyParser.json())
 app.use(expressLayouts)
@@ -147,7 +150,7 @@ global.searches = [] //new
 app.use("*", (req, res, next) => {
     loggedIn = req.session.userId;
     clubloggedin = req.session.clubId;
-    searches = req.session.searches || []; //new
+    searches = req.session.searches || [];
     next()
 })
 console.log(clubloggedin)
@@ -228,4 +231,7 @@ app.get('/clubannouncements/:id', clubannouncementsviewController)
 app.post('/sendnnoucement/:id', processClubAnnouncementController)
 app.get('/notificationsPage', notificationsPageViewController)
 app.post('/updateAnnouncement/:id/:visibility/:announcement_index', updateAnnouncementController)
-app.get('/removeAnnouncement/:id/:visibility/:announcement_index', removeAnnouncementController ) 
+app.get('/removeAnnouncement/:id/:visibility/:announcement_index', removeAnnouncementController )
+app.post('/markRead/:notification_index', markReadController)
+app.get('/removeinboxitem/:inbox_index', removeFromInboxController)
+app.get('/markallread', markAllReadController )
