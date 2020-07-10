@@ -131,15 +131,17 @@ const clubSchema = new Scheme ({
         public : {
             type:[Object]
         }
+    },
+    counter: {
+        array: {
+            type: [Number],
+            default: [0]
+        },
+        shiftDate: {
+            type: Date,
+            default: new Date()
+        }
     }
-
-})
-clubSchema.pre('save', function(next) {
-    const club = this
-    bcrypt.hash(club.password, 10, (error, hash) =>{
-        club.password = hash
-        next()
-    })
 })
 
 const Club = mongoose.model('Club', clubSchema)

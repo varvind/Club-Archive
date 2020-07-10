@@ -2,7 +2,7 @@ const User = require('../models/User')
 const ResetPassword = require('../models/ResetPassword')
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-
+require('dotenv').config()
 const path = require('path')
 module.exports = (req, res) => {
     const email = req.body.email
@@ -23,7 +23,7 @@ module.exports = (req, res) => {
                 userId: user._id,
                 resetPasswordToken: token
             })
-            console.log(resetToken)
+            //console.log(resetToken)
         
             ResetPassword.create(resetToken, (err) =>{ //create new reset password
                 if(err){
@@ -36,8 +36,8 @@ module.exports = (req, res) => {
                             port: 465,
                             secure: true, // true for 465, false for other ports
                             auth: {
-                                user: "quentinromanoski@gmail.com", // generated ethereal user
-                                pass: "peter1712"  // generated ethereal password
+                                user: process.env.EMAIL, // generated ethereal user
+                                pass: process.env.PASSWORD  // generated ethereal password
                             }
                         })
                         transporter.verify(function(error, success) {
