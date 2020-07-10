@@ -113,6 +113,17 @@ module.exports = async (req, res) => {
         if(i<31){totalVisits += count}
         i += 1
     });
+    //console.log(`Total Visits: ${totalVisits}`)
+
+    let rating_avg = null
+    if(club.ratings.global.count != 0){
+        rating_avg = club.ratings.global.total / club.ratings.global.count 
+        if(club.ratings.members.count != 0){
+            rating_avg += (club.ratings.members.total / club.ratings.members.count)
+            rating_avg = rating_avg / 2
+        }
+    }
+    //console.log(`Average rating: ${rating_avg}`)
 
     let popList = await PopClub.findOne({}, async (err, found) => {
         if(err || !found){console.log(err || "Not Found")}
@@ -124,7 +135,7 @@ module.exports = async (req, res) => {
 
                     popular.club = club
                     popular.counter = totalVisits
-                    popular.lastUpdated = new Date()
+                    popular.rating = rating_avg
                     found.markModified('topClubs')
                 }
             });
@@ -133,13 +144,34 @@ module.exports = async (req, res) => {
             new_pop = {
                 club: club,
                 counter: totalVisits,
-                lastUpdated: new Date()
+                rating: rating_avg,
             }
             if(!alreadyIncluded){
-                if(found.topClubs.length < 10){
+                if(found.topClubs.length < 15){
                     found.topClubs.push(new_pop)
-                }else if(found.topClubs[9].counter < totalVisits){
-                    found.topClubs[9] = new_pop
+                }else{
+                    //scaling the counters to values 0-1
+                    let bigger_count = (found.topClubs[14].counter > new_pop.counter) ? found.topClubs[14].counter : new_pop.counter
+
+                    //last member of popular list is "that"
+                    let that_score = found.topClubs[14].counter/bigger_count
+                    if(found.topClubs[14].rating){
+                        that_score = (that_score*.7) + ((found.topClubs[14].rating/5)*.3)
+                    }else{//if no rating present assume rating of 3
+                        that_score = (that_score*.7) + ((3/5)*.3)
+                    }
+
+                    //new_pop corresponds to "this" club
+                    let this_score = new_pop.counter/bigger_count
+                    if(new_pop.rating){
+                        this_score = (this_score*.7) + ((new_pop.rating/5)*.3)
+                    }else{ //if no rating present assume rating of 3
+                        this_score = (that_score*.7) + ((3/5)*.3)
+                    }
+
+                    if(this_score > that_score){
+                        found.topClubs[14] = new_pop
+                    }
                 }
             }
             found.save()

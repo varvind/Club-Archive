@@ -28,7 +28,6 @@ module.exports = async (req, res) => {
                             user_rating.rating = req.body.rating
                             user_rating.message = req.body.message
                             found.markModified('ratings')
-                            found.save()
 
                             if(member){
                                 found.ratings.members.users.forEach(mem => {
@@ -39,11 +38,10 @@ module.exports = async (req, res) => {
                                         mem.rating = req.body.rating
                                         mem.message = req.body.message
                                         found.markModified('ratings')
-                                        found.save()
                                     }
                                 });
                             }
-
+                            found.save()
                             newUser = false
                         }
                     });

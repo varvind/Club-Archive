@@ -2,10 +2,14 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const popularSchema = new Schema ({
+    lastUpdated: {
+        type: Date,
+        default: new Date()
+    },
     topClubs: [{
         club: Object,
         counter: Number,
-        lastUpdated: Date
+        rating: Number
     }]
 })
 
