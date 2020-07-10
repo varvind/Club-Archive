@@ -273,55 +273,46 @@
         </div>
         
         <!--Hot Clubs-->
-        <div class = "featured container" >
-          <h3 style = "text-align: center;">Texas A&M's Club Archive</h4>
+        <div class="featured container">
+            <h3 style = "text-align: center;">Texas A&M's Club Archive</h4>
+            <h4 style = "margin-top: 2%">Our Top Picks</h4>
+            <hr style = "width: 99%; margin-left:0%">
 
-          <h4 style = "margin-top: 2%">Our Top Picks</h4>
-          <hr style = "width: 99%; margin-left:0%">
-          <div class = "row" style = "margin-top:1%">
-            <div class = "col" >
-                <a href = "/post/5ee6bf1665c023002484d3c6">
-                    <div class="card" >
-                        <img class="card-img-top" src="/public/img/logo2.jpg" alt="Card image cap" style = "height:200px"  >
-                        <div class="card-body">
-                        <h5 class="card-title">Club Archive</h5>
-                        <p class="card-text descriptionClub" style = "font-size: small;">This is clubarchive, the best way to link people to clubs. Everything in the world this day is online, and why shouldn't club searching be either? Find clubs today!</p>
-                        </div>
+            <div class="row" style = "margin-top:1%">
+                <% for(let i=0; i<4; i++){ %>
+                    <% if(i==popular.length){break} %> 
+                    <div class = "col" >
+                        <a href = <%="/post/"+popular[i].club._id %>>
+                            <div class="card" >
+                                <img class="card-img-top" src="/image/<%=popular[i].club.images[0]%>"  alt="Card image cap" style = "height:200px"  >
+                                <div class="card-body">
+                                <h5 class="card-title"><%=popular[i].club.name%></h5>
+                                <p class="card-text descriptionClub" style = "font-size: small;"><%=popular[i].club.description%> </p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </a>
+                <% } %>  
             </div>
-            <div class = "col" >
-                <a href = "/post/5eebef91529997002472b03e">
-                    <div class="card" >
-                        <img class="card-img-top" src="/public/img/awics.png" alt="Card image cap" style = "height:200px;transform: scale(1,.8);" >
-                        <div class="card-body">
-                          <h5 class="card-title">Aggie Women in Computer Science</h5>
-                          <p class="card-text" style = "font-size: small;">AWICS is a Texas A&M University organization that is built on a community of university students who want to explore their interest in the field of technology and empowering women.</p>
-                        </div>
-                      </div>
-                </a>
-                
-            </div>  
-            <div class = "col" >
-                <div class="card" >
-                    <img class="card-img-top" src="/public/img/1591673444233-switzerland-3840x2160-4k-hd-wallpaper-river-mountains-rocks-5706.jpg" alt="Card image cap" style = "height:200px">
-                    <div class="card-body">
-                      <h5 class="card-title">Prospective Club</h5>
-                      <p class="card-text">Example of a short summary of a club</p>
+
+            <div class="row" style = "margin-top:1%">
+                <% for(let i=4; i<popular.length; i++){ %>
+                    <div class = "col" >
+                        <a href = <%="/post/"+popular[i].club._id %>>
+                            <div class="card" >
+                                <img class="card-img-top" src="/image/<%=popular[i].club.images[0]%>" alt="Card image cap" style = "height:200px"  >
+                                <div class="card-body">
+                                <h5 class="card-title"><%=popular[i].club.name%></h5>
+                                <p class="card-text descriptionClub" style = "font-size: small;"><%=popular[i].club.description%> </p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                  </div>
-            </div> 
-            <div class = "col" >
-                <div class="card" >
-                    <img class="card-img-top" src="/public/img/1591673444233-switzerland-3840x2160-4k-hd-wallpaper-river-mountains-rocks-5706.jpg" alt="Card image cap" style = "height:200px; " >
-                    <div class="card-body">
-                      <h5 class="card-title">Prospective Club</h5>
-                      <p class="card-text">Example of a short summary of a club</p>
-                    </div>
-                  </div>
-            </div>         
-          </div>
+                <% } %>  
+            </div>
         </div>
+
+
         <br>
         <footer class="page-footer font-small unique-color-dark pt-4" style ="background-color: darkgrey;">
 
