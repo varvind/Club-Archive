@@ -20,9 +20,7 @@ module.exports = async (req, res) => {
     await Club.deleteOne({"_id" : club._id})
 
     let topClubsObject = await popularClubs.findOne({})
-    console.log(topClubsObject)
     let topClubs = topClubsObject.topClubs
-    console.log(topClubs)
     for(var i = 0; i < topClubs.length; i++) {
         if(String(topClubs[i].club._id) == String(club._id)) {
             topClubs.splice(i, 1)

@@ -177,7 +177,7 @@ module.exports = async (req, res) => {
             found.save()
         }
     })
-
+    console.log(club_rating)
     res.render('clubProfile' ,{
         club,
         user,
