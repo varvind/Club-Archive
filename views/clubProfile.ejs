@@ -265,20 +265,18 @@
     <div>
         <div class = "container pl-1 pr-1">
             <div class ="row" style = "margin-top :2%">
-                <div class = "col-sm-5">
+                <div class = "col-sm-4">
                     <h6>Org President: <%= club.president_organizer %> </h7> <br>
                     <h6>Member Count: <%= club.memberCount %> </h7>
                     <br>
                     <h6>Recruiting Season: <%=club.registration_season%></h7>
-                    <div class = "contactBox" style ="margin-top:5%">
-                        <h5>Get Involved!</h5>
-                        <p>Phone Number : <%= club.phonenumber %> </p>
-                        <p>Email: <%= club.email %> </p>
-                    </div> 
+                </div>
+                <div class = "col-sm-3">
+                    
                 </div>
                 <div class = "col">
-                    <h6 style = "text-decoration: underline;">Meeting Times</h6>
-                    <p>
+                    <!-- <h6 style = "text-decoration: underline;">Meeting Times</h6> -->
+                    <!-- <p>
                         <% let times = club.meeting_times %> 
                         <% for(var i =0; i < club.meeting_times.length;  i++ ){%>
                             <% let end = times.search("\r") %> 
@@ -291,7 +289,13 @@
                             <% times = times.substring(end+1) %> 
                             <% i = end+1 %> 
                         <%}%>
-                    </p>
+                    </p> -->
+                        <div class = "contactBox" >
+                            <h5 style = "text-align: center;">Get Involved!</h5>
+                            <p style = "text-align: center;">Phone Number : <%= club.phonenumber %> </p>
+                            <p style = "text-align: center;">Email: <%= club.email %> </p>
+                        </div> 
+
                 </div>
             </div>
         </div>
