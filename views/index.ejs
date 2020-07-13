@@ -264,7 +264,7 @@
                     <button type="submit" class="card">
                         <img class="card-img-top" src="/public/img/specialInterest.JPG" alt="Card image cap">
                         <div class="card-body">
-                          <h5 class="card-title" style = "text-align: center;">Special Interest</h5>
+                          <h5 class="card-title" style = "text-align: center; object-fit: cover;">Special Interest</h5>
                         </div>
                     </button>
                 </form>  
@@ -280,35 +280,42 @@
                 <hr style = "width: 99%; margin-left:0%">
 
                 <div class="row" style = "margin-top:1%">
-                    <% for(let i=0; i<4; i++){ %>
+                    <% for(let i=0; i<3; i++){ %>
                         <% if(i==popular.length){break} %> 
                         <div class = "col" >
-                            <a href = <%="/post/"+popular[i].club._id %>>
-                                <div class="card" >
-                                    <img class="card-img-top" src="/image/<%=popular[i].club.images[0]%>"  alt="Card image cap" style = "height:200px"  >
-                                    <div class="card-body">
-                                    <h5 class="card-title"><%=popular[i].club.name%></h5>
-                                    <p class="card-text descriptionClub" style = "font-size: small;"><%=popular[i].club.description%> </p>
+                            <center>
+                                <a href = <%="/post/"+popular[i].club._id %>>
+                                    <div class="card" style = "width:94%;" >
+                                        <img class="card-img-top" src="/image/<%=popular[i].club.images[0]%>"  alt="Card image cap" style = "height:250px;object-fit: cover;"  >
+                                        <div class="card-body">
+                                            <h5 class="card-title" style = "text-align: left;"><%=popular[i].club.name%></h5>
+                                            <p class="card-text descriptionClub" style = "font-size: small; text-align: left;"><%=popular[i].club.category%> </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </center>
                         </div>
                     <% } %>  
                 </div>
 
                 <div class="row" style = "margin-top:1%">
-                    <% for(let i=4; i<8; i++){ %>
+                    <% for(let i=3; i<6; i++){ %>
                         <% if(i>=popular.length){break} %> 
+                        
                         <div class = "col" >
-                            <a href = <%="/post/"+popular[i].club._id %>>
-                                <div class="card" >
-                                    <img class="card-img-top" src="/image/<%=popular[i].club.images[0]%>" alt="Card image cap" style = "height:200px"  >
-                                    <div class="card-body">
-                                    <h5 class="card-title"><%=popular[i].club.name%></h5>
-                                    <p class="card-text descriptionClub" style = "font-size: small;"><%=popular[i].club.description%> </p>
+                            <center>
+                                <a href = <%="/post/"+popular[i].club._id %>>
+                                    <div class="card" style = "width:200px; height:400px">
+                                        
+                                            <img class="card-img-top" src="/image/<%=popular[i].club.images[0]%>" alt="Card image cap" style = "height:200px"  >
+                                            <div class="card-body">
+                                                <h5 class="card-title"><%=popular[i].club.name%></h5>
+                                                <p class="card-text descriptionClub" style = "font-size: small;"><%=popular[i].club.category%> </p>
+                                            </div>
+                                        
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </center>
                         </div>
                     <% } %>  
                 </div>

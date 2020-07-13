@@ -145,92 +145,94 @@
                             <% } %>
                         </center>
                     </div>
-                    <%if(loggedIn){%>
-                        
-                        <div id = "starDiv">
-                            <h5 style = "text-decoration: underline;">Leave a rating for this club!</h6>
-                            <span id = "star1" class="fa fa-star <%if(club_rating.currentRat>=1){%> checked <%}%>"></span>
-                            <span id = "star2" class="fa fa-star <%if(club_rating.currentRat>=2){%> checked <%}%>"></span>
-                            <span id = "star3" class="fa fa-star <%if(club_rating.currentRat>=3){%> checked <%}%>"></span>
-                            <span id = "star4" class="fa fa-star <%if(club_rating.currentRat>=4){%> checked <%}%>"></span>
-                            <span id = "star5" class="fa fa-star <%if(club_rating.currentRat>=5){%> checked <%}%>"></span>
-                        </div>
-                        
-                        <div >
-                            <form action="/<%=club._id%>/rateclub" method="POST">
-                                <input type ="number" hidden = "hidden" name ="rating" id = "rating">
-                                <textarea name="message" placeholder="Leave comments about this club! (Optional)" class = "form-control" style = "margin-top:3%;width:93%"><%=club_rating.currentMes%> </textarea>
-                
-                                <div >
-                                    <center><button  type="submit" name="submit" class="btn btn-outline-secondary" style = "margin-top:2%; margin-right:5%">Rate this Club</button></center>
-                                </div>
-                            </form>
-                        </div>
-                        <script type="text/javascript">
-                            let star1 = document.getElementById('star1')
-                            let star2 = document.getElementById('star2')
-                            let star3 = document.getElementById('star3')
-                            let star4 = document.getElementById('star4')
-                            let star5 = document.getElementById('star5')
-                            let rating = document.getElementById('rating')
+                    <div hidden = >
+                        <%if(loggedIn){%>
                             
-                            star1.addEventListener("click", () => {
-                                if(star1.classList.contains("checked")){
-                                    uncheckImage(star1)
-                                    rating.value = 0
-                                }
-                                else {
-                                    checkImage(star1)
-                                    rating.value = 1
-                                }
-                                uncheckImage(star2)
-                                uncheckImage(star3)
-                                uncheckImage(star4)
-                                uncheckImage(star5)
-
-                            })
-                            star2.addEventListener("click", () => {
-                                rating.value = 2
-                                checkImage(star1)
-                                checkImage(star2)
-                                uncheckImage(star3)
-                                uncheckImage(star4)
-                                uncheckImage(star5)
-                            })
-                            star3.addEventListener("click", () => {
-                                rating.value = 3
-                                checkImage(star1)
-                                checkImage(star2)
-                                checkImage(star3)
-                                uncheckImage(star4)
-                                uncheckImage(star5)
-                            })
-                            star4.addEventListener("click", () => {
-                                rating.value = 4
-                                checkImage(star1)
-                                checkImage(star2)
-                                checkImage(star3)
-                                checkImage(star4)
-                                uncheckImage(star5)
-                            })
-                            star5.addEventListener("click", () => {
-                                rating.value = 5
-                                checkImage(star1)
-                                checkImage(star2)
-                                checkImage(star3)
-                                checkImage(star4)
-                                checkImage(star5)
-                            })
+                            <div id = "starDiv">
+                                <h5 style = "text-decoration: underline;">Leave a rating for this club!</h6>
+                                <span id = "star1" class="fa fa-star <%if(club_rating.currentRat>=1){%> checked <%}%>"></span>
+                                <span id = "star2" class="fa fa-star <%if(club_rating.currentRat>=2){%> checked <%}%>"></span>
+                                <span id = "star3" class="fa fa-star <%if(club_rating.currentRat>=3){%> checked <%}%>"></span>
+                                <span id = "star4" class="fa fa-star <%if(club_rating.currentRat>=4){%> checked <%}%>"></span>
+                                <span id = "star5" class="fa fa-star <%if(club_rating.currentRat>=5){%> checked <%}%>"></span>
+                            </div>
                             
-                            
-                            function checkImage(x) {
+                            <div >
+                                <form action="/<%=club._id%>/rateclub" method="POST">
+                                    <input type ="number" hidden = "hidden" name ="rating" id = "rating">
+                                    <textarea name="message" placeholder="Leave comments about this club! (Optional)" class = "form-control" style = "margin-top:3%;width:93%"><%=club_rating.currentMes%> </textarea>
+                    
+                                    <div >
+                                        <center><button  type="submit" name="submit" class="btn btn-outline-secondary" style = "margin-top:2%; margin-right:5%">Rate this Club</button></center>
+                                    </div>
+                                </form>
+                            </div>
+                            <script type="text/javascript">
+                                let star1 = document.getElementById('star1')
+                                let star2 = document.getElementById('star2')
+                                let star3 = document.getElementById('star3')
+                                let star4 = document.getElementById('star4')
+                                let star5 = document.getElementById('star5')
+                                let rating = document.getElementById('rating')
                                 
-                                x.classList.add("checked")
-                            }
-                            function uncheckImage(x) {
-                                x.classList.remove("checked")
-                            }
-                        </script>
+                                star1.addEventListener("click", () => {
+                                    if(star1.classList.contains("checked")){
+                                        uncheckImage(star1)
+                                        rating.value = 0
+                                    }
+                                    else {
+                                        checkImage(star1)
+                                        rating.value = 1
+                                    }
+                                    uncheckImage(star2)
+                                    uncheckImage(star3)
+                                    uncheckImage(star4)
+                                    uncheckImage(star5)
+
+                                })
+                                star2.addEventListener("click", () => {
+                                    rating.value = 2
+                                    checkImage(star1)
+                                    checkImage(star2)
+                                    uncheckImage(star3)
+                                    uncheckImage(star4)
+                                    uncheckImage(star5)
+                                })
+                                star3.addEventListener("click", () => {
+                                    rating.value = 3
+                                    checkImage(star1)
+                                    checkImage(star2)
+                                    checkImage(star3)
+                                    uncheckImage(star4)
+                                    uncheckImage(star5)
+                                })
+                                star4.addEventListener("click", () => {
+                                    rating.value = 4
+                                    checkImage(star1)
+                                    checkImage(star2)
+                                    checkImage(star3)
+                                    checkImage(star4)
+                                    uncheckImage(star5)
+                                })
+                                star5.addEventListener("click", () => {
+                                    rating.value = 5
+                                    checkImage(star1)
+                                    checkImage(star2)
+                                    checkImage(star3)
+                                    checkImage(star4)
+                                    checkImage(star5)
+                                })
+                                
+                                
+                                function checkImage(x) {
+                                    
+                                    x.classList.add("checked")
+                                }
+                                function uncheckImage(x) {
+                                    x.classList.remove("checked")
+                                }
+                            </script>
+                        </div>
                     <%}%>
                 </div>
                 
@@ -239,7 +241,7 @@
     </div>
     <div>
         <div class = "container pl-1 pr-1">
-            <div class ="row">
+            <div class ="row" style = "margin-top :2%">
                 <div class = "col-sm-5">
                     <h6>Org President: <%= club.president_organizer %> </h7> <br>
                     <h6>Member Count: <%= club.memberCount %> </h7>

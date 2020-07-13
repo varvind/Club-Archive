@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const Club = require('../models/Club')
-
+const popularClubs = require('../models/PopularClubs');
+const forgotPassword = require('./forgotPassword');
 module.exports = async (req, res) => {
     const club = await Club.findById(req.params.id);
     const users = []
@@ -17,6 +18,20 @@ module.exports = async (req, res) => {
     }
 
     await Club.deleteOne({"_id" : club._id})
+
+    let topClubsObject = await popularClubs.findOne({})
+    console.log(topClubsObject)
+    let topClubs = topClubsObject.topClubs
+    console.log(topClubs)
+    for(var i = 0; i < topClubs.length; i++) {
+        if(String(topClubs[i].club._id) == String(club._id)) {
+            topClubs.splice(i, 1)
+            topClubsObject.markModified('topClubs')
+            topClubsObject.save();
+            break;
+        }
+    }
+
     for(var i = 0; i < searches.length; i++){
         if(String(searches[i]._id) == String(club._id)){
             searches.splice(i,1)
