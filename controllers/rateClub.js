@@ -2,7 +2,7 @@ const User = require('../models/User')
 const Club = require('../models/Club')
 
 module.exports = async (req, res) => {
-    const user = await User.findById(req.session.userId, async function(err){
+    const user = await User.findById(req.session.userId, async function(err, found_user){
         if(err){
             console.log("User not logged in")
             res.redirect('/')
@@ -18,11 +18,12 @@ module.exports = async (req, res) => {
                     });
                     
                     let newUser = true
-                    let new_rating = {userId: req.session.userId, rating: req.body.rating, message: req.body.message || "", name: ""}
+                    let new_rating = {userId: req.session.userId, rating: req.body.rating, message: req.body.message.trim() || "", name: "", anonymous: false}
                     if(!req.body.anonymous){
-                        new_rating.name = user.firstname
+                        new_rating.name = found_user.firstName
                     }else{
                         new_rating.name = "Anonymous"
+                        new_rating.anonymous = true
                     }
                     
                     found.ratings.global.users.forEach(user_rating => {
@@ -31,11 +32,13 @@ module.exports = async (req, res) => {
                             found.ratings.global.total += global_difference
 
                             user_rating.rating = req.body.rating
-                            user_rating.message = req.body.message
+                            user_rating.message = req.body.message.trim()
                             if(!req.body.anonymous){
-                                user_rating.name = user.firstname
+                                user_rating.name = found_user.firstName
+                                user_rating.anonymous = false
                             }else{
                                 user_rating.name = "Anonymous"
+                                user_rating.anonymous = true
                             }
                             found.markModified('ratings')
 
@@ -46,11 +49,13 @@ module.exports = async (req, res) => {
                                         found.ratings.members.total += member_difference
 
                                         mem.rating = req.body.rating
-                                        mem.message = req.body.message
+                                        mem.message = req.body.message.trim()
                                         if(!req.body.anonymous){
-                                            mem.name = user.firstname
+                                            mem.name = found_user.firstName
+                                            mem.anonymous = false
                                         }else{
                                             mem.name = "Anonymous"
+                                            mem.anonymous = true
                                         }
                                         found.markModified('ratings')
                                     }
