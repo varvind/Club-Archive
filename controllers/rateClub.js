@@ -18,7 +18,12 @@ module.exports = async (req, res) => {
                     });
                     
                     let newUser = true
-                    let new_rating = {userId: req.session.userId, rating: req.body.rating, message: req.body.message || ""}
+                    let new_rating = {userId: req.session.userId, rating: req.body.rating, message: req.body.message || "", name: ""}
+                    if(!req.body.anonymous){
+                        new_rating.name = user.firstname
+                    }else{
+                        new_rating.name = "Anonymous"
+                    }
                     
                     found.ratings.global.users.forEach(user_rating => {
                         if(user_rating.userId == req.session.userId){
@@ -27,6 +32,11 @@ module.exports = async (req, res) => {
 
                             user_rating.rating = req.body.rating
                             user_rating.message = req.body.message
+                            if(!req.body.anonymous){
+                                user_rating.name = user.firstname
+                            }else{
+                                user_rating.name = "Anonymous"
+                            }
                             found.markModified('ratings')
 
                             if(member){
@@ -37,6 +47,11 @@ module.exports = async (req, res) => {
 
                                         mem.rating = req.body.rating
                                         mem.message = req.body.message
+                                        if(!req.body.anonymous){
+                                            mem.name = user.firstname
+                                        }else{
+                                            mem.name = "Anonymous"
+                                        }
                                         found.markModified('ratings')
                                     }
                                 });
