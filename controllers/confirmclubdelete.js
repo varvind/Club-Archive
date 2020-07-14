@@ -6,17 +6,25 @@ module.exports = async (req, res) => {
     const club = await Club.findById(req.params.id);
     const users = []
     
-    for(var i = 0; i < club.adminstrators.length; i++){
-        var user = await User.findById(club.adminstrators[i].id);
+    for(var i = 0; i < club.members.length; i++){
+        var user = await User.findById(club.members[i].id);
         for(var j = 0; j < user.clubs.length; j++){
             if(user.clubs[j] == String(club._id)){
                 user.clubs.splice(j,1)
-                user.save()
             }
-        
         }
+        user.save()
     }
-
+    for (var i = 0; i < club.images.length; i++) {
+        gfs.remove({filename: String(club.images[i]), root: 'uploads'}, (err) => {
+            if(err){
+                console.log("Issue with deleting club image")
+                res.redirect('/')
+            }else{
+                console.log("Successfully deleted club image")
+            }
+        })
+    }
     await Club.deleteOne({"_id" : club._id})
 
     let topClubsObject = await popularClubs.findOne({})
@@ -35,6 +43,7 @@ module.exports = async (req, res) => {
             searches.splice(i,1)
         }
     }
+
     setTimeout(() => {
         res.redirect('/')
     }, 4000)
