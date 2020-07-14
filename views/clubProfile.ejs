@@ -82,8 +82,33 @@
                         <% }else if(club.onlineApplication.allow && ableToApplyMember){ %> 
                             <button type="button" class="btn btn-info" onclick = "window.location.href = '/<%=club._id%>/applyonline'">Apply to become a member of  <%= club.name %> </button>
                         <% } %> 
-                    <% } %>  
+                    <% } %>
+                    <div id = "starDiv">
+                        <%if(isNaN(club_rating.global_average)) { %>
+                            <p style = "font-weight: bold;">Unrated - Overall</p>
+                        <% } else { %>
+                            <span class="fa fa-star <%if(club_rating.global_average>=.5){%> checked <%}%>"></span>
+                            <span class="fa fa-star <%if(club_rating.global_average>=1.5){%> checked <%}%>"></span>
+                            <span class="fa fa-star <%if(club_rating.global_average>=2.5){%> checked <%}%>"></span>
+                            <span  class="fa fa-star <%if(club_rating.global_average>=3.5){%> checked <%}%>"></span>
+                            <span  class="fa fa-star <%if(club_rating.global_average>=4.5){%> checked <%}%>"></span>
+                            <label for="starDiv" style = "font-weight: 700; margin-left: 2%">Overall</label>
+                        <% } %>
+                    </div> 
+                    <div id = "starDiv">
+                        <%if(isNaN(club_rating.member_average)) { %>
+                            <p style = "font-weight: bold;">Unrated - Member Satisfaction </p>
+                        <% } else { %>
+                            <span  class="fa fa-star <%if(club_rating.member_average>=.5){%> checked <%}%>"></span>
+                            <span  class="fa fa-star <%if(club_rating.member_average>=1.5){%> checked <%}%>"></span>
+                            <span class="fa fa-star <%if(club_rating.member_average>=2.5){%> checked <%}%>"></span>
+                            <span class="fa fa-star <%if(club_rating.member_average>=3.5){%> checked <%}%>"></span>
+                            <span  class="fa fa-star <%if(club_rating.member_average>=4.5){%> checked <%}%>"></span>
+                            <label for="starDiv" style = "font-weight: 700; margin-left: 2%">Member Satisfaction</label>
+                        <% } %>
+                    </div> 
                     <h5 style = "margin-top:2%">Texas A&M University</h5>
+                    
                     <p> <h7>About Us : </h7> <%= club.description %> </p>
     
                     
@@ -93,13 +118,100 @@
                 </div>
                 
                 <div class = "col">
+                    <div >
+                        <%if(loggedIn){%>
+                            
+                            <div id = "starDiv">
+                                <h5 style = "text-decoration: underline;">Leave a rating for this club!</h6>
+                                <span id = "star1" class="fa fa-star <%if(club_rating.currentRat>=1){%> checked <%}%>"></span>
+                                <span id = "star2" class="fa fa-star <%if(club_rating.currentRat>=2){%> checked <%}%>"></span>
+                                <span id = "star3" class="fa fa-star <%if(club_rating.currentRat>=3){%> checked <%}%>"></span>
+                                <span id = "star4" class="fa fa-star <%if(club_rating.currentRat>=4){%> checked <%}%>"></span>
+                                <span id = "star5" class="fa fa-star <%if(club_rating.currentRat>=5){%> checked <%}%>"></span>
+                            </div>
+                            
+                            <div >
+                                <form action="/<%=club._id%>/rateclub" method="POST">
+                                    <input type ="number" hidden = "hidden" name ="rating" id = "rating">
+                                    <textarea name="message" placeholder="Leave comments about this club! (Optional)" class = "form-control" style = "margin-top:3%;width:93%"><%=club_rating.currentMes%> </textarea>
                     
-                        <div class = "contactBox">
-                            <h5>Get Involved!</h5>
-                            <p>Phone Number : <%= club.phonenumber %> </p>
-                            <p>Email: <%= club.email %> </p>
-                        </div>            
-                    
+                                    <div >
+                                        <center><button  type="submit" name="submit" class="btn btn-outline-secondary" style = "margin-top:2%; margin-right:5%">Rate this Club</button></center>
+                                    </div>
+                                </form>
+                            </div>
+                            <script type="text/javascript">
+                                let star1 = document.getElementById('star1')
+                                let star2 = document.getElementById('star2')
+                                let star3 = document.getElementById('star3')
+                                let star4 = document.getElementById('star4')
+                                let star5 = document.getElementById('star5')
+                                let rating = document.getElementById('rating')
+                                
+                                star1.addEventListener("click", () => {
+                                    if(star1.classList.contains("checked")){
+                                        uncheckImage(star1)
+                                        rating.value = 0
+                                    }
+                                    else {
+                                        checkImage(star1)
+                                        rating.value = 1
+                                    }
+                                    uncheckImage(star2)
+                                    uncheckImage(star3)
+                                    uncheckImage(star4)
+                                    uncheckImage(star5)
+
+                                })
+                                star2.addEventListener("click", () => {
+                                    rating.value = 2
+                                    checkImage(star1)
+                                    checkImage(star2)
+                                    uncheckImage(star3)
+                                    uncheckImage(star4)
+                                    uncheckImage(star5)
+                                })
+                                star3.addEventListener("click", () => {
+                                    rating.value = 3
+                                    checkImage(star1)
+                                    checkImage(star2)
+                                    checkImage(star3)
+                                    uncheckImage(star4)
+                                    uncheckImage(star5)
+                                })
+                                star4.addEventListener("click", () => {
+                                    rating.value = 4
+                                    checkImage(star1)
+                                    checkImage(star2)
+                                    checkImage(star3)
+                                    checkImage(star4)
+                                    uncheckImage(star5)
+                                })
+                                star5.addEventListener("click", () => {
+                                    rating.value = 5
+                                    checkImage(star1)
+                                    checkImage(star2)
+                                    checkImage(star3)
+                                    checkImage(star4)
+                                    checkImage(star5)
+                                })
+                                
+                                
+                                function checkImage(x) {
+                                    
+                                    x.classList.add("checked")
+                                }
+                                function uncheckImage(x) {
+                                    x.classList.remove("checked")
+                                }
+                            </script>
+                        <%} else {%>
+                            <h4 style = "text-decoration: underline;text-align: center;"> Want to leave a rating for this club?</h4>
+                            <h6 style="text-align: center;"><a href = "/login">Login</a> or <a href = "/signup">Create an account</a>!</h6>
+                            <img>
+                        <% } %> 
+                    </div>
+                    </div>
                 </div>
             </div>
         <div>
@@ -145,110 +257,26 @@
                             <% } %>
                         </center>
                     </div>
-                    <%if(loggedIn){%>
-                        
-                        <div id = "starDiv">
-                            <h5 style = "text-decoration: underline;">Leave a rating for this club!</h6>
-                            <span id = "star1" class="fa fa-star <%if(club_rating.currentRat>=1){%> checked <%}%>"></span>
-                            <span id = "star2" class="fa fa-star <%if(club_rating.currentRat>=2){%> checked <%}%>"></span>
-                            <span id = "star3" class="fa fa-star <%if(club_rating.currentRat>=3){%> checked <%}%>"></span>
-                            <span id = "star4" class="fa fa-star <%if(club_rating.currentRat>=4){%> checked <%}%>"></span>
-                            <span id = "star5" class="fa fa-star <%if(club_rating.currentRat>=5){%> checked <%}%>"></span>
-                        </div>
-                        
-                        <div >
-                            <form action="/<%=club._id%>/rateclub" method="POST">
-                                <input type ="number" hidden = "hidden" name ="rating" id = "rating">
-                                <textarea name="message" placeholder="Leave comments about this club! (Optional)" class = "form-control" style = "margin-top:3%;width:93%"><%=club_rating.currentMes%> </textarea>
-                
-                                <div >
-                                    <center><button  type="submit" name="submit" class="btn btn-outline-secondary" style = "margin-top:2%; margin-right:5%">Rate this Club</button></center>
-                                </div>
-                            </form>
-                        </div>
-                        <script type="text/javascript">
-                            let star1 = document.getElementById('star1')
-                            let star2 = document.getElementById('star2')
-                            let star3 = document.getElementById('star3')
-                            let star4 = document.getElementById('star4')
-                            let star5 = document.getElementById('star5')
-                            let rating = document.getElementById('rating')
-                            
-                            star1.addEventListener("click", () => {
-                                if(star1.classList.contains("checked")){
-                                    uncheckImage(star1)
-                                    rating.value = 0
-                                }
-                                else {
-                                    checkImage(star1)
-                                    rating.value = 1
-                                }
-                                uncheckImage(star2)
-                                uncheckImage(star3)
-                                uncheckImage(star4)
-                                uncheckImage(star5)
-
-                            })
-                            star2.addEventListener("click", () => {
-                                rating.value = 2
-                                checkImage(star1)
-                                checkImage(star2)
-                                uncheckImage(star3)
-                                uncheckImage(star4)
-                                uncheckImage(star5)
-                            })
-                            star3.addEventListener("click", () => {
-                                rating.value = 3
-                                checkImage(star1)
-                                checkImage(star2)
-                                checkImage(star3)
-                                uncheckImage(star4)
-                                uncheckImage(star5)
-                            })
-                            star4.addEventListener("click", () => {
-                                rating.value = 4
-                                checkImage(star1)
-                                checkImage(star2)
-                                checkImage(star3)
-                                checkImage(star4)
-                                uncheckImage(star5)
-                            })
-                            star5.addEventListener("click", () => {
-                                rating.value = 5
-                                checkImage(star1)
-                                checkImage(star2)
-                                checkImage(star3)
-                                checkImage(star4)
-                                checkImage(star5)
-                            })
-                            
-                            
-                            function checkImage(x) {
-                                
-                                x.classList.add("checked")
-                            }
-                            function uncheckImage(x) {
-                                x.classList.remove("checked")
-                            }
-                        </script>
-                    <%}%>
-                </div>
+                    
                 
             </div>
         </div>
     </div>
     <div>
         <div class = "container pl-1 pr-1">
-            <div class ="row">
-                <div class = "col-sm-5">
+            <div class ="row" style = "margin-top :2%">
+                <div class = "col-sm-4">
                     <h6>Org President: <%= club.president_organizer %> </h7> <br>
                     <h6>Member Count: <%= club.memberCount %> </h7>
                     <br>
                     <h6>Recruiting Season: <%=club.registration_season%></h7>
                 </div>
+                <div class = "col-sm-3">
+                    
+                </div>
                 <div class = "col">
-                    <h6 style = "text-decoration: underline;">Meeting Times</h6>
-                    <p>
+                    <!-- <h6 style = "text-decoration: underline;">Meeting Times</h6> -->
+                    <!-- <p>
                         <% let times = club.meeting_times %> 
                         <% for(var i =0; i < club.meeting_times.length;  i++ ){%>
                             <% let end = times.search("\r") %> 
@@ -261,13 +289,19 @@
                             <% times = times.substring(end+1) %> 
                             <% i = end+1 %> 
                         <%}%>
-                    </p>
+                    </p> -->
+                        <div class = "contactBox" >
+                            <h5 style = "text-align: center;">Get Involved!</h5>
+                            <p style = "text-align: center;">Phone Number : <%= club.phonenumber %> </p>
+                            <p style = "text-align: center;">Email: <%= club.email %> </p>
+                        </div> 
+
                 </div>
             </div>
         </div>
         
     </div>
-    </div>
+</div>
 
 
     
