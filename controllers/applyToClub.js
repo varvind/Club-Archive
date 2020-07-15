@@ -4,6 +4,18 @@ const Club = require('../models/Club')
 module.exports = async (req, res) => {
     const club = await Club.findById(req.params.id)
     const user = await User.findById(req.session.userId)
+    var today = new Date();
+    var date = (today.getMonth() + 1) + '-' + today.getDate()+ "-" + today.getFullYear();
+    var time = "";
+    if(today.getUTCHours() - 5 > 12) {
+            time = (today.getUTCHours() - 12 - 5) + ":" + today.getMinutes() + " pm"
+    } else if (today.getUTCHours() - 5 == 12) {
+            time = (today.getUTCHours() - 5 ) + ":" + today.getMinutes() + " pm"
+    } else if (today.getUTCHours() - 5 == 0) {
+            time = (today.getUTCHours() + 12 - 5) + ":" + today.getMinutes() + " am"
+    } else {
+            time = (today.getUTCHours() - 5) + ":" + today.getMinutes() + " am"
+    }
     if(req.file && req.file.mimetype != "application/pdf"){
         error = "File type invalid, please upload a pdf"
         res.render('onlineClubApplication',  {
@@ -21,6 +33,8 @@ module.exports = async (req, res) => {
         }
         let applicationForUser = {clubId: club._id,  name: club.name, type: "member", status: "Pending"}
         user.pending_applications.push(applicationForUser)
+        var app_notification = {subject: `Application Submission: Member for ${club.name}`, body : `Application for member of ${club.name} has been submitted! Be sure to check your inbox for updates on your status!`, date : date, time : time, club : club.name, status: "unread", type :"application"}
+        user.inbox.unshift(app_notification)
         user.save()
         console.log(req.file)
         let applicationForClub = {

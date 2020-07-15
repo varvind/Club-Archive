@@ -2,7 +2,18 @@ const User = require('../models/User')
 const Club = require('../models/Club')
 
 module.exports = async (req, res) =>{    
-    
+    var today = new Date();
+    var date = (today.getMonth() + 1) + '-' + today.getDate()+ "-" + today.getFullYear();
+    var time = "";
+    if(today.getUTCHours() - 5 > 12) {
+            time = (today.getUTCHours() - 12 - 5) + ":" + today.getMinutes() + " pm"
+    } else if (today.getUTCHours() - 5 == 12) {
+            time = (today.getUTCHours() - 5 ) + ":" + today.getMinutes() + " pm"
+    } else if (today.getUTCHours() - 5 == 0) {
+            time = (today.getUTCHours() + 12 - 5) + ":" + today.getMinutes() + " am"
+    } else {
+            time = (today.getUTCHours() - 5) + ":" + today.getMinutes() + " am"
+    }
     const user = await User.findById(req.params.user_id, (err, found) => {
         if(!found || err){console.log("Error finding user or does not exist")}
     })
@@ -58,6 +69,8 @@ module.exports = async (req, res) =>{
         });
         if(insert2 == false){
             //console.log("Club not found in user-club schema, so push new club")
+            var app_notification = {subject: `Application Status: Member for ${club.name}`, body : `Congrats! You have been accepted as a member of ${club.name}! Please be sure to contact your club for next steps! You will also begin to receive updates from clubs should they announce any!`, date : date, time : time, club : club.name, status: "unread", type :"application"}
+            user.inbox.unshift(app_notification)
             user.clubs.push(club._id)
             user.save()
         }
@@ -73,6 +86,8 @@ module.exports = async (req, res) =>{
         club.save()
 
         user.pending_applications[user_application_index].status = "Denied"
+        var app_notification = {subject: `Application Status: Member for ${club.name}`, body : `We are sorry to inform you that you have been declined for member of ${club.name}. If you have additional questions please be sure to contact the club/organization `, date : date, time : time, club : club.name, status: "unread", type :"application"}
+        user.inbox.unshift(app_notification)
         user.markModified('pending_applications')
         user.save()
 
