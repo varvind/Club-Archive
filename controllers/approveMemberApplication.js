@@ -52,12 +52,12 @@ module.exports = async (req, res) =>{
         if(insert1 == false){
             //console.log("User not found in club-member schema, so push user as new member")
             club.members.push(member)
-            club.save()
         }
         //else{console.log("Already a Member (club)")}
         club.member_applications.splice(club_application_index,1)
         club.save()
-       
+        var app_notification = {subject: `Application Status: Member for ${club.name}`, body : `Congrats! You have been accepted as a member of ${club.name}! Please be sure to contact your club for next steps! You will also begin to receive updates from clubs should they announce any!`, date : date, time : time, club : club.name, status: "unread", type :"application"}
+        user.inbox.unshift(app_notification)
         user.pending_applications[user_application_index].status = "Approved"
         user.markModified('pending_applications')
         let insert2 = false
@@ -69,8 +69,7 @@ module.exports = async (req, res) =>{
         });
         if(insert2 == false){
             //console.log("Club not found in user-club schema, so push new club")
-            var app_notification = {subject: `Application Status: Member for ${club.name}`, body : `Congrats! You have been accepted as a member of ${club.name}! Please be sure to contact your club for next steps! You will also begin to receive updates from clubs should they announce any!`, date : date, time : time, club : club.name, status: "unread", type :"application"}
-            user.inbox.unshift(app_notification)
+            
             user.clubs.push(club._id)
             user.save()
         }

@@ -54,33 +54,33 @@ module.exports = async (req, res) => {
             } else {
                 console.log("cannot delete only member of club")
             }
-                i=0
-                club.members.forEach(mem => {
-                    if(String(mem.id) == String(member._id)){
-                        club.members.splice(i,1)
-                        club.save()
-                    }
-                    i += 1
-                });
+            i=0
+            club.members.forEach(mem => {
+                if(String(mem.id) == String(member._id)){
+                    club.members.splice(i,1)
+                    club.save()
+                }
+                i += 1
+            });
 
-                i= 0
-                member.clubs.forEach(found => {
-                    if(String(found) == String(club._id)){
-                        member.clubs.splice(i,1);
-                    }
-                    i += 1
-                })
+            i= 0
+            member.clubs.forEach(found => {
+                if(String(found) == String(club._id)){
+                    member.clubs.splice(i,1);
+                }
+                i += 1
+            })
 
-                i = 0
-                member.pending_applications.forEach(application => {
-                    if(String(application.clubId) == club._id){
-                        member.pending_applications[i].status = "Removed From Club"
-                        member.markModified('pending_applications')
-                        
-                    }
-                    i += 1
-                });
-                member.save()
+            i = 0
+            member.pending_applications.forEach(application => {
+                if(String(application.clubId) == club._id){
+                    member.pending_applications[i].status = "Removed From Club"
+                    member.markModified('pending_applications')
+                    
+                }
+                i += 1
+            });
+            member.save()
             
             
         }
