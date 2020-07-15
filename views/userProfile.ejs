@@ -43,6 +43,9 @@
                 <h6 style = "text-align: center;">University : Texas A&M University</h6>
                 <h6 style = "text-align: center;">Graduation Year : <%=user.gradYear %></h6>
                 <h6 style = "text-align: center;">Major : <%= user.major %></h6>
+                <% if (user.minor != "") { %>
+                    <h6 style = "text-align: center;">Minor : <%= user.minor %></h6>
+                <% } %>
                 
                 <br>
                 <h5 style = "text-align: center;"><%= user.firstName %>'s Clubs</h5>
