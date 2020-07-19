@@ -133,7 +133,7 @@
                             <div >
                                 <form action="/<%=club._id%>/rateclub" method="POST">
                                     <input type ="number" hidden = "hidden" name ="rating" id = "rating" value="<%=club_rating.currentRat%>" >
-                                    <textarea name="message" placeholder="Leave comments about this club! (Optional)" class = "form-control" style = "margin-top:3%;width:93%"><%=club_rating.currentMes%> </textarea>
+                                    <textarea name="message" placeholder="Leave comments about this club! (Optional)" class = "form-control" style = "margin-top:3%;width:93%"><%=club_rating.currentMes%></textarea>
                                     <div class="checkbox">
                                         <input id="anonymous" type="checkbox" name="anonymous" value="anonymouse" <%if(club_rating.currentAnon){%>checked<%}%>  >
                                         <label class="ml-2" for="anonymous">Hide Name?</label>

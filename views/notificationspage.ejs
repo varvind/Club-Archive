@@ -19,11 +19,11 @@
                         <div class="card-header" id="heading<%=i%>" style = "width:100%;">
                                 <p style ="float:right; margin-right:0%; color:rgb(160, 153, 153);margin-top:-.5%"><%= item.date %><br><%= item.time%></p>
                                 <% if (item.status != "read") { %>
-                                    <h4 style = "float:left; font-weight: 600; font-size: 25px" id = "fromLine<%=i%>">From: <%=item.club%></h4>
-                                    <p style = "font-weight: 600; font-size: 25px" id = "subjectLine<%=i%>"><%= item.subject%><p>
+                                    <h4 style = "float:left; font-weight: 600; font-size: 25px; margin-top: 1%;" id = "fromLine<%=i%>">From: <%=item.club%></h4>
+                                    <p style = "font-weight: 600; font-size: 19px; margin-top: 1%;" id = "subjectLine<%=i%>"><%= item.subject%><p>
                                 <% } else { %>
-                                    <h4 style = "float:left; font-weight: normal; font-size: 25px" id = "fromLine<%=i%>">From: <%=item.club%></h4>
-                                    <p style = "font-weight: normal; font-size: 25px" id = "subjectLine<%=i%>"><%= item.subject%><p>
+                                    <h4 style = "float:left; font-weight: normal; font-size: 25px; margin-top: 1%;" id = "fromLine<%=i%>">From: <%=item.club%></h4>
+                                    <p style = "font-weight: normal; font-size: 19px; margin-top: 1%;" id = "subjectLine<%=i%>"><%= item.subject%><p>
                                 <% } %>
                         </div>
                     </a>   
@@ -69,3 +69,8 @@
     </div>
         
 </div>
+
+<br>
+<br>
+<br>
+<br>
