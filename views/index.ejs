@@ -337,7 +337,31 @@
                     <% } %>  
                 </div>
             </div>
-        <% } %> 
+        <% } %>
+        
+        <div class="container">
+            <h4 style = "margin-top: 2%">Recommended For You!</h4>
+            <hr style = "width: 99%; margin-left:0%">
+
+            <div class="row" style = "margin-top:1%">
+                <% for(let i=0; i<3; i++){ %>
+                    <% if(i==clubs.length){break} %> 
+                    <div class = "col" >
+                        <center>
+                            <a href = <%="/post/"+clubs[i]._id %>>
+                                <div class="card" style = "width:94%;" >
+                                    <img class="card-img-top" src="/image/<%=clubs[i].images[0]%>"  alt="Card image cap" style = "height:250px;object-fit: cover;"  >
+                                    <div class="card-body">
+                                        <h5 class="card-title" style = "text-align: left;"><%=clubs[i].name%></h5>
+                                        <p class="card-text descriptionClub" style = "font-size: small; text-align: left;"><%=clubs[i].category%> </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </center>
+                    </div>
+                <% } %>  
+            </div>
+        </div>
 
 
         <br>

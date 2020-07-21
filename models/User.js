@@ -54,6 +54,11 @@ const UserSchema = new Schema ({
         type:String,
         required: false,
         default: ""
+    },
+    popular_tags : {
+        type: [Object],
+        required : false, 
+        default :[]
     }
 })
 

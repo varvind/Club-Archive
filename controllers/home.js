@@ -21,7 +21,20 @@ module.exports = async (req, res) => {
             }
         })
     }
-
+    var clubs = new Array()
+    if(user != null  && user.popular_tags.length > 0) {
+        user.popular_tags.forEach(async tag => {
+            params = {tags : tag.name}
+            let search = await Club.find(params)
+            clubs.concat(search)
+        })
+        console.log(clubs)
+    } else {
+        clubs = await Club.find({})
+        clubs.filter((a) => {
+            return a.club_archive_approved
+        })
+    }
     // const milsPerDay = 86400000
     // popList.topClubs.forEach(async popular => {
     //     if((new Date()) - popular.lastUpdated > milsPerDay){
@@ -83,10 +96,11 @@ module.exports = async (req, res) => {
 
     let popular = null
     if(popList.topClubs){ popular= popList.topClubs }
-
+    
     res.render('index', {
         user,
         layout: false,
-        popular
+        popular,
+        clubs
     })
 }
