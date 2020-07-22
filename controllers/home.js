@@ -21,20 +21,31 @@ module.exports = async (req, res) => {
             }
         })
     }
-    var clubs = new Array()
+    var clubs = []
     if(user != null  && user.popular_tags.length > 0) {
-        user.popular_tags.forEach(async tag => {
-            params = {tags : tag.name}
-            let search = await Club.find(params)
-            clubs.concat(search)
-        })
-        console.log(clubs)
+        for(var i = 0; i < user.popular_tags.length; i++) {
+            let search = await Club.find({tags : user.popular_tags[i].name})
+            for(var j =0 ; j < search.length; j++) {
+                clubs.push(search[j])
+            }
+        }
+        json = clubs.map(JSON.stringify)
+        uniqueSet = new Set(json)
+
+        clubs = Array.from(uniqueSet).map(JSON.parse)
     } else {
         clubs = await Club.find({})
         clubs.filter((a) => {
             return a.club_archive_approved
         })
     }
+
+    for(let i = clubs.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * i)
+        const temp = clubs[i]
+        clubs[i] = clubs[j]
+        clubs[j] = temp
+      }
     // const milsPerDay = 86400000
     // popList.topClubs.forEach(async popular => {
     //     if((new Date()) - popular.lastUpdated > milsPerDay){

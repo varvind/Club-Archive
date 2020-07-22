@@ -21,20 +21,23 @@ module.exports = async (req, res) => {
                 }
 
                 //update and add to searches
-                var found = false;
-                for(var i =0; i < searches.length; i++) {
-                    if(String(searches[i]._id) == String(club._id)) { //update searches
-                        found = true;
-                        searches[i] = club
-                        break;
-                    }
-                }
-                if(!found) {searches.push(club)}
-                req.session.searches=searches
 
                 //able to apply as an admin (must already be a member and not already applied)
                 let ableToApplyAdmin = false;
                 if(user != null){
+                    
+                    user.recent_search.unshift(club)
+                    if(user.recent_search.length > 20) {
+                        user.splice(19, 1)
+                    }
+                    for(var i = 1; i < user.recent_search.length; i++) {
+                        if(String(user.recent_search[i]._id) == club._id) {
+                            user.recent_search.splice(i, 1);
+                            break;
+                        }
+                    }
+
+
                     let currentMember = false
                     club.members.forEach(mem => { //must be a member in order to apply for admin
                         if(String(mem.id) == String(user._id)){

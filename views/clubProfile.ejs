@@ -74,7 +74,7 @@
                 <div class = "col-sm-5">
                     <h2 style = "color:#00a8f3"> <%= club.name %> 
                         <% if(canEdit){ %><a href = "/clubSettings/<%=club._id%>" ><img src = "../public/img/settings icon.png" style = "width: 22px;"></a><% } %>
-                        <% if(club.club_archive_approved){ %><img src = "../public/img/GoldLogo.png" style = "width: 47px;"> <%}%>
+                        <% if(club.club_archive_approved){ %><img src = "../public/img/GoldLogo.png" style = "width: 47px;" data-toggle="tooltip" title="ClubArchive Approved"> <%}%>
                     </h2>
                     <% if(loggedIn) { %> 
                         <% if(ableToApplyAdmin){%> 

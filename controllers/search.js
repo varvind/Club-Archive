@@ -6,7 +6,10 @@ module.exports = async (req, res) => {
     const query = req.query.search2 || "" //search bar
     const sort = req.query.sort || "" 
     const filter = req.query.filter || ""
-   
+    var popularTags = []
+    if (user != null){
+        popularTags = user.popular_tags
+    }
     let params = {}
     if(query){ params = {"$or" : [{tags : {$regex: query, $options:"$i"}},{description: {$regex: query, $options: "$i"}}, {name: {$regex: query, $options: "$i"}}]} }
     let clubs = await Club.find(params)
@@ -63,13 +66,13 @@ module.exports = async (req, res) => {
         }else{console.log(filter)}
         
     }
-
     res.render('searchLanding', {
         clubs,
         query,
         sort,
         filter,
         user,
+        popularTags,
         layout:'layouts/topMenuBar'
     })
 }

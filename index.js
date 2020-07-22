@@ -146,11 +146,9 @@ app.listen(process.env.PORT || 3000)
 //senses the cookies
 global.loggedIn = null
 global.clubloggedin = null
-global.searches = [] //new
 app.use("*", (req, res, next) => {
     loggedIn = req.session.userId;
     clubloggedin = req.session.clubId;
-    searches = req.session.searches || [];
     next()
 })
 console.log(clubloggedin)

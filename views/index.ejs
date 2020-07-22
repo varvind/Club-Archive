@@ -302,7 +302,7 @@
                         <div class = "col" >
                             <center>
                                 <a href = <%="/post/"+popular[i].club._id %>>
-                                    <div class="card" style = "width:94%;" >
+                                    <div class="card" style = "width:90%;" >
                                         <img class="card-img-top" src="/image/<%=popular[i].club.images[0]%>"  alt="Card image cap" style = "height:250px;object-fit: cover;"  >
                                         <div class="card-body">
                                             <h5 class="card-title" style = "text-align: left;"><%=popular[i].club.name%></h5>
@@ -322,12 +322,12 @@
                         <div class = "col" >
                             <center>
                                 <a href = <%="/post/"+popular[i].club._id %>>
-                                    <div class="card" style = "width:200px; height:400px">
+                                    <div class="card" style = "width:90%;">
                                         
-                                            <img class="card-img-top" src="/image/<%=popular[i].club.images[0]%>" alt="Card image cap" style = "height:200px"  >
+                                            <img class="card-img-top" src="/image/<%=popular[i].club.images[0]%>" alt="Card image cap" style = "height:200px; object-fit: cover;"  >
                                             <div class="card-body">
-                                                <h5 class="card-title"><%=popular[i].club.name%></h5>
-                                                <p class="card-text descriptionClub" style = "font-size: small;"><%=popular[i].club.category%> </p>
+                                                <h5 class="card-title" style = "text-align: left;"><%=popular[i].club.name%></h5>
+                                                <p class="card-text descriptionClub" style = "font-size: small; text-align: left;"><%=popular[i].club.category%> </p>
                                             </div>
                                         
                                     </div>
@@ -350,7 +350,7 @@
                         <center>
                             <a href = <%="/post/"+clubs[i]._id %>>
                                 <div class="card" style = "width:94%;" >
-                                    <img class="card-img-top" src="/image/<%=clubs[i].images[0]%>"  alt="Card image cap" style = "height:250px;object-fit: cover;"  >
+                                    <img class="card-img-top" src="/image/<%=clubs[i].images[0]%>"  alt="Card image cap" style = "height:250px;object-fit:cover;"  >
                                     <div class="card-body">
                                         <h5 class="card-title" style = "text-align: left;"><%=clubs[i].name%></h5>
                                         <p class="card-text descriptionClub" style = "font-size: small; text-align: left;"><%=clubs[i].category%> </p>
@@ -359,7 +359,23 @@
                             </a>
                         </center>
                     </div>
-                <% } %>  
+                <% } %>
+                <% for(let i=3; i<7; i++){ %>
+                    <% if(i==clubs.length){break} %> 
+                    <div class = "col" >
+                        <center>
+                            <a href = <%="/post/"+clubs[i]._id %>>
+                                <div class="card" style = "width:94%;" >
+                                    <img class="card-img-top" src="/image/<%=clubs[i].images[0]%>"  alt="Card image cap" style = "height:250px;object-fit:cover;"  >
+                                    <div class="card-body">
+                                        <h5 class="card-title" style = "text-align: left;"><%=clubs[i].name%></h5>
+                                        <p class="card-text descriptionClub" style = "font-size: small; text-align: left;"><%=clubs[i].category%> </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </center>
+                    </div>
+                <% } %>    
             </div>
         </div>
 

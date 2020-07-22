@@ -59,6 +59,11 @@ const UserSchema = new Schema ({
         type: [Object],
         required : false, 
         default :[]
+    },
+    recent_search : {
+        type:[Object], 
+        required: false,
+        default : []
     }
 })
 
