@@ -83,7 +83,7 @@
                     </form>
                     
                     <% if (popularTags.length > 0) { %>
-                        <h6 style = "margin-top:8%; text-decoration: underline;">Search Popular Tags</h6>
+                        <h6 style = "margin-top:8%; text-decoration: underline;">Search Recommended Tags</h6>
                         <% var i = 0 %> 
                         <% popularTags.forEach(tag => { %>
                             <a href = "#" class = "link" onclick = "submitForm(<%=i%>)"><%= tag.name.charAt(0).toUpperCase() + tag.name.slice(1)%></a>
@@ -131,8 +131,8 @@
                 </div>
                 <div class="col">
 
-                    <h6 style = "text-decoration: underline; margin-left:10%">Recent Searches</h6>
-                    <% if (user.recent_search.length > 1) { %>
+                    <h6 style = "text-decoration: underline; margin-left:10%">Recent Views</h6>
+                    <% if (user != null &&user.recent_search.length > 1) { %>
                         <% user.recent_search.forEach(club => { %>
                             <div class="row">
                                 <div class="col">

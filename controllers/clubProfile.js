@@ -25,19 +25,6 @@ module.exports = async (req, res) => {
                 //able to apply as an admin (must already be a member and not already applied)
                 let ableToApplyAdmin = false;
                 if(user != null){
-                    
-                    user.recent_search.unshift(club)
-                    if(user.recent_search.length > 20) {
-                        user.splice(19, 1)
-                    }
-                    for(var i = 1; i < user.recent_search.length; i++) {
-                        if(String(user.recent_search[i]._id) == club._id) {
-                            user.recent_search.splice(i, 1);
-                            break;
-                        }
-                    }
-
-
                     let currentMember = false
                     club.members.forEach(mem => { //must be a member in order to apply for admin
                         if(String(mem.id) == String(user._id)){
@@ -63,21 +50,37 @@ module.exports = async (req, res) => {
                     }
 
                     // user analytics
-                    
                     club.tags.forEach(tag => {
                         var found = false;
                         var oldestCandidateForDeleteIndex = 0;
                         //found a match and update the dictionary by 1
                         for (var i = 0; i < user.popular_tags.length; i++) {
                             if(user.popular_tags[i].name == tag) {
-                                user.popular_tags[i].count += 1;
-                                var found = true;
+                                const milsPerDay = 86400000
+                                var difference = new Date() - user.popular_tags[i].last_updated
+                                var daysSinceLastUpdated = ~~(difference/milsPerDay)
+                                
+                                const milsPerHour = 1000
+                                const recent_view = new Date(user.recent_search.filter((a) => String(a.id) == String(club._id))[0].last_viewed)
+                                difference = new Date().getTime() - recent_view.getTime()
+                                // difference /= (60 * 60)
+                                minutesSinceLastUpdated = ~~(difference / (1000 * 60))
+                                console.log(minutesSinceLastUpdated)
+                                if(daysSinceLastUpdated < 90 && minutesSinceLastUpdated >= 30) {
+                                    user.popular_tags[i].count += 1;
+                                    user.popular_tags[i].last_updated = new Date()
+                                } else if (daysSinceLastUpdated >= 90) {
+                                    user.popular_tags.splice(i, 1)
+                                    var popular_tag_object = {name : tag, count : 1, last_updated: new Date()}
+                                    user.popular_tags.push(popular_tag_object)
+                                }
+                                found = true;
                             } else if (user.popular_tags[i].count < user.popular_tags[oldestCandidateForDeleteIndex].count){
                                 oldestCandidateForDeleteIndex = i;
                             }
                         }
                         if (!found) { 
-                            var popular_tag_object = {name : tag, count : 1}
+                            var popular_tag_object = {name : tag, count : 1, last_updated: new Date()}
                             if(user.popular_tags.length < 10) {
                                 user.popular_tags.push(popular_tag_object)
                             } else {
@@ -87,6 +90,16 @@ module.exports = async (req, res) => {
                             
                         } 
                     })
+
+                    var recent_view = {id:club._id ,name: club.name, description : club.description, last_viewed : new Date()}
+                    user.recent_search.unshift(recent_view)
+                    for(var i = 1; i < user.recent_search.length; i++) {
+                        if(String(user.recent_search[i].id) == String(club._id)) {
+                            user.recent_search.splice(i, 1);
+                            break;
+                        }
+                    }
+                    user.markModified('recent_search')
                     user.popular_tags.sort((a, b) => b.count - a.count)
                     user.markModified('popular_tags')
                     user.save()
