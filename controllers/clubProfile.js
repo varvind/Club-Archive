@@ -61,10 +61,16 @@ module.exports = async (req, res) => {
                                 var daysSinceLastUpdated = ~~(difference/milsPerDay)
                                 
                                 const milsPerHour = 1000
-                                const recent_view = new Date(user.recent_search.filter((a) => String(a.id) == String(club._id))[0].last_viewed)
-                                difference = new Date().getTime() - recent_view.getTime()
-                                // difference /= (60 * 60)
-                                minutesSinceLastUpdated = ~~(difference / (1000 * 60))
+                                const recent_view_object = user.recent_search.filter((a) => String(a.id) == String(club._id))[0]
+                                var minutesSinceLastUpdated = 0
+                                if(recent_view_object != undefined) {
+                                    var recent_view = new Date(recent_view_object.last_viewed)
+                                    difference = new Date().getTime() - recent_view.getTime()
+                                    minutesSinceLastUpdated = ~~(difference / (1000 * 60))
+                                } else {
+                                    minutesSinceLastUpdated = 30
+                                }
+                                
                                 console.log(minutesSinceLastUpdated)
                                 if(daysSinceLastUpdated < 90 && minutesSinceLastUpdated >= 30) {
                                     user.popular_tags[i].count += 1;
