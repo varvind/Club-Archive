@@ -81,7 +81,6 @@ const rateClubController = require('./controllers/rateClub')
 const clubannouncementsviewController = require('./controllers/clubannouncements')
 const processClubAnnouncementController = require('./controllers/processAnnouncement')
 const notificationsPageViewController = require('./controllers/notificationsPage')
-
 const feedBackFormController = require('./controllers/feedbackForm')
 const requestRecordedController = require('./controllers/requestRecorded')
 const feedbacksubmissioncontroller = require('./controllers/submitfeedback')
@@ -90,6 +89,9 @@ const removeAnnouncementController = require('./controllers/removeAnnouncement')
 const markReadController = require('./controllers/markNotificationRead')
 const removeFromInboxController = require('./controllers/removeInboxItem')
 const markAllReadController = require('./controllers/markallread')
+const inviteNewMembersController = require('./controllers/inviteMembers')
+const emailNewMembersController = require('./controllers/emailNewMembers')
+
 //app features and functions that are being implemented
 app.use(bodyParser.json())
 app.use(expressLayouts)
@@ -235,3 +237,5 @@ app.get('/removeAnnouncement/:id/:visibility/:announcement_index', removeAnnounc
 app.post('/markRead/:notification_index', markReadController)
 app.get('/removeinboxitem/:inbox_index', removeFromInboxController)
 app.get('/markallread', markAllReadController )
+app.get('/:club_id/invitemembers', inviteNewMembersController)
+app.post('/:club_id/invitemembers', emailNewMembersController)

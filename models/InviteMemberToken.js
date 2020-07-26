@@ -1,12 +1,16 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const ResetPasswordSchema = new Schema ({
-    userId: {
+const inviteTokenSchema = new Schema ({
+    clubId: {
         type: String,
         required: true
     },
-    resetPasswordToken: {
+    isAdmin: {
+        type: Boolean,
+        required: true
+    },
+    token: {
         type: String,
         required: true
     },
@@ -18,5 +22,5 @@ const ResetPasswordSchema = new Schema ({
     }
 })
 
-const ResetPassword = mongoose.model('ResetPassword', ResetPasswordSchema)
-module.exports = ResetPassword
+const InviteMemberToken = mongoose.model('InviteMemberToken', inviteTokenSchema)
+module.exports = InviteMemberToken
