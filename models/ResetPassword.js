@@ -14,7 +14,7 @@ const ResetPasswordSchema = new Schema ({
         type: Date, 
         required: true, 
         default: Date.now, 
-        expires: 86400000 
+        expires: 86400
     }
 })
 

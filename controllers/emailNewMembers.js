@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
             await User.findById(req.session.userId, async (errr, user) => {
                 if(errr || !user){
                     console.log(errr || "User Not Found")
-                    res.redirect('/')
+                    res.redirect('/login')
                 }else{
                     let canEdit = false
                     club.adminstrators.forEach(admin => {
@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
                     })
                     if(!canEdit){
                         console.log("User does not have access to these settings")
-                        res.redirect('/')
+                        res.redirect(`/post/${club._id}`)
                     }else{
                         const transporter = await nodemailer.createTransport({
                             host: 'smtp.gmail.com',
@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
                                     console.log(error);
                                     res.redirect('/')
                             }else{
-                                console.log('Server is ready to send email');
+                                //console.log('Server is ready to send email');
 
                                 for(let i=1; i<=150; i++){
                                     let email = "email"+i
@@ -72,7 +72,7 @@ module.exports = async (req, res) => {
                                                     from: process.env.EMAIL,
                                                     subject: subject,
                                                     messageId: 'Invite Token',
-                                                    text: inviteToken.toString()
+                                                    text: `${club.name} has invited you to join their organization on ClubArchive. \nClick this link in order to create an account or simply login into your existing account. http://localhost:3000/login \nNext, click this link in order to join ${club.name} as a ${req.body[admin]}. http://localhost:3000/${club._id}/joinclub/ \n When promted enter this token: ${token}`
                                                 }
                     
                                                 await transporter.sendMail(mailOptions, (errr,info) =>{

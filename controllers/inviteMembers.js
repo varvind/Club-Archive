@@ -1,14 +1,13 @@
 const User = require('../models/User')
 const Club = require('../models/Club')
-const emailNewMembers = require('./emailNewMembers')
 
 module.exports = async (req, res) => {
-    const club = await Club.findById(req.params.club_id, async (err, club) => {
+    await Club.findById(req.params.club_id, async (err, club) => {
         if(err || !club){
             console.log(err || "Club Not Found")
             res.redirect('/')
         }else{
-            const user = await User.findById(req.session.userId, (errr, user) => {
+            await User.findById(req.session.userId, (errr, user) => {
                 if(errr || !user){
                     console.log(errr || "User Not Found")
                     res.redirect('/')
@@ -31,7 +30,6 @@ module.exports = async (req, res) => {
                     }
                 }
             })
-
         }
     })
 }

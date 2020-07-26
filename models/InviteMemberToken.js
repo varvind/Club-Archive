@@ -18,7 +18,7 @@ const inviteTokenSchema = new Schema ({
         type: Date, 
         required: true, 
         default: Date.now, 
-        expires: 86400000 
+        expires: 2592000 //one month
     }
 })
 

@@ -1,0 +1,75 @@
+<html>
+
+
+    <head>
+            <meta charset="utf-8">
+            <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <link rel="icon" href="../public/img/finalLogo2.png">
+            <title>ClubArchive</title>
+            <style>
+                a:visited{
+                    color: black;
+                }
+                a:hover {
+                    text-decoration : none;
+                    color: black;
+                }
+                a{
+                    color:black
+                }
+                .btn-outline-secondary:hover {
+                    background-color: #41bbac
+                }
+
+                .btn-outline-dark {
+                    width:15%;
+                    height: 45%;
+                    color:black;
+                }
+                .btn-outline-dark:hover {
+                    background-color: lightgray
+                }
+                
+            
+            </style>
+    </head>
+    <body>
+        <hr style = "margin-top: 0%">
+        
+        <div class="mx-5 d-flex flex-column align-items-center justify-content-center">
+            <h2 class="mb-2">Join <%=club.name%>!!!</h2>
+            
+            <% if (error != null) {%>
+                <div class=" alert alert info bg-danger">
+                     <span class="text-white"><strong>Error : </strong> <%= error %></span>
+                     <button class="btn btn-sm btn-outline-light closebtn m-1 ml-2">&times</button>
+                 </div>
+             <% } %>
+
+            <form action="/<%=club._id%>/joinclub" method="POST" class="d-flex flex-column w-50">
+                <div class="form-group">
+                    <label for="token" class="mb-0">Enter Token Below:</label>
+                    <input type="text" id="token" name="token" class="form-control" required>
+                </div>
+                
+                <button type="submit" class="btn btn-outline-secondary mt-1">Submit</button>
+            </form>
+        </div>
+    </body>
+
+    <script>
+        var close = document.getElementsByClassName("closebtn");
+            var i;
+            
+            for (i = 0; i < close.length; i++) {
+              close[i].onclick = function(){
+                var div = this.parentElement;
+                div.style.opacity = "0";
+                setTimeout(function(){ div.style.display = "none"; }, 600);
+              }
+            }
+    </script>
+</html>
