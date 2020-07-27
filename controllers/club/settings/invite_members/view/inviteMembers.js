@@ -1,5 +1,5 @@
-const User = require('../models/User')
-const Club = require('../models/Club')
+const User = require('../../../../../models/User')
+const Club = require('../../../../../models/Club')
 
 module.exports = async (req, res) => {
     await Club.findById(req.params.club_id, async (err, club) => {
@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
                         console.log("User does not have access to these settings")
                         res.redirect('/')
                     }else{
-                        res.render('inviteMembers', {
+                        res.render('club_views/settings/invite_members/inviteMembers', {
                             club,
                             user,
                             layout:'layouts/topMenuBar'

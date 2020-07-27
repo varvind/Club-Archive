@@ -1,6 +1,6 @@
-const User = require('../models/User')
-const Club = require('../models/Club')
-const InviteMemberToken = require('../models/InviteMemberToken')
+const User = require('../../../../../models/User')
+const Club = require('../../../../../models/Club')
+const InviteMemberToken = require('../../../../../models/InviteMemberToken')
 
 module.exports = async (req, res) => {
     await Club.findById(req.params.club_id, async (err, club) => {
@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
                     await InviteMemberToken.findOne({clubId: club._id, token: req.body.token}, (err, found) => {
                         if(err){
                             console.log("Error finding token")
-                            res.render('joinClub', {
+                            res.render('club_views/settings/invite_members/joinClub', {
                                 club,
                                 user,
                                 error: "Problem Finding Token",
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
                             })
                         }else if(!found){
                             console.log("Token not found")
-                            res.render('joinClub', {
+                            res.render('club_views/settings/invite_members/joinClub', {
                                 club,
                                 user,
                                 error: "Token Not Found",

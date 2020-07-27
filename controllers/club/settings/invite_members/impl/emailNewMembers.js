@@ -1,6 +1,6 @@
-const User = require('../models/User')
-const Club = require('../models/Club')
-const InviteToken = require('../models/InviteMemberToken')
+const User = require('../../../../../models/User')
+const Club = require('../../../../../models/Club')
+const InviteToken = require('../../../../../models/InviteMemberToken')
 
 const nodemailer = require('nodemailer')
 const crypto = require('crypto')

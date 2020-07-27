@@ -56,13 +56,12 @@
 
     <body>
         <hr>
-            
-                <div class = "row m-0">
-                    <div class = "col-4 pl-auto d-flex justify-content-center">
-                        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
                             <a href = "/post/<%=club._id%>" style = "text-decoration: none; color: #38a8f3;"><img src = "../public/img/back arrow.png" style = "width: 20px; object-fit: cover; "> Back to Profile</a>
                         <div class="vertical-menu">
-                            <a href="/clubSettings/<%=club._id%>" class="active">Club Settings</a>
+                            <a href="/clubSettings/<%=club._id%>" >Club Settings</a>
                             <a href="/clubprofilesettings/<%=club._id%>">Club Profile</a>
                             <a href = "/clubannouncements/<%=club._id%>">Announcements</a>
                             <a href="/clubMarkettingSettings/<%=club._id%>">Marketting Settings</a>
@@ -70,20 +69,19 @@
                             <a href="/clubMemberApplicationDesign/<%= club._id %>">Design Online Application</a>
                             <a href="/<%=club._id%>/club-applications">Manage Member Application</a>
                             <a href="/<%=club._id%>/manage-members">Manage Current Members</a>
-                            <a href="/<%=club._id%>/invitemembers">Invite New Members</a>
+                            <a href="/club_settings_history/<%=club._id%>">Club Settings History</a>
+                            <a href="/<%=club._id%>/invitemembers" class="active">Invite New Members</a>
                         </div>
                     </div>
-
-                    </div>
-                    <div class = "col-8 d-flex justify-content-center mt-3 pr-5">
+                    <div class="col-sm-8" style = "margin-left:10%">
                         <form action = "/<%=club._id%>/invitemembers" method ="POST" class="w-100" id="form1">
                             <h4>Enter Emails of Users you would like to invite to <%=club.name%> </h5>
                             <div class="d-flex justify-content-center mr-1">
                                 <div class="w-75 display-none"><div></div></div>
                                 <div class="w-25">
                                     <div class="w-75 d-flex justify-content-center align-items-center">
-                                        <div class="w-50">Member</div>
-                                        <div>Admin</div>
+                                        <div class="w-50" style = "margin-left:50%">Member</div>
+                                        <div style = "margin-left: 20%;">Admin</div>
                                     </div>
                                 </div>
                             </div>
@@ -91,25 +89,25 @@
                             
                             <input type="number" hidden id="inputNumber">
                             <div class="d-flex justify-content-center mb-1" id="1">
-                                <input type="email" class="w-75 mr-1" name="email1" placeholder="Enter Email" required>
-                                <div class="w-25 d-flex align-items-center">
+                                <input type="email" class="form-control form-control-lg" name="email1" placeholder="Enter Email" required>
+                                <div class="w-25 d-flex align-items-center" style = "margin-left:5%;">
                                     <div class="w-75 d-flex align-items-center justify-content-center">
-                                        <div class="form-check m-auto mr-3">
+                                        <div class="form-check m-auto mr-3" >
                                             <input class="form-check-input position-static" type="radio" name="position1" value="member" checked>
                                         </div>
                                         <div class="form-check m-auto ml-3">
-                                            <input class="form-check-input position-static" type="radio" name="position1" value="admin">
+                                            <input class="form-check-input position-static" type="radio" name="position1" value="admin" style = "margin-left: 100%;">
                                         </div>
                                     </div>                                    
                                 </div>
                             </div>
                             <%for(let i=2; i<151; i++){%>
                                 <div class="d-flex justify-content-center mb-1" id="1">
-                                    <input style="display: none" id=<%="email"+String(i)%> type="email" class="w-75 mr-1" name=<%="email"+i%> placeholder="Enter Email" >
+                                    <input style="display: none; width: 80%;" id=<%="email"+String(i)%> type="email" class="form-control form-control-lg" name=<%="email"+i%> placeholder="Enter Email" >
                                     <div class="w-25 d-flex align-items-center">
                                         <div class="w-75 d-flex align-items-center justify-content-center">
                                             <div class="form-check m-auto mr-3">
-                                                <input style="display: none" id=<%="positionA"+i%> class="form-check-input position-static" type="radio" name=<%="position"+i%> value="member" checked>
+                                                <input style="display: none; margin-left: 30%;" id=<%="positionA"+i%> class="form-check-input position-static" type="radio" name=<%="position"+i%> value="member" checked>
                                             </div>
                                             <div class="form-check m-auto ml-3">
                                                 <input style="display: none" id=<%="positionB"+i%> class="form-check-input position-static" type="radio" name=<%="position"+i%> value="admin">
@@ -130,6 +128,8 @@
                         </form>
                     </div>
                 </div>
+            </div>
+                        
     </body>
 
     <script type="text/javascript">

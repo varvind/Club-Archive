@@ -1,5 +1,5 @@
-const User = require('../models/User')
-const Club = require('../models/Club')
+const User = require('../../../../../models/User')
+const Club = require('../../../../../models/Club')
 
 module.exports = async (req, res) => {
     await Club.findById(req.params.club_id, async (err, club) => {
@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
                     console.log(errr || "User Not Found")
                     res.redirect('/login')
                 }else{
-                    res.render('joinClub', {
+                    res.render('club_views/settings/invite_members/joinClub', {
                         club,
                         user,
                         error: null,
