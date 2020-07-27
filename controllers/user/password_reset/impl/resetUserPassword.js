@@ -29,43 +29,41 @@ module.exports = (req, res) => {
                 if(err){
                     console.log("Error Creating Reset Password Schema")
                 }else{
-                    nodemailer.createTestAccount((err, account) => {
-                        // create reusable transporter object using the default SMTP transport
-                        let transporter = nodemailer.createTransport({
-                            host: 'smtp.gmail.com',
-                            port: 465,
-                            secure: true, // true for 465, false for other ports
-                            auth: {
-                                user: process.env.EMAIL, // generated ethereal user
-                                pass: process.env.PASSWORD  // generated ethereal password
-                            }
-                        })
-                        transporter.verify(function(error, success) {
-                            if (error) {
-                                 console.log(error);
-                            } else {
-                                 console.log('Server is ready to send email');
-                            }
-                         })
-
-                        var mailOptions = {
-                            to: user.email,
-                            from: "quentinromanoski@gmail.com",
-                            subject: 'Reset your ClubArchive Password',
-                            messageId: 'Rest Password',
-                            text: 'You are receiving this because you (or someone else) have requested the reset of the password for your ClubArchive profile.\n\n' +
-                            'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                            'http://localhost:3000/userReset?resetId=' + resetToken.resetPasswordToken + '\n\n' +
-                            'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+                    // create reusable transporter object using the default SMTP transport
+                    let transporter = nodemailer.createTransport({
+                        host: 'smtp.gmail.com',
+                        port: 465,
+                        secure: true, // true for 465, false for other ports
+                        auth: {
+                            user: process.env.EMAIL, // generated ethereal user
+                            pass: process.env.PASSWORD  // generated ethereal password
                         }
-
-                        transporter.sendMail(mailOptions, (errr,info) =>{
-                            if(errr){
-                                console.log(err)
-                            }else{
-                                console.log(nodemailer.getTestMessageUrl(info))
-                            }
+                    })
+                    transporter.verify(function(error, success) {
+                        if (error) {
+                                console.log(error);
+                        } else {
+                                console.log('Server is ready to send email');
+                        }
                         })
+
+                    var mailOptions = {
+                        to: user.email,
+                        from: process.env.EMAIL,
+                        subject: 'Reset your ClubArchive Password',
+                        messageId: 'Rest Password',
+                        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your ClubArchive profile.\n\n' +
+                        'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                        'http://localhost:3000/userReset?resetId=' + resetToken.resetPasswordToken + '\n\n' +
+                        'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+                    }
+
+                    transporter.sendMail(mailOptions, (errr,info) =>{
+                        if(errr){
+                            console.log(errr)
+                        }else{
+                            console.log(nodemailer.getTestMessageUrl(info))
+                        }
                     })
                 }
             })
