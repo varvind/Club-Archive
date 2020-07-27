@@ -141,6 +141,10 @@ const clubSchema = new Scheme ({
             type: Date,
             default: new Date()
         }
+    }, 
+    settings_history : {
+        type: [Object],
+        default : []
     }
 })
 

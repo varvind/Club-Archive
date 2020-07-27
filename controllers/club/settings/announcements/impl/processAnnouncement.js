@@ -10,6 +10,7 @@ module.exports = async (req, res) => {
 
 
     const club = await Club.findById(req.params.id)
+    const user = await User.findById(req.session.userId)
     //const annoucnementAction = new Promise(async () => {
         var today = new Date();
         var date = (today.getMonth() + 1) + '-' + today.getDate()+ "-" + today.getFullYear();
@@ -26,11 +27,16 @@ module.exports = async (req, res) => {
         
         const announcement = {subject: req.body.subject, body : req.body.body, date : date, time : time}
         // adding announcement to club
+        var announcement_type = ""
         if(req.body.slider == 'on') {
             club.announcements.private.unshift(announcement)
+            announcement_type = "Private"
         } else {
             club.announcements.public.unshift(announcement)
+            announcement_type = "Public"
         }
+        const settings_message = {User: user.firstName + " " + user.lastName, Type: `Sent ${announcement_type} Announcement`, Date: date, Time: time}
+        club.settings_history.unshift(settings_message)
         club.save()
         const announcement_user = {subject: req.body.subject, body : req.body.body, date : date, time : time, club : club.name, status: "unread", type :"announcement"}
         // sending push notification to users

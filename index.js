@@ -90,6 +90,7 @@ const removeAnnouncementController = require('./controllers/club/settings/announ
 const markReadController = require('./controllers/user/inbox/impl/markNotificationRead')
 const removeFromInboxController = require('./controllers/user/inbox/impl/removeInboxItem')
 const markAllReadController = require('./controllers/user/inbox/impl/markallread')
+const club_settings_history_controller = require('./controllers/club/settings/history/view/club_settings_history_view')
 //app features and functions that are being implemented
 app.use(bodyParser.json())
 app.use(expressLayouts)
@@ -233,3 +234,4 @@ app.get('/removeAnnouncement/:id/:visibility/:announcement_index', removeAnnounc
 app.post('/markRead/:notification_index', markReadController)
 app.get('/removeinboxitem/:inbox_index', removeFromInboxController)
 app.get('/markallread', markAllReadController )
+app.get('/club_settings_history/:id',  club_settings_history_controller)
