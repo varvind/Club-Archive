@@ -79,9 +79,9 @@
                             <div class="d-flex justify-content-center mr-1">
                                 <div class="w-75 display-none"><div></div></div>
                                 <div class="w-25">
-                                    <div class="w-75 d-flex justify-content-center align-items-center">
-                                        <div class="w-50" style = "margin-left:50%">Member</div>
-                                        <div style = "margin-left: 20%;">Admin</div>
+                                    <div style = "margin-left: -28%;">
+                                        <div style = "float: left; margin-right:10%" >Member</div>
+                                        <div>Admin</div>
                                     </div>
                                 </div>
                             </div>
@@ -89,28 +89,28 @@
                             
                             <input type="number" hidden id="inputNumber">
                             <div class="d-flex justify-content-center mb-1" id="1">
-                                <input type="email" class="form-control form-control-lg" name="email1" placeholder="Enter Email" required>
-                                <div class="w-25 d-flex align-items-center" style = "margin-left:5%;">
+                                <input type="email" class="form-control form-control-lg" name="email1" style = "width:60%" placeholder="Enter Email" required>
+                                <div class="w-25 d-flex align-items-center">
                                     <div class="w-75 d-flex align-items-center justify-content-center">
                                         <div class="form-check m-auto mr-3" >
                                             <input class="form-check-input position-static" type="radio" name="position1" value="member" checked>
                                         </div>
                                         <div class="form-check m-auto ml-3">
-                                            <input class="form-check-input position-static" type="radio" name="position1" value="admin" style = "margin-left: 100%;">
+                                            <input class="form-check-input position-static" type="radio" name="position1" value="admin" >
                                         </div>
                                     </div>                                    
                                 </div>
                             </div>
                             <%for(let i=2; i<151; i++){%>
                                 <div class="d-flex justify-content-center mb-1" id="1">
-                                    <input style="display: none; width: 80%;" id=<%="email"+String(i)%> type="email" class="form-control form-control-lg" name=<%="email"+i%> placeholder="Enter Email" >
+                                    <input style="display: none; width: 60%;" id=<%="email"+String(i)%> type="email" class="form-control form-control-lg" name=<%="email"+i%> placeholder="Enter Email" >
                                     <div class="w-25 d-flex align-items-center">
                                         <div class="w-75 d-flex align-items-center justify-content-center">
                                             <div class="form-check m-auto mr-3">
-                                                <input style="display: none; margin-left: 30%;" id=<%="positionA"+i%> class="form-check-input position-static" type="radio" name=<%="position"+i%> value="member" checked>
+                                                <input style="display: none;" id=<%="positionA"+i%> class="form-check-input position-static" type="radio" name=<%="position"+i%> value="member" checked>
                                             </div>
                                             <div class="form-check m-auto ml-3">
-                                                <input style="display: none" id=<%="positionB"+i%> class="form-check-input position-static" type="radio" name=<%="position"+i%> value="admin">
+                                                <input style="display: none;" id=<%="positionB"+i%> class="form-check-input position-static" type="radio" name=<%="position"+i%> value="admin">
                                             </div>
                                         </div>
                                         
@@ -122,7 +122,7 @@
                                 <button type="button" onclick="newInput(this);" class="btn btn-outline-secondary m-0">+</button>
                             </div>
 
-                            <div class="w-100 d-flex align-items-center">
+                            <div class="w-100 d-flex">
                                 <button  type="submit" value="submit" name="submit" class="btn btn-outline-primary" >Invite Users!</button>
                             </div>
                         </form>
