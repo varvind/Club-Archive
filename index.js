@@ -95,6 +95,7 @@ const inviteNewMembersController = require('./controllers/club/settings/invite_m
 const emailNewMembersController = require('./controllers/club/settings/invite_members/impl/emailNewMembers')
 const joinClubRenderController = require('./controllers/club/settings/invite_members/view/joinClubRender')
 const joinClubPostController = require('./controllers/club/settings/invite_members/view/joinClubPost')
+const deleteClubSettingsHistoryController = require('./controllers/club/settings/history/impl/clear_club_settings_history')
 //app features and functions that are being implemented
 app.use(bodyParser.json())
 app.use(expressLayouts)
@@ -243,3 +244,4 @@ app.get('/:club_id/invitemembers', inviteNewMembersController)
 app.post('/:club_id/invitemembers', emailNewMembersController)
 app.get('/:club_id/joinclub', joinClubRenderController)
 app.post('/:club_id/joinclub', joinClubPostController)
+app.get('/clearClubSettingsHistory/:clubId', deleteClubSettingsHistoryController)

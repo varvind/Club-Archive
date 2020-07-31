@@ -4,7 +4,18 @@ module.exports = async (req, res) => {
     const club = await Club.findById(req.params.club_id)
     const user = await User.findById(req.session.userId)
     const member = await User.findById(req.params.user_id)
-
+    var today = new Date();
+    var date = (today.getMonth() + 1) + '-' + today.getDate()+ "-" + today.getFullYear();
+    var time = "";
+    if(today.getUTCHours() - 5 > 12) {
+            time = (today.getUTCHours() - 12 - 5) + ":" + today.getMinutes() + " pm"
+    } else if (today.getUTCHours() - 5 == 12) {
+            time = (today.getUTCHours() - 5 ) + ":" + today.getMinutes() + " pm"
+    } else if (today.getUTCHours() - 5 == 0) {
+            time = (today.getUTCHours() + 12 - 5) + ":" + today.getMinutes() + " am"
+    } else {
+            time = (today.getUTCHours() - 5) + ":" + today.getMinutes() + " am"
+    }
     var canEdit = false;
     if(user != null){
         for(var i = 0; i < club.adminstrators.length; i++){
@@ -20,6 +31,8 @@ module.exports = async (req, res) => {
             //console.log("Make Admin")
             let admin = {name : member.firstName+" "+member.lastName, id:member._id}
             club.adminstrators.push(admin)
+            const settings_message = {User: user.firstName + " " + user.lastName, Type: `Promoted ${admin.name} to admin`, Date: date, Time: time}
+            club.settings_history.unshift(settings_message)
             club.save()
         }
         else if(req.body.remove_admin){
@@ -28,7 +41,10 @@ module.exports = async (req, res) => {
                 let i=0
                 club.adminstrators.forEach(admin => {
                     if(String(admin.id) == String(member._id)){
+                        const settings_message = {User: user.firstName + " " + user.lastName, Type: `Demoted ${club.adminstrators[i].name} from admin`, Date: date, Time: time}
+                        club.settings_history.unshift(settings_message)
                         club.adminstrators.splice(i,1)
+                        
                         club.save()
                     }
                     i += 1
@@ -57,6 +73,8 @@ module.exports = async (req, res) => {
             i=0
             club.members.forEach(mem => {
                 if(String(mem.id) == String(member._id)){
+                    const settings_message = {User: user.firstName + " " + user.lastName, Type: `Removed ${club.members[i].name} from Club`, Date: date, Time: time}
+                    club.settings_history.unshift(settings_message)
                     club.members.splice(i,1)
                     club.save()
                 }

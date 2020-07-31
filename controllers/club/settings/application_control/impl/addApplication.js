@@ -2,11 +2,13 @@ const User = require('../../../../../models/User')
 const Club = require('../../../../../models/Club')
 
 module.exports = async (req, res) => {
-    console.log(req.body)
-    const club = await Club.findById(req.params.id, (err, found) => {
+    const club = await Club.findById(req.params.id, async (err, found) => {
         if(!found || err){
             console.log("Error Finding CLub")
         }else{
+            const user = await User.findById(req.session.userId)
+            const settings_message = {User: user.firstName + " " + user.lastName, Type: `Created User Application`, Date: date, Time: time}
+            club.settings_history.unshift(settings_message)
             found.onlineApplication.allow = (req.body.allowApplication == "true") ? true : false
 
             found.onlineApplication.fullname =  (req.body.fullname == "true") ? true : false

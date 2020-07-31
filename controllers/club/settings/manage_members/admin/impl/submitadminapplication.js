@@ -3,6 +3,7 @@ const Club = require('../../../../../../models/Club')
 
 
 module.exports = async (req, res) => {
+    const signed_in_user = await User.findById(req.session.userId)
     const user = await User.findById(req.params.userId)
     const club = await Club.findById(req.params.clubId)
     var user_application_index = 0;
@@ -36,9 +37,11 @@ module.exports = async (req, res) => {
     console.log(appDecision)
     console.log(user.pending_applications[user_application_index])
     if(appDecision == "Accept"){
-        admin = {name : club.admin_applications[i].name, id:user._id}
+        admin = {name : club.admin_applications[club_application_index].name, id:user._id}
         club.adminstrators.push(admin)
         club.admin_applications.splice(club_application_index,1)
+        const settings_message = {User: signed_in_user.firstName + " " + signed_in_user.lastName, Type: `Accepted ${admin.name} as Admin`, Date: date, Time: time}
+        club.settings_history.unshift(settings_message)
         club.save()
 
        
@@ -52,6 +55,9 @@ module.exports = async (req, res) => {
         user.save()
     }
     else{
+        
+        const settings_message = {User: signed_in_user.firstName + " " + signed_in_user.lastName, Type: `Rejected ${club.admin_applications[club_application_index].name} as Admin`, Date: date, Time: time}
+        club.settings_history.unshift(settings_message)
         club.admin_applications.splice(club_application_index,1)
         club.save()
 

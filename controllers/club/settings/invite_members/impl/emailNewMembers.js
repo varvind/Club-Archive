@@ -7,12 +7,25 @@ const crypto = require('crypto')
 require('dotenv').config()
 
 module.exports = async (req, res) => {
+    var today = new Date();
+    var date = (today.getMonth() + 1) + '-' + today.getDate()+ "-" + today.getFullYear();
+    var time = "";
+    if(today.getUTCHours() - 5 > 12) {
+         time = (today.getUTCHours() - 12 - 5) + ":" + today.getMinutes() + " pm"
+    } else if (today.getUTCHours() - 5 == 12) {
+         time = (today.getUTCHours() - 5 ) + ":" + today.getMinutes() + " pm"
+    } else if (today.getUTCHours() - 5 == 0) {
+         time = (today.getUTCHours() + 12 - 5) + ":" + today.getMinutes() + " am"
+    } else {
+         time = (today.getUTCHours() - 5) + ":" + today.getMinutes() + " am"
+    }
     await Club.findById(req.params.club_id, async (err, club) => {
         if(err || !club){
             console.log(err || "Club Not Found")
             res.redirect('/')
         }else{
             await User.findById(req.session.userId, async (errr, user) => {
+                
                 if(errr || !user){
                     console.log(errr || "User Not Found")
                     res.redirect('/login')
@@ -27,6 +40,9 @@ module.exports = async (req, res) => {
                         console.log("User does not have access to these settings")
                         res.redirect(`/post/${club._id}`)
                     }else{
+                        const settings_message = {User: user.firstName + " " + user.lastName, Type: `Invited user via email to join club`, Date: date, Time: time}
+                        club.settings_history.unshift(settings_message)
+                        club.save()
                         const transporter = await nodemailer.createTransport({
                             host: 'smtp.gmail.com',
                             port: 465,

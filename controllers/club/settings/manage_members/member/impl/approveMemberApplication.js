@@ -5,6 +5,7 @@ module.exports = async (req, res) =>{
     var today = new Date();
     var date = (today.getMonth() + 1) + '-' + today.getDate()+ "-" + today.getFullYear();
     var time = "";
+    const signed_in_user = await User.findById(req.session.userId)
     if(today.getUTCHours() - 5 > 12) {
             time = (today.getUTCHours() - 12 - 5) + ":" + today.getMinutes() + " pm"
     } else if (today.getUTCHours() - 5 == 12) {
@@ -54,6 +55,8 @@ module.exports = async (req, res) =>{
             club.members.push(member)
         }
         //else{console.log("Already a Member (club)")}
+        const settings_message = {User: signed_in_user.firstName + " " + signed_in_user.lastName, Type: `Accepted ${club.member_applications[club_application_index].fullname} into Club`, Date: date, Time: time}
+        club.settings_history.unshift(settings_message)
         club.member_applications.splice(club_application_index,1)
         club.save()
         var app_notification = {subject: `Application Status: Member for ${club.name}`, body : `Congrats! You have been accepted as a member of ${club.name}! Please be sure to contact your club for next steps! You will also begin to receive updates from clubs should they announce any!`, date : date, time : time, club : club.name, status: "unread", type :"application"}
@@ -81,6 +84,8 @@ module.exports = async (req, res) =>{
         
     }
     else{
+        const settings_message = {User: signed_in_user.firstName + " " + signed_in_user.lastName, Type: `Rejected ${club.member_applications[club_application_index].fullname} into Club`, Date: date, Time: time}
+        club.settings_history.unshift(settings_message)
         club.member_applications.splice(club_application_index,1)
         club.save()
 

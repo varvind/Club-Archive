@@ -5,6 +5,7 @@ const User = require('../../../../../models/User')
 module.exports = async(req, res) => {
     const club = await Club.findById(req.params.id)
     const announcement_index = req.params.announcement_index
+    const user = await User.findById(req.session.userId)
     //update club side of update
 
     // private announcement update
@@ -33,6 +34,8 @@ module.exports = async(req, res) => {
             club.announcements.private.splice(announcement_index, 1)
             const new_announcement = {subject: subject, body : body, date : current_date, time : current_time}
             club.announcements.private.unshift(new_announcement)
+            const settings_message = {User: user.firstName + " " + user.lastName, Type: `Updated Private Announcement with Subject: ${original_announcement.subject}`, Date: current_date, Time: current_time}
+            club.settings_history.unshift(settings_message)
             club.save()
             
         } else {
@@ -52,6 +55,7 @@ module.exports = async(req, res) => {
             club.announcements.public.splice(announcement_index, 1)
             const new_announcement = {subject: subject, body : body, date : current_date, time : current_time}
             club.announcements.public.unshift(new_announcement)
+            const settings_message = {User: user.firstName + " " + user.lastName, Type: `Updated Public Announcement with Subject: ${original_announcement.subject}`, Date: current_date, Time: current_time}
             club.save()
         }
 
