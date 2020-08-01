@@ -246,3 +246,4 @@ app.get('/:club_id/invitemembers', inviteNewMembersController)
 app.post('/:club_id/invitemembers', emailNewMembersController)
 app.get('/:club_id/joinclub', joinClubRenderController)
 app.post('/:club_id/joinclub', joinClubPostController)
+module.exports = app
