@@ -110,6 +110,7 @@ app.use(express.static(__dirname));
 
 
 
+
 //db connect
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL)
@@ -244,4 +245,5 @@ app.get('/:club_id/invitemembers', inviteNewMembersController)
 app.post('/:club_id/invitemembers', emailNewMembersController)
 app.get('/:club_id/joinclub', joinClubRenderController)
 app.post('/:club_id/joinclub', joinClubPostController)
+
 app.get('/clearClubSettingsHistory/:clubId', deleteClubSettingsHistoryController)
