@@ -150,7 +150,7 @@ app.listen(process.env.PORT || 3000)
 
 //check if the user is logged in
 //global variable that can be utilized in all files
-//senses the cookies
+
 global.loggedIn = null
 global.clubloggedin = null
 app.use("*", (req, res, next) => {
@@ -241,9 +241,8 @@ app.post('/markRead/:notification_index', markReadController)
 app.get('/removeinboxitem/:inbox_index', removeFromInboxController)
 app.get('/markallread', markAllReadController )
 app.get('/club_settings_history/:id',  club_settings_history_controller)
+app.get('/clearClubSettingsHistory/:clubId', deleteClubSettingsHistoryController)
 app.get('/:club_id/invitemembers', inviteNewMembersController)
 app.post('/:club_id/invitemembers', emailNewMembersController)
 app.get('/:club_id/joinclub', joinClubRenderController)
 app.post('/:club_id/joinclub', joinClubPostController)
-
-app.get('/clearClubSettingsHistory/:clubId', deleteClubSettingsHistoryController)
