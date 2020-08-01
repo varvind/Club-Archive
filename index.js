@@ -91,11 +91,11 @@ const markReadController = require('./controllers/user/inbox/impl/markNotificati
 const removeFromInboxController = require('./controllers/user/inbox/impl/removeInboxItem')
 const markAllReadController = require('./controllers/user/inbox/impl/markallread')
 const club_settings_history_controller = require('./controllers/club/settings/history/view/club_settings_history_view')
+const deleteClubSettingsHistoryController = require('./controllers/club/settings/history/impl/clear_club_settings_history')
 const inviteNewMembersController = require('./controllers/club/settings/invite_members/view/inviteMembers')
 const emailNewMembersController = require('./controllers/club/settings/invite_members/impl/emailNewMembers')
 const joinClubRenderController = require('./controllers/club/settings/invite_members/view/joinClubRender')
 const joinClubPostController = require('./controllers/club/settings/invite_members/view/joinClubPost')
-const deleteClubSettingsHistoryController = require('./controllers/club/settings/history/impl/clear_club_settings_history')
 //app features and functions that are being implemented
 app.use(bodyParser.json())
 app.use(expressLayouts)
