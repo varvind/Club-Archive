@@ -4,6 +4,18 @@ const mongoose = require('mongoose')
 
 module.exports = async (req, res)=> {    
     var gfs = global.gfs
+    var today = new Date();
+    var date = (today.getMonth() + 1) + '-' + today.getDate()+ "-" + today.getFullYear();
+    var time = "";
+    if(today.getUTCHours() - 5 > 12) {
+         time = (today.getUTCHours() - 12 - 5) + ":" + today.getMinutes() + " pm"
+    } else if (today.getUTCHours() - 5 == 12) {
+         time = (today.getUTCHours() - 5 ) + ":" + today.getMinutes() + " pm"
+    } else if (today.getUTCHours() - 5 == 0) {
+         time = (today.getUTCHours() + 12 - 5) + ":" + today.getMinutes() + " am"
+    } else {
+         time = (today.getUTCHours() - 5) + ":" + today.getMinutes() + " am"
+    }
     const club = await Club.findById(req.params.club_id, async (err, found) => {
         if(err || !found){
             console.log('Error Finding Club')
