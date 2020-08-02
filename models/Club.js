@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const Scheme = mongoose.Schema
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 
 const clubSchema = new Scheme ({

@@ -1,6 +1,6 @@
 const User = require('../../../../models/User')
 const path = require('path')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 module.exports = (req, res) => {
     let inputs = []
     for(let input in req.body){

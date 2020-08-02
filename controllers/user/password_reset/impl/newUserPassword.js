@@ -1,6 +1,6 @@
 const ResetPassword = require('../../../../models/ResetPassword')
 const User = require('../../../../models/User')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 module.exports = (req, res) => {
     console.log(`The req.body.resetId is ${req.body.resetId}`)
