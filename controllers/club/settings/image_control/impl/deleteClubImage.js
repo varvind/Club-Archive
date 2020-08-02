@@ -23,7 +23,8 @@ module.exports = async (req, res)=> {
         }else{
             const user = await User.findById(req.session.userId)
             const settings_message = {User: user.firstName + " " + user.lastName, Type: `Removed Image from Club Profile`, Date: date, Time: time}
-            club.settings_history.unshift(settings_message)
+            found.settings_history.unshift(settings_message)
+            found.save()
             //delete given image
             gfs.remove({filename: String(req.params.filename), root: 'uploads'}, (err) => {
                 if(err){
