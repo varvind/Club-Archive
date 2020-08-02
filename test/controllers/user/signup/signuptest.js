@@ -10,7 +10,6 @@ describe('POST /addUser', function () {
             .then(()=> {
                 mongoose.Promise = global.Promise;
                 mongoose.connect("mongodb://localhost/club_archive")
-                done()
             })
         .then(() => done())
         .catch((err) => done(err))
