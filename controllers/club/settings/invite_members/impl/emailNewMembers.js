@@ -88,7 +88,7 @@ module.exports = async (req, res) => {
                                                     from: process.env.EMAIL,
                                                     subject: subject,
                                                     messageId: 'Invite Token',
-                                                    text: `${club.name} has invited you to join their organization on ClubArchive. \nClick this link in order to create an account or simply login into your existing account. https://www.ClubArchive.com/login \nNext, click this link in order to join ${club.name} as a ${req.body[admin]}. http://localhost:3000/${club._id}/joinclub/ \n When prompted enter this token: ${token}`
+                                                    text: `${club.name} has invited you to join their organization on ClubArchive. \nClick this link in order to create an account or simply login into your existing account. https://www.clubarchive.com/login \nNext, click this link in order to join ${club.name} as a ${req.body[admin]}. https://clubarchive.com/${club._id}/joinclub/ \n When prompted enter this token: ${token}`
                                                 }
                     
                                                 await transporter.sendMail(mailOptions, (errr,info) =>{
