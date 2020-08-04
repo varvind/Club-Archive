@@ -240,6 +240,7 @@ app.get('/removeAnnouncement/:id/:visibility/:announcement_index', removeAnnounc
 app.post('/markRead/:notification_index', markReadController)
 app.get('/removeinboxitem/:inbox_index', removeFromInboxController)
 app.get('/markallread', markAllReadController )
+//Club Settings History Controllers
 app.get('/club_settings_history/:id',  club_settings_history_controller)
 app.get('/clearClubSettingsHistory/:clubId', deleteClubSettingsHistoryController)
 app.get('/:club_id/invitemembers', inviteNewMembersController)
