@@ -4,6 +4,10 @@ const InviteToken = require('../../../../../models/InviteMemberToken')
 
 const nodemailer = require('nodemailer')
 const crypto = require('crypto')
+
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
+
 require('dotenv').config()
 
 module.exports = async (req, res) => {
@@ -43,13 +47,27 @@ module.exports = async (req, res) => {
                         const settings_message = {User: user.firstName + " " + user.lastName, Type: `Invited user via email to join club`, Date: date, Time: time}
                         club.settings_history.unshift(settings_message)
                         club.save()
+                        
+                        const oauth2Client = new OAuth2(
+                            process.env.CLIENTID, // ClientID
+                            process.env.CLIENTSECRET, // Client Secret
+                            "https://developers.google.com/oauthplayground" // Redirect URL
+                       );
+
+                        oauth2Client.setCredentials({
+                        refresh_token: process.env.REFRESHTOKEN
+                        });
+                        const accessToken = oauth2Client.getAccessToken()
+                        
                         const transporter = await nodemailer.createTransport({
-                            host: 'smtp.gmail.com',
-                            port: 465,
-                            secure: true,
+                            service: "gmail",
                             auth: {
+                                type: "OAuth2",
                                 user: process.env.EMAIL, 
-                                pass: process.env.PASSWORD  
+                                clientId: process.env.CLIENTID,
+                                clientSecret: process.env.CLIENTSECRET,
+                                refreshToken: process.env.REFRESHTOKEN,
+                                accessToken: accessToken
                             }
                         })
                             
@@ -104,6 +122,7 @@ module.exports = async (req, res) => {
                                         })
                                     }
                                 }
+                                smtpTransport.close();
                             }
                         })
                     }
