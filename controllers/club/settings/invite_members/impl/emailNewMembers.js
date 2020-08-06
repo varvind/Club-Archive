@@ -4,6 +4,9 @@ const InviteToken = require('../../../../../models/InviteMemberToken')
 
 const nodemailer = require('nodemailer')
 const crypto = require('crypto')
+const {google} = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
+
 require('dotenv').config()
 
 module.exports = async (req, res) => {
@@ -25,7 +28,6 @@ module.exports = async (req, res) => {
             res.redirect('/')
         }else{
             await User.findById(req.session.userId, async (errr, user) => {
-                
                 if(errr || !user){
                     console.log(errr || "User Not Found")
                     res.redirect('/login')
@@ -43,13 +45,26 @@ module.exports = async (req, res) => {
                         const settings_message = {User: user.firstName + " " + user.lastName, Type: `Invited user via email to join club`, Date: date, Time: time}
                         club.settings_history.unshift(settings_message)
                         club.save()
+                        
+                        const oauth2Client = new OAuth2(
+                            process.env.CLIENT_ID, // ClientID
+                            process.env.CLIENT_SECRET, // Client Secret
+                            "https://developers.google.com/oauthplayground" // Redirect URL
+                       );
+                        oauth2Client.setCredentials({
+                            refresh_token: process.env.REFRESH_TOKEN
+                        });
+                        
+                        const accessToken = oauth2Client.getAccessToken()
                         const transporter = await nodemailer.createTransport({
-                            host: 'smtp.gmail.com',
-                            port: 465,
-                            secure: true,
+                            service: "gmail",
                             auth: {
+                                type: "OAuth2",
                                 user: process.env.EMAIL, 
-                                pass: process.env.PASSWORD  
+                                clientId: process.env.CLIENT_ID,
+                                clientSecret: process.env.CLIENT_SECRET,
+                                refreshToken: process.env.REFRESH_TOKEN,
+                                accessToken: accessToken
                             }
                         })
                             
@@ -59,7 +74,6 @@ module.exports = async (req, res) => {
                                     res.redirect('/')
                             }else{
                                 //console.log('Server is ready to send email');
-
                                 for(let i=1; i<=150; i++){
                                     let email = "email"+i
                                     let admin = "position"+i
@@ -104,6 +118,7 @@ module.exports = async (req, res) => {
                                         })
                                     }
                                 }
+                                smtpTransport.close();
                             }
                         })
                     }
