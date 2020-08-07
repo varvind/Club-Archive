@@ -27,6 +27,7 @@
     "google-auth-library": "^6.0.6",
     "googleapis": "^58.0.0",
     "gridfs-stream": "^1.1.1",
+    "heroku-ssl-redirect": "0.0.4",
     "method-override": "^3.0.0",
     "mocha": "^8.1.0",
     "mockgoose": "^8.0.4",
