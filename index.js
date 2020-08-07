@@ -4,7 +4,6 @@ if(process.env.NODE_ENV !== 'production') {
 
 
  
-
 //imports
 const express = require('express')
 const app =  new express()
@@ -19,6 +18,7 @@ const Grid = require('gridfs-stream')
 const methodOverride = require('method-override')
 const path = require('path')
 const expressLayouts = require('express-ejs-layouts')
+var sslRedirect = require('heroku-ssl-redirect');
 //routes
 const authMiddleWare = require('./middleware/authMiddleware')
 const userSignUpController = require('./controllers/user/signup/view/newUser')
@@ -106,7 +106,7 @@ app.use(expressSession({
     secret: 'keyboard cat'
 }))
 app.use(express.static(__dirname));
-
+app.use(sslRedirect());
 
 
 
