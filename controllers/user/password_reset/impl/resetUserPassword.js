@@ -3,7 +3,10 @@ const ResetPassword = require('../../../../models/ResetPassword')
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 require('dotenv').config()
-const path = require('path')
+
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
+
 module.exports = (req, res) => {
     const email = req.body.email
 
@@ -25,21 +28,35 @@ module.exports = (req, res) => {
             })
             //console.log(resetToken)
         
-            ResetPassword.create(resetToken, (err) =>{ //create new reset password
+            ResetPassword.create(resetToken, async (err) =>{ //create new reset password
                 if(err){
                     console.log("Error Creating Reset Password Schema")
                 }else{
                     // create reusable transporter object using the default SMTP transport
-                    let transporter = nodemailer.createTransport({
-                        host: 'smtp.gmail.com',
-                        port: 465,
-                        secure: true, // true for 465, false for other ports
+                    const oauth2Client = new OAuth2(
+                        process.env.CLIENT_ID, // ClientID
+                        process.env.CLIENT_SECRET, // Client Secret
+                        "https://developers.google.com/oauthplayground" // Redirect URL
+                   );
+
+                    oauth2Client.setCredentials({
+                    refresh_token: process.env.REFRESH_TOKEN
+                    });
+                    const accessToken = oauth2Client.getAccessToken()
+                    
+                    const transporter = await nodemailer.createTransport({
+                        service: "gmail",
                         auth: {
-                            user: process.env.EMAIL, // generated ethereal user
-                            pass: process.env.PASSWORD  // generated ethereal password
+                            type: "OAuth2",
+                            user: process.env.EMAIL, 
+                            clientId: process.env.CLIENT_ID,
+                            clientSecret: process.env.CLIENT_SECRET,
+                            refreshToken: process.env.REFRESH_TOKEN,
+                            accessToken: accessToken
                         }
                     })
-                    transporter.verify(function(error, success) {
+                    
+                    await transporter.verify(function(error, success) {
                         if (error) {
                                 console.log(error);
                         } else {
