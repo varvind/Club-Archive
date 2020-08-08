@@ -37,7 +37,7 @@ module.exports = async (req, res) =>{
         })
     }
     else {
-        res.redirect('/password')
+        res.redirect('/profile_password')
     }
     
     

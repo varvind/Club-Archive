@@ -10,6 +10,6 @@ module.exports = async (req, res) =>{
             layout:'layouts/topMenuBar'
         })
     } else {
-        res.redirect('/')
+        res.redirect('/login')
     }
 }
