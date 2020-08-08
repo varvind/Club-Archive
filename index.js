@@ -183,8 +183,14 @@ app.get('/aboutus', aboutPageController)
 app.get('/howtoregister',howToController)
 app.get('/usersettings',userSettingsController)
 app.post('/updateuser',upload.single('image'), updateUserController)
+
+// User settings - Password change
+//================================
+// Password change view
 app.get('/profile_password', passwordChangeController)
+// Password change impl
 app.post('/updatepassword', updatePasswordController)
+//===============================
 app.get('/clubsettings/:id', clubSettingsController)
 app.post('/updateclub/:id', upload.array('images', 10), updateClubController)
 app.get('/forgotpassword',forgotPasswordController)
