@@ -2,13 +2,13 @@ const User = require('../../../../models/User')
 const bcrypt = require('bcryptjs')
 
 module.exports = async (req, res) =>{
+
     const user = await User.findById(req.session.userId)
     if(req.body.newPassword != ""){
         bcrypt.compare(req.body.verifyPassword, user.password, (error, same) =>{
-            
             if(same) {
                 if(req.body.newPassword != req.body.confirmNewPassword){
-                    error = "Error: New Password and Confirmation Do Not Match"
+                    error = "New Password and Confirmation Do Not Match"
                     res.render('user_views/settings/changePassword', {
                         user,
                         error,
@@ -26,7 +26,7 @@ module.exports = async (req, res) =>{
                 }
             }
             else {
-                error = "Error: Current Password is Incorrect"
+                error = "Current Password is Incorrect"
                 res.render('user_views/settings/changePassword', {
                     user,
                     error,
@@ -37,7 +37,7 @@ module.exports = async (req, res) =>{
         })
     }
     else {
-        res.redirect('/password')
+        res.redirect('/profile_password')
     }
     
     
