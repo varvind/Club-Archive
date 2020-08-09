@@ -4,8 +4,8 @@ module.exports = (req, res) => {
     if(req.query.resetId == null){
         res.render('user_views/settings/userReset', {error: "No Reset ID"})
     }
-    ResetPassword.findOne({resetPasswordToken: req.query.resetId}, (error, resetPassword) => {
-        if(!resetPassword){
+    await ResetPassword.findOne({resetPasswordToken: req.query.resetId}, (error, resetPassword) => {
+        if(error || !resetPassword){
             res.render('user_views/login', {error: "Reset Token not Found or Expired", layout:false})
         }else{
             res.render('user_views/settings/userReset', 
