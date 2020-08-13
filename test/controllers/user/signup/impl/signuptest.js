@@ -5,7 +5,7 @@ const app = require('../../../../../index')
 const Mockgoose = require('mockgoose').Mockgoose
 const mockgoose = new Mockgoose(mongoose)
 describe('POST /addUser', function () {
-    this.timeout(120000)
+    this.timeout(0)
     before((done) => {
         this.timeout(120000)
         mockgoose.prepareStorage()
