@@ -11,9 +11,7 @@ describe('POST /addUser', function () {
         mockgoose.prepareStorage()
             .then(()=> {
                 mongoose.Promise = global.Promise;
-                mongoose.connect("mongodb://localhost/club_archive", function(err) {
-                    done(err)
-                })
+                mongoose.connect("mongodb://localhost/club_archive")
             })
         .then(() => done())
         .catch((err) => done(err))
