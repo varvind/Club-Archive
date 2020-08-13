@@ -34,6 +34,14 @@ describe('POST /addUser', function () {
         }).catch((err) => done(err))
     })
 
+    it('Test Confirm Password does not match Password', (done) => {
+        request(app).post('/addUser').send({firstName: '', lastName:'user', email : 'test@email.com', userName: "0",  password:'2', confirm_password: '0', major: 'comp sci', gradYear:'2020', image:''})
+        .then((res) => {
+            expect(res.header.location).to.not.equal('/')
+            done()
+        }).catch((err) => done(err))
+    })
+    
     after((done) => {
         mockgoose.helper.reset().then(() => {
             done()

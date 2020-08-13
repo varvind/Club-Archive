@@ -22,14 +22,16 @@ module.exports = (req, res) => {
         error = "File type invalid, please upload a jpg or png"
         res.render('user_views/userSignUp',  {
             error : "File type invalid, please upload a jpg or png",
-            fields: inputs
+            fields: inputs,
+            layout:false
         })
     }
     if(req.body.password != req.body.confirm_password) {
         error = "Confirm password does not match original password"
         res.render('user_views/userSignUp',  {
             error : "Confirm password does not match original password",
-            fields: inputs
+            fields: inputs,
+            layout:false
         })
     } else {
         bcrypt.hash(req.body.password, 10, async function(error, hash) {
