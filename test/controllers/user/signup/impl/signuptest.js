@@ -5,17 +5,17 @@ const app = require('../../../../../index')
 const Mockgoose = require('mockgoose').Mockgoose
 const mockgoose = new Mockgoose(mongoose)
 describe('POST /addUser', function () {
-    this.timeout(0)
-    before((done) => {
-        this.timeout(120000)
-        mockgoose.prepareStorage()
-            .then(()=> {
-                mongoose.Promise = global.Promise;
-                mongoose.connect("mongodb://localhost/club_archive")
-            })
-        .then(() => done())
-        .catch((err) => done(err))
-    })
+    this.timeout(120000)
+    // before((done) => {
+    //     this.timeout(120000)
+    //     mockgoose.prepareStorage()
+    //         .then(()=> {
+    //             mongoose.Promise = global.Promise;
+    //             mongoose.connect("mongodb://localhost/club_archive")
+    //         })
+    //     .then(() => done())
+    //     .catch((err) => done(err))
+    // })
 
     it('Test Successful Sign Up', (done) => {
 
@@ -43,12 +43,12 @@ describe('POST /addUser', function () {
         }).catch((err) => done(err))
     })
     
-    after((done) => {
-        mockgoose.helper.reset().then(() => {
-            done()
-        });
-        this.timeout(120000)
-    })
+    // after((done) => {
+    //     mockgoose.helper.reset().then(() => {
+    //         done()
+    //     });
+    //     this.timeout(120000)
+    // })
     
 
 })
