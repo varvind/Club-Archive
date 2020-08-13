@@ -7,6 +7,7 @@ const mockgoose = new Mockgoose(mongoose)
 describe('POST /addUser', function () {
     this.timeout(120000)
     before((done) => {
+        this.timeout(120000)
         mockgoose.prepareStorage()
             .then(()=> {
                 mongoose.Promise = global.Promise;
