@@ -37,7 +37,13 @@ describe('POST /addUser', function () {
             expect(res.header.location).to.not.equal('/')
             done()
         }).catch((err) => done(err))
-    })    
+    })
+
+    after((done) => {
+        User.deleteOne({userName: "0"}, function(err, obj) {
+            done()
+        })
+    })
     
 
 })

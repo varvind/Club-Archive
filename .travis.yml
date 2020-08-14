@@ -3,3 +3,6 @@ node_js:
   - stable
 services:
   - mongodb
+branches:
+  only: 
+    - develop
