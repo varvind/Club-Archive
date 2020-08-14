@@ -7,7 +7,7 @@ const mockgoose = new Mockgoose(mongoose)
 describe('POST /addUser', function () {
     this.timeout(120000)
 
-    it('Test View Request', (done) => {
+    it('Test Successful View Request', (done) => {
         request(app).get('/signup').then((res) => {
             expect(res.statusCode).to.equal(200)
             done()
