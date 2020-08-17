@@ -6,9 +6,9 @@ const it = require('mocha').it
 const before = require('mocha').before
 const after = require('mocha').after
 const User = require('../../../../../models/User')
-const userProfileController = require('../../../../../controllers/user/profile/view/userprofile')
+const chnagePasswordController = require('../../../../../controllers/user/settings/view/changePassword')
 
-describe('Test User Profile View', function () {
+describe('Test User Password Reset Settings View', function () {
   this.timeout(120000)
   before((done) => {
     request(app).post('/addUser').send({ firstName: 'test', lastName: 'user', email: 'test@email.com', userName: '0', password: '0', confirm_password: '0', major: 'comp sci', gradYear: '2020', image: '' })
@@ -18,29 +18,21 @@ describe('Test User Profile View', function () {
   })
 
   it('Test Redirect Because User is not logged in', (done) => {
-    request(app).get('/userprofile').then((res) => {
+    request(app).get('/profile_password').then((res) => {
       expect(res.statusCode).to.equal(302)
       done()
     }).catch((err) => done(err))
   })
 
   it('Test Successful Render after login', (done) => {
-    userProfileController.testMode()
+    chnagePasswordController.testMode()
 
-    request(app).get('/userprofile').then((res) => {
+    request(app).get('/profile_password').then((res) => {
       expect(res.statusCode).to.equal(200)
       done()
     }).catch((err) => done(err))
   })
 
-  it('Test user with clubs', (done) => {
-    userProfileController.testMode()
-
-    request(app).get('/userprofile').then((res) => {
-      expect(res.statusCode).to.equal(200)
-      done()
-    }).catch((err) => done(err))
-  })
   after((done) => {
     User.deleteOne({ userName: '0' }, function (err, obj) {
       if (err) {
