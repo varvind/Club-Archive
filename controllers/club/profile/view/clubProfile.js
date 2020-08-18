@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     const club = await Club.findById(req.params.id, async (err, club) => {
         if(err || !club){ console.log(err || "Club not found")}
         else{
-            const user = await User.findById(req.session.userId, async (error, user) => {
+            await User.findById(req.session.userId, async (error, user) => {
             if(error){console.log(error)}
             else{
                 //can access profile settings
