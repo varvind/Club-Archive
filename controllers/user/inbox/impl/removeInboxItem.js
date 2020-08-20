@@ -3,7 +3,6 @@ var userId = ''
 var mode = 'production'
 module.exports = async (req, res) => {
   await initVariables(mode, req.session.userId)
-  console.log(userId)
   const user = await User.findById(userId)
   const inboxIndex = req.params.inbox_index
   console.log(user)

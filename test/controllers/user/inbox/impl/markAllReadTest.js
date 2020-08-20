@@ -37,7 +37,7 @@ describe('Test Mark All Read Test', function () {
       if (err) {
         console.log(err)
       }
+      done()
     })
-    done()
   })
 })
