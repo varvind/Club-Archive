@@ -5,7 +5,6 @@ var mode = 'production'
 
 module.exports = async (req, res) => {
   await initVariables(mode, req.session.userId)
-  console.log(await User.find({}))
   const user = await User.findById(userId)
 
   for (var i = 0; i < user.inbox.length; i++) {
