@@ -245,7 +245,7 @@ app.post('/updateAnnouncement/:id/:visibility/:announcement_index', updateAnnoun
 app.get('/removeAnnouncement/:id/:visibility/:announcement_index', removeAnnouncementController )
 app.post('/markRead/:notification_index', markReadController)
 app.get('/removeinboxitem/:inbox_index', removeFromInboxController)
-app.get('/markallread', markAllReadController )
+app.get('/markallread', markAllReadController)
 app.get('/club_settings_history/:id',  club_settings_history_controller)
 app.get('/clearClubSettingsHistory/:clubId', deleteClubSettingsHistoryController)
 app.get('/:club_id/invitemembers', inviteNewMembersController)
