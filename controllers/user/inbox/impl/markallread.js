@@ -5,14 +5,18 @@ var mode = 'production'
 
 module.exports = async (req, res) => {
   await initVariables(mode, req.session.userId)
-  const user = await User.findById(userId)
-
-  for (var i = 0; i < user.inbox.length; i++) {
-    user.inbox[i].status = 'read'
-  }
-  user.markModified('inbox')
-  user.save()
-  res.redirect('/notificationsPage')
+  const user = await User.findById(userId, function (err, user) {
+    if (err) {
+      res.redirect('/')
+    } else {
+      for (var i = 0; i < user.inbox.length; i++) {
+        user.inbox[i].status = 'read'
+      }
+      user.markModified('inbox')
+      user.save()
+      res.redirect('/notificationsPage')
+    }
+  })
 }
 
 function testMode () {
