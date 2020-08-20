@@ -8,7 +8,7 @@ const after = require('mocha').after
 const User = require('../../../../../models/User')
 const markReadController = require('../../../../../controllers/user/inbox/impl/markNotificationRead')
 
-describe('Test User Profile View', function () {
+describe('Test MArk Notification Read Test', function () {
   this.timeout(120000)
   before((done) => {
     request(app).post('/addUser').send({ firstName: 'test', lastName: 'user', email: 'test@email.com', userName: '0', password: '0', confirm_password: '0', major: 'comp sci', gradYear: '2020', image: '' })
