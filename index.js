@@ -109,8 +109,6 @@ app.use(express.static(__dirname));
 app.use(sslRedirect());
 
 
-
-
 //db connect
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL)

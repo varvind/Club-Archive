@@ -10,7 +10,7 @@
     "start": "nodemon index.js",
     "test": "nyc mocha --recursive --exit",
     "coverage": "nyc report --reporter=html",
-    "checkstyle" : "standard"
+    "checkstyle": "standard"
   },
   "author": "",
   "license": "ISC",
