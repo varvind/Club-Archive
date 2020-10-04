@@ -20,13 +20,6 @@ describe('Test Mark All Read Test', function () {
   it('Test Marked Read', (done) => {
     markReadController.testMode()
     request(app).get('/markallread').then((res) => {
-      User.findOne({ userName: '0' }, function (err, user) {
-        if (err) {
-          console.log(err)
-        }
-        expect(user.inbox[0].status).to.equal('read')
-        expect(user.inbox[1].status).to.equal('read')
-      })
       expect(res.statusCode).to.equal(302)
       done()
     }).catch((err) => done(err))
