@@ -13,7 +13,6 @@ module.exports = async (req, res) => {
     user.save()
     res.redirect('/userprofile')
   }
-  
 }
 
 function testMode () {
