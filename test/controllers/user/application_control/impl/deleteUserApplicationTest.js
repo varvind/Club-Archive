@@ -9,74 +9,80 @@ const User = require('../../../../../models/User')
 const Club = require('../../../../../models/Club')
 const deleteUserApplication = require('../../../../../controllers/user/application_control/impl/deleteUserApplication')
 var clubId = ''
-describe('Test Delete User Application', function() {
+describe('Test Delete User Application', function () {
   this.timeout(120000)
   before((done) => {
     request(app).post('/addUser').send({ firstName: 'test', lastName: 'user', email: 'test@email.com', userName: '0', password: '0', confirm_password: '0', major: 'comp sci', gradYear: '2020', image: '' })
-    .then((res) => {
-      User.findOne({ userName : '0' }, (error, user) => {
-        Club.create({
-          name: 'test',
-          memberCount: '1',
-          president_organizer: 'arv',
-          email: 'test@email.com',
-          phonenumber: '12345',
-          description: 'test',
-          category: 'academic'
-        }, function(error, newClub) {
-          clubId = newClub._id
-          newClub.admin_applications.push({ userId: 'junkId', name: 'Arvind' })
-          newClub.admin_applications.push({ userId: user._id, name: 'Arvind' })
-          newClub.member_applications.push({
-            userId: 'junkId',
-            fullname: 'test',
-            email: 'test',
-            rank: 'test',
-            major: 'test',
-            resume : 'test',
-            custom1: {
+      .then((res) => {
+        User.findOne({ userName: '0' }, (error, user) => {
+          if (error) {
+            console.log('Could not find user')
+          }
+          Club.create({
+            name: 'test',
+            memberCount: '1',
+            president_organizer: 'arv',
+            email: 'test@email.com',
+            phonenumber: '12345',
+            description: 'test',
+            category: 'academic'
+          }, function (error, newClub) {
+            if (error) {
+              console.log('Could not find club')
+            }
+            clubId = newClub._id
+            newClub.admin_applications.push({ userId: 'junkId', name: 'Arvind' })
+            newClub.admin_applications.push({ userId: user._id, name: 'Arvind' })
+            newClub.member_applications.push({
+              userId: 'junkId',
+              fullname: 'test',
+              email: 'test',
+              rank: 'test',
+              major: 'test',
+              resume: 'test',
+              custom1: {
                 question: 'test',
                 answer: 'test'
-            },
-            custom2: {
+              },
+              custom2: {
                 question: 'test',
                 answer: 'test'
-            },
-            custom3: {
+              },
+              custom3: {
                 question: 'test',
                 answer: 'test'
-            },
-            status: 'Pending'
+              },
+              status: 'Pending'
+            })
+            newClub.member_applications.push({
+              userId: user._id,
+              fullname: 'test',
+              email: 'test',
+              rank: 'test',
+              major: 'test',
+              resume: 'test',
+              custom1: {
+                question: 'test',
+                answer: 'test'
+              },
+              custom2: {
+                question: 'test',
+                answer: 'test'
+              },
+              custom3: {
+                question: 'test',
+                answer: 'test'
+              },
+              status: 'Pending'
+            })
+            newClub.save()
+            user.pending_applications.push({ clubId: 'junkId', name: 'bad club', type: 'member', status: 'Under Review' })
+            user.pending_applications.push({ clubId: clubId, name: 'club', type: 'member', status: 'Under Review' })
+            user.save()
+            done()
           })
-          newClub.member_applications.push({
-            userId: user._id,
-            fullname: 'test',
-            email: 'test',
-            rank: 'test',
-            major: 'test',
-            resume : 'test',
-            custom1: {
-                question: 'test',
-                answer: 'test'
-            },
-            custom2: {
-                question: 'test',
-                answer: 'test'
-            },
-            custom3: {
-                question: 'test',
-                answer: 'test'
-            },
-            status: 'Pending'
-          })
-          newClub.save()
-          user.pending_applications.push({ clubId: 'junkId', name: 'bad club', type: 'member', status: 'Under Review' })
-          user.pending_applications.push({ clubId: clubId, name: 'club', type: 'member', status: 'Under Review' })
-          user.save()
-          done()
         })
-      })    
-    }).catch((err) => done(err))
+      }).catch((err) => done(err))
   })
 
   it('Test Redirect Because User is not logged in', (done) => {
@@ -88,9 +94,14 @@ describe('Test Delete User Application', function() {
 
   it('Test Delete User Application', (done) => {
     deleteUserApplication.testMode()
-    
     request(app).get(`/deleteapplication/${clubId}`).then((res) => {
       expect(res.statusCode).to.equal(302)
+      User.findOne({ userName: '0' }, (error, user) => {
+        if (error) {
+          console.log('Error could not find user')
+        }
+        expect(user.pending_applications.length).to.equal(1)
+      })
       const deleteClubPromise = Club.deleteOne({ name: 'test' })
       deleteClubPromise.then(() => {
         done()
