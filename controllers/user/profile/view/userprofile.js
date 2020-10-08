@@ -15,24 +15,30 @@ module.exports = async (req, res) => {
     })
     const clubs = user.recent_search
     const clubNames = []
+    var promises = []
     user.clubs.forEach(eachClub => {
-      Club.findById(eachClub, (err, foundClub) => {
+      let clubPromise = Club.findById(eachClub, (err, foundClub) => {
         if (err || !foundClub) {
           console.log('No club found')
         } else {
           clubNames.push(foundClub.name)
         }
+      }).catch(function(err) {
+        throw err
       })
+      promises.push(clubPromise)
     })
 
-    setTimeout(() => {
+    Promise.all(promises).then(function(result) {
       res.render('user_views/profile/userProfile', {
         user,
         clubs,
         clubNames,
         layout: 'layouts/topMenuBar'
       })
-    }, 2000)
+    }).catch(function(err) {
+      throw err
+    })
   }
 }
 
